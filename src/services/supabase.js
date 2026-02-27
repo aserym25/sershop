@@ -7,7 +7,7 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // 3. إعدادات الكاش (التخزين المؤقت لتسريع الموقع)
-const CACHE_KEY = 'sershop_products_cache';
+const CACHE_KEY = 'sershop_products_cache_v2';
 const CACHE_TTL = 5 * 60 * 1000; // 5 دقائق
 
 // 4. دوال الكاش

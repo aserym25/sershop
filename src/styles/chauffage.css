@@ -1,0 +1,167 @@
+body {
+  margin: 0;
+  font-family: 'Inter', 'Outfit', sans-serif;
+  background-color: #fcfcfc;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ── PAGE DE COUVERTURE ── */
+.cover-page {
+  text-align: center;
+  border: 5px solid #D4AF37;
+  padding: 50px 20px;
+  background-color: #1a1a1a;
+  color: white;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cover-title {
+  color: #D4AF37;
+  font-size: 36pt;
+  margin-bottom: 20px;
+  max-width: 900px;
+}
+
+.cover-subtitle {
+  font-size: 24pt;
+  margin-top: 0;
+  color: #f1f1f1;
+}
+
+.cover-divider {
+  border-color: #D4AF37;
+  margin: 40px 0;
+  width: 50%;
+}
+
+.cover-description {
+  font-size: 18pt;
+  margin-bottom: 40px;
+  color: #ddd;
+}
+
+.cover-badge {
+  background-color: #D4AF37;
+  color: black;
+  padding: 12px 24px;
+  display: inline-block;
+  margin-bottom: 60px;
+  font-size: 14pt;
+  border-radius: 4px;
+}
+
+.cover-authors {
+  font-size: 14pt;
+  line-height: 1.8;
+  color: #eee;
+}
+
+.cover-footer {
+  font-size: 12pt;
+  margin-top: 50px;
+  color: #aaa;
+}
+
+
+/* ── CORPS DU LIVRE ── */
+.book-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  color: #2c3e50;
+  border-bottom: 2px solid #D4AF37;
+  padding-bottom: 10px;
+  margin-top: 50px;
+  font-size: 24pt;
+}
+
+.subsection-title {
+  color: #e67e22;
+  font-size: 18pt;
+  margin-top: 30px;
+}
+
+.content-text {
+  font-size: 12pt;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.list-item {
+  margin-bottom: 10px;
+}
+
+.image-container {
+  margin: 30px 0;
+  text-align: center;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+  font-size: 10pt;
+  color: #666;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 30px 0;
+  font-size: 11pt;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: right;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.highlight-box {
+  background-color: #fdfae6;
+  border-right: 4px solid #D4AF37;
+  padding: 20px;
+  margin: 30px 0;
+  font-size: 11pt;
+}
+
+.page-indicator {
+  text-align: left;
+  padding: 1rem 0;
+  font-size: 14px;
+  color: #888;
+  border-bottom: 2px dashed #e2e8f0;
+  margin-bottom: 2rem;
+  font-weight: bold;
+}

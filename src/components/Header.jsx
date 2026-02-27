@@ -23,14 +23,14 @@ const Nav = styled.nav`
   animation: ${slideDown} 0.5s ease;
 
   background: ${({ $scrolled }) =>
-        $scrolled
-            ? 'rgba(10, 10, 26, 0.95)'
-            : 'transparent'};
+    $scrolled
+      ? 'rgba(10, 10, 26, 0.95)'
+      : 'transparent'};
   backdrop-filter: ${({ $scrolled }) => ($scrolled ? 'blur(20px)' : 'none')};
   border-bottom: ${({ $scrolled, theme }) =>
-        $scrolled ? `1px solid ${theme.colors.border}` : 'none'};
+    $scrolled ? `1px solid ${theme.colors.border}` : 'none'};
   box-shadow: ${({ $scrolled }) =>
-        $scrolled ? '0 4px 30px rgba(0,0,0,0.4)' : 'none'};
+    $scrolled ? '0 4px 30px rgba(0,0,0,0.4)' : 'none'};
 
   @media (max-width: ${({ theme }) => theme.breakpoints.md}) {
     padding: 0 1rem;
@@ -195,62 +195,62 @@ const ShopButton = styled(Link)`
 `
 
 export const Header = ({ onSearch, onCartOpen }) => {
-    const [scrolled, setScrolled] = useState(false)
-    const [searchVal, setSearchVal] = useState('')
-    const { totalItems } = useCart()
-    const location = useLocation()
+  const [scrolled, setScrolled] = useState(false)
+  const [searchVal, setSearchVal] = useState('')
+  const { totalItems } = useCart()
+  const location = useLocation()
 
-    useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20)
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
-    }, [])
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-    const handleSearch = (e) => {
-        setSearchVal(e.target.value)
-        onSearch?.(e.target.value)
-    }
+  const handleSearch = (e) => {
+    setSearchVal(e.target.value)
+    onSearch?.(e.target.value)
+  }
 
-    return (
-        <Nav $scrolled={scrolled}>
-            <Logo to="/">
-                <img src="/logo_1.png" alt="SearShop" />
-            </Logo>
+  return (
+    <Nav $scrolled={scrolled}>
+      <Logo to="/">
+        <img src="/logo_1.png" alt="SearShop" />
+      </Logo>
 
-            <NavLinks>
-                <NavLink to="/" $active={location.pathname === '/'}>Accueil</NavLink>
-                <NavLink to="/shop" $active={location.pathname === '/shop'}>Boutique</NavLink>
-                <NavLink to="/deals" $active={location.pathname === '/deals'}>Offres</NavLink>
-                <NavLink to="/about" $active={location.pathname === '/about'}>À propos</NavLink>
-            </NavLinks>
+      <NavLinks>
+        <NavLink to="/" $active={location.pathname === '/'}>Accueil</NavLink>
+        <NavLink to="/shop" $active={location.pathname === '/shop'}>Boutique</NavLink>
+        <NavLink as="a" href="https://temu.to/k/ecg15ib5igw" target="_blank" rel="noopener noreferrer">🔥 Offres Temu</NavLink>
+        <NavLink to="/about" $active={location.pathname === '/about'}>À propos</NavLink>
+      </NavLinks>
 
-            <NavActions>
-                <SearchBar>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-                    </svg>
-                    <input
-                        type="text"
-                        placeholder="Rechercher..."
-                        value={searchVal}
-                        onChange={handleSearch}
-                        id="search-input"
-                    />
-                </SearchBar>
+      <NavActions>
+        <SearchBar>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+          </svg>
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            value={searchVal}
+            onChange={handleSearch}
+            id="search-input"
+          />
+        </SearchBar>
 
-                <CartButton id="cart-button" onClick={onCartOpen} aria-label="Panier">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <path d="M16 10a4 4 0 0 1-8 0" />
-                    </svg>
-                    {totalItems > 0 && <CartBadge>{totalItems}</CartBadge>}
-                </CartButton>
+        <CartButton id="cart-button" onClick={onCartOpen} aria-label="Panier">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 0 1-8 0" />
+          </svg>
+          {totalItems > 0 && <CartBadge>{totalItems}</CartBadge>}
+        </CartButton>
 
-                <ShopButton to="/shop">Acheter</ShopButton>
-            </NavActions>
-        </Nav>
-    )
+        <ShopButton to="/shop">Acheter</ShopButton>
+      </NavActions>
+    </Nav>
+  )
 }
 
 export default Header

@@ -237,7 +237,7 @@ const RetryBtn = styled.button`
   &:hover { opacity: 0.85; }
 `
 
-const ALL_CATEGORIES = ['Tous', 'Tech', 'Audio', 'Montres', 'Maison', 'Mode']
+const ALL_CATEGORIES = ['Tous', 'Tech', 'Audio', 'Montres', 'Maison', 'Mode', 'Livres']
 
 export const HomePage = ({ searchQuery = '' }) => {
   const [products, setProducts] = useState([])
@@ -257,8 +257,13 @@ export const HomePage = ({ searchQuery = '' }) => {
     if (err) {
       setError('Impossible de charger les produits.')
     } else {
-      setProducts(data || [])
-      if (activeCategory === 'Tous') saveCache(data || [])
+      // Supabase returns 'in_stock' but frontend expects 'inStock'
+      const formattedData = (data || []).map(p => ({
+        ...p,
+        inStock: p.in_stock
+      }))
+      setProducts(formattedData)
+      if (activeCategory === 'Tous') saveCache(formattedData)
     }
     setLoading(false)
   }
@@ -290,7 +295,7 @@ export const HomePage = ({ searchQuery = '' }) => {
           </HeroSub>
           <HeroCTA>
             <BtnPrimary href="#products" id="hero-shop-btn">🚀 Découvrir les produits</BtnPrimary>
-            <BtnSecondary href="#products">Offres du jour ›</BtnSecondary>
+            <BtnSecondary href="https://temu.to/k/ecg15ib5igw" target="_blank" rel="noopener noreferrer">🔥 Mega Offres Temu ›</BtnSecondary>
           </HeroCTA>
           <Stats>
             <Stat><strong>10k+</strong><span>Produits</span></Stat>
@@ -331,7 +336,23 @@ export const HomePage = ({ searchQuery = '' }) => {
               <RetryBtn onClick={fetchProducts}>↺ Réessayer</RetryBtn>
             </Empty>
           ) : filtered.length > 0 ? (
-            filtered.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)
+            filtered.map((p, i) => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                index={i}
+                onClick={() => {
+                  const link = p.affiliate_link || p.affiliateLink;
+                  if (link) {
+                    if (link.startsWith('/')) {
+                      window.location.href = link;
+                    } else {
+                      window.open(link, '_blank');
+                    }
+                  }
+                }}
+              />
+            ))
           ) : (
             <Empty>
               <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
