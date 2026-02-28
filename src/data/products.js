@@ -10,7 +10,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
         badge: 'Bestseller',
         description: 'Son cristallin, réduction de bruit avancée, autonomie 30h.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -24,7 +24,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
         badge: 'Nouveau',
         description: 'GPS intégré, étanche 5ATM, suivi santé 24/7.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -38,7 +38,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80',
         badge: '-45%',
         description: 'Lumière ajustable, charge USB-C intégrée, design élégant.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -52,7 +52,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80',
         badge: 'Top Vente',
         description: 'Port USB, compartiment laptop 17", matière imperméable.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -66,7 +66,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&q=80',
         badge: 'Promo',
         description: 'Compatible iPhone & Android, charge ultra-rapide.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -80,7 +80,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80',
         badge: 'Gaming',
         description: 'Switches blue, rétroéclairage RGB, layout compact TKL.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -94,7 +94,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&q=80',
         badge: 'Santé',
         description: 'Protection oculaire, monture légère, verres anti-reflet.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: true,
     },
     {
@@ -108,7 +108,7 @@ export const products = [
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
         badge: 'Été',
         description: '3 vitesses, pliable, silencieux, adapté bureau et voyage.',
-        affiliateLink: 'https://www.temu.com',
+        affiliateLink: 'https://temu.to/k/ecg15ib5igw',
         inStock: false,
     },
     {
