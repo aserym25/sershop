@@ -41,12 +41,14 @@ CREATE INDEX IF NOT EXISTS idx_products_rating
 ALTER TABLE public.products ENABLE ROW LEVEL SECURITY;
 
 -- Tout le monde peut lire les produits
+DROP POLICY IF EXISTS "Lecture publique des produits" ON public.products;
 CREATE POLICY "Lecture publique des produits"
     ON public.products
     FOR SELECT
     USING (true);
 
 -- Seuls les utilisateurs authentifiés (admins) peuvent modifier
+DROP POLICY IF EXISTS "Modification réservée aux admins" ON public.products;
 CREATE POLICY "Modification réservée aux admins"
     ON public.products
     FOR ALL
@@ -76,7 +78,7 @@ VALUES
         'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80',
         'Bestseller',
         'Son cristallin, réduction de bruit avancée, autonomie 30h.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -87,7 +89,7 @@ VALUES
         'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80',
         'Nouveau',
         'GPS intégré, étanche 5ATM, suivi santé 24/7.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -98,7 +100,7 @@ VALUES
         'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80',
         '-45%',
         'Lumière ajustable, charge USB-C intégrée, design élégant.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -109,7 +111,7 @@ VALUES
         'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80',
         'Top Vente',
         'Port USB, compartiment laptop 17", matière imperméable.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -120,7 +122,7 @@ VALUES
         'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&q=80',
         'Promo',
         'Compatible iPhone & Android, charge ultra-rapide.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -131,7 +133,7 @@ VALUES
         'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80',
         'Gaming',
         'Switches blue, rétroéclairage RGB, layout compact TKL.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -142,7 +144,7 @@ VALUES
         'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&q=80',
         'Santé',
         'Protection oculaire, monture légère, verres anti-reflet.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         true
     ),
     (
@@ -153,7 +155,7 @@ VALUES
         'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80',
         'Été',
         '3 vitesses, pliable, silencieux, adapté bureau et voyage.',
-        'https://www.temu.com',
+        'https://temu.to/k/ecg15ib5igw',
         false
     )
 ON CONFLICT (id) DO NOTHING;

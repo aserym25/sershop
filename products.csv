@@ -1,10 +1,5 @@
 ﻿id,title,price,original_price,category,rating,reviews,image,badge,description,affiliate_link,in_stock
-1,Ecouteurs Bluetooth Pro Max,49.99,89.99,Audio,4.8,2341,https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80,Bestseller,Son cristallin reduction de bruit avancee autonomie 30h.,https://www.temu.com,true
-2,Montre Connectee Sport Ultra,39.99,79.99,Montres,4.7,1892,https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80,Nouveau,GPS integre etanche 5ATM suivi sante 24/7.,https://www.temu.com,true
-3,Lampe LED Bureau Premium,24.99,45.99,Maison,4.6,987,https://images.unsplash.com/photo-1507473885765-e6ed057f782c?w=400&q=80,Promo-45,Lumiere ajustable charge USB-C integree design elegant.,https://www.temu.com,true
-4,Sac a Dos Tech Anti-Vol,34.99,59.99,Mode,4.9,3241,https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&q=80,Top-Vente,Port USB compartiment laptop 17 pouces matiere impermeable.,https://www.temu.com,true
-5,Chargeur Sans Fil 65W,40.99,39.99,Tech,4.5,1432,https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=400&q=80,Promo,Compatible iPhone et Android charge ultra-rapide.,https://www.temu.com,true
-6,Clavier Mecanique RGB,59.99,99.99,Tech,4.8,2108,https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80,Gaming,Switches blue retroeclairage RGB layout compact TKL.,https://www.temu.com,true
-7,Lunettes Anti-Lumiere Bleue,14.99,29.99,Mode,4.4,876,https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=400&q=80,Sante,Protection oculaire monture legere verres anti-reflet.,https://www.temu.com,true
-8,Mini Ventilateur USB-C,22.99,24.99,Maison,4.3,654,https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80,Ete,3 vitesses pliable silencieux adapte bureau et voyage.,https://www.temu.com,fale
-9,الدليل الذهبي في صيانة أنظمة التدفئة (M207),49.00,99.00,Livres,5.0,42,/chauffage/img1.webp,Nouveau,دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة,/chauffage.html,true
+1,Ecouteurs Bluetooth Pro Max,49.99,89.99,Audio,4.8,2341,https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80,Bestseller,Son cristallin reduction de bruit avancee autonomie 30h.,https://temu.to/k/ecg15ib5igw,true
+2,Montre Connectee Sport Ultra,39.99,79.99,Montres,4.7,1892,https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80,Nouveau,GPS integre etanche 5ATM suivi sante 24/7.,https://temu.to/k/ecg15ib5igw,true
+3,Clavier Mecanique RGB,59.99,99.99,Tech,4.8,2108,https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80,Gaming,Switches blue retroeclairage RGB layout compact TKL.,https://temu.to/k/ecg15ib5igw,true
+4,الدليل الذهبي في صيانة أنظمة التدفئة (M207),49.00,99.00,Livres,5.0,42,/chauffage/img1.webp,Nouveau,دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة,/chauffage.html,true
