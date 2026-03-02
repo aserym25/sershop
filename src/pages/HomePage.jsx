@@ -258,10 +258,19 @@ export const HomePage = ({ searchQuery = '' }) => {
       setError('Impossible de charger les produits.')
     } else {
       // Supabase returns 'in_stock' but frontend expects 'inStock'
-      const formattedData = (data || []).map(p => ({
-        ...p,
-        inStock: p.in_stock
-      }))
+      const formattedData = (data || []).map(p => {
+        let finalLink = p.affiliate_link || p.affiliateLink;
+        // Remplacement dynamique du lien temu car la base de données n'est pas mise à jour
+        if (finalLink && finalLink.includes('temu.com')) {
+          finalLink = 'https://temu.to/k/ecg15ib5igw';
+        }
+        return {
+          ...p,
+          inStock: p.in_stock,
+          affiliate_link: finalLink,
+          affiliateLink: finalLink
+        }
+      })
       setProducts(formattedData)
       if (activeCategory === 'Tous') saveCache(formattedData)
     }
@@ -347,7 +356,7 @@ export const HomePage = ({ searchQuery = '' }) => {
                     if (link.startsWith('/')) {
                       window.location.href = link;
                     } else {
-                      window.open(link, '_blank');
+                      window.open(link, '_blank', 'noopener,noreferrer');
                     }
                   }
                 }}
