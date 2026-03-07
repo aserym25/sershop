@@ -119,7 +119,7 @@ export const products = [
         category: 'Livres',
         rating: 5.0,
         reviews: 42,
-        image: '/chauffage/img1.webp',
+        image: '/chauffage/img1-transformed.jpeg',
         badge: 'Nouveau',
         description: 'دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة',
         affiliateLink: '/chauffage.html',
