@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expertise Thermique : Manuel Interactif de Chauffage (Version Éco)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        
+        :root {
+            --bg-main: #f8fafc;
+            --accent-warm: #10b981; /* Vert Emerald au lieu du rouge */
+            --accent-cold: #3b82f6;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-main);
+        }
+
+        .section-view { 
+            display: none; 
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .section-view.active { 
+            display: block; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item.active {
+            background-color: #ecfdf5; /* Emerald 50 */
+            color: #065f46; /* Emerald 800 */
+            border-left-color: #10b981; /* Emerald 500 */
+            font-weight: 700;
+        }
+
+        .canvas-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col md:flex-row overflow-hidden text-slate-900">
+
+    <!-- Chosen Palette: Slate & Warm White with Emerald Green accents (Eco-Efficiency theme). -->
+    <!-- Application Structure Plan: Navigation par onglets (SPA). Remplacement du rouge par le vert Emerald pour une thématique "efficacité énergétique". Les schémas Canvas sont mis à jour avec des flux verts. -->
+    <!-- Visualization & Content Choices: Canvas API pour les flux. Calculateur de dilatation intégré. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Sidebar Navigation -->
+    <nav class="w-full md:w-80 bg-white border-r border-slate-200 flex flex-col h-auto md:h-full z-40">
+        <div class="p-8 border-b border-slate-100">
+            <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">Génie Thermique</h1>
+            <div class="flex items-center gap-2 mt-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Manuel interactif v2.2</p>
+            </div>
+        </div>
+        
+        <div class="flex-1 overflow-y-auto py-6 space-y-1">
+            <button onclick="nav('accueil')" id="nav-accueil" class="nav-item active w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Introduction & Synthèse</span>
+            </button>
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Composants du circuit</div>
+            <button onclick="nav('circulateur')" id="nav-circulateur" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Le Circulateur</span>
+            </button>
+            <button onclick="nav('vase')" id="nav-vase" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Vase d'Expansion</span>
+            </button>
+            <button onclick="nav('monotube')" id="nav-monotube" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Vannes Monotubes</span>
+            </button>
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Distribution Hydraulique</div>
+            <button onclick="nav('pieuvre')" id="nav-pieuvre" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Système Pieuvre</span>
+            </button>
+            <button onclick="nav('diagonale')" id="nav-diagonale" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Raccordement Diagonale</span>
+            </button>
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Dimensionnement</div>
+            <button onclick="nav('calculs')" id="nav-calculs" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Calcul de Dilatation</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="flex-1 overflow-y-auto relative p-6 md:p-12">
+        
+        <!-- Page: Accueil -->
+        <section id="page-accueil" class="section-view active max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-4xl font-black text-slate-900 mb-6 leading-tight">Exploration interactive des techniques de chauffage</h2>
+                <div class="prose prose-slate max-w-none">
+                    <p class="text-xl text-slate-600 leading-relaxed mb-8">
+                        Ce support transforme les données théoriques du rapport FGT-TSGC en une expérience interactive. Chaque section a été rigoureusement extraite et enrichie pour offrir une compréhension parfaite des phénomènes physiques à l'œuvre dans une installation de chauffage central, avec un accent mis sur l'efficacité thermique moderne.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-emerald-500 text-white rounded-md flex items-center justify-center text-xs">01</span>
+                                Objectifs Pédagogiques
+                            </h4>
+                            <p class="text-sm text-slate-600">Comprendre le rôle des organes de sécurité et maîtriser les calculs de dilatation thermique pour garantir la pérennité des installations.</p>
+                        </div>
+                        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                            <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                                <span class="w-6 h-6 bg-emerald-600 text-white rounded-md flex items-center justify-center text-xs">02</span>
+                                Méthodologie Éco
+                            </h4>
+                            <p class="text-sm text-slate-600">L'application utilise des simulations par Canvas pour illustrer les flux hydrauliques, favorisant une vision moderne de l'ingénierie verte.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Circulateur -->
+        <section id="page-circulateur" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Le Circulateur : Le cœur vert du réseau</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Le circulateur est une pompe centrifuge conçue pour maintenir le mouvement constant du fluide caloporteur. Sa fonction principale est de vaincre les pertes de charge du réseau. Les modèles modernes à régulation électronique (souvent identifiés par une étiquette d'efficacité verte) adaptent automatiquement leur puissance en fonction de la demande réelle. Un dimensionnement correct est crucial pour éviter les bruits de circulation et optimiser la consommation électrique du bâtiment.
+                </p>
+                <div class="canvas-box h-72">
+                    <canvas id="canvas-circ"></canvas>
+                </div>
+                <div class="mt-6 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg">
+                    <p class="text-sm text-emerald-800 font-semibold">Conseil technique : Toujours s'assurer de la purge complète de l'air avant la mise en service pour éviter la cavitation.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Vase d'Expansion -->
+        <section id="page-vase" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Vase d'Expansion : La sécurité thermodynamique</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Le vase d'expansion absorbe la dilatation thermique du volume d'eau. Il contient une membrane flexible séparant l'eau d'un coussin d'azote. Lorsque l'eau chauffe et se dilate, elle comprime le gaz, maintenant la pression dans des limites acceptables. Sa vérification annuelle garantit que sa pression de gonflage est adaptée à la pression statique de l'installation.
+                </p>
+                <div class="canvas-box h-80 flex items-center justify-center">
+                    <canvas id="canvas-vase-sim"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Distribution Pieuvre -->
+        <section id="page-pieuvre" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Distribution en Pieuvre (Système Hydrocâblé)</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Ce système repose sur un collecteur central (nourrice) distribuant le fluide vers chaque radiateur de manière indépendante. L'absence de raccords intermédiaires enterrés réduit drastiquement les risques de fuites. Chaque boucle peut être ajustée au niveau de la nourrice pour garantir un débit uniforme dans toute l'habitation, facilitant la maintenance et l'équilibrage hydraulique.
+                </p>
+                <div class="canvas-box h-80">
+                    <canvas id="canvas-pieuvre-net"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Raccordement Diagonale -->
+        <section id="page-diagonale" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Raccordement en Diagonale : Optimisation Thermique</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Le raccordement en diagonale force le fluide à traverser toute la surface d'échange du radiateur. En alimentant par le haut et en collectant par le bas opposé, on évite les zones mortes. C'est le mode privilégié pour les radiateurs de grande longueur, garantissant un gradient de température uniforme et favorisant le rendement global de l'installation.
+                </p>
+                <div class="canvas-box h-64">
+                    <canvas id="canvas-diag-flow"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Monotube -->
+        <section id="page-monotube" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Vannes Monotubes et Système Bypass</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Dans une boucle monotube, les radiateurs sont montés en série. La vanne à bypass dérive une fraction du débit vers le radiateur tandis que le reste court-circuite l'appareil. Ce mélange progressif nécessite un surdimensionnement des derniers radiateurs de la série pour compenser la chute de température graduelle.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200">
+                        <h4 class="font-bold text-emerald-900 mb-4">Principe du Bypass Vert</h4>
+                        <div class="h-4 w-full bg-slate-300 rounded-full relative overflow-hidden">
+                            <div class="absolute left-0 h-full bg-emerald-500 w-[40%]"></div>
+                            <div class="absolute right-0 h-full bg-emerald-400 w-[60%]"></div>
+                        </div>
+                        <div class="flex justify-between mt-3 text-[10px] font-bold text-slate-500">
+                            <span>Flux Radiateur (40%)</span>
+                            <span>Flux Direct (60%)</span>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-50/30 p-6 rounded-2xl border border-emerald-100 text-sm space-y-3">
+                        <h4 class="font-bold text-emerald-800">Note Technique :</h4>
+                        <p class="text-emerald-900">• Vanne spécifique à canne d'injection.</p>
+                        <p class="text-emerald-900">• Équilibrage délicat mais économique en tubes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page: Calculs -->
+        <section id="page-calculs" class="section-view max-w-5xl mx-auto space-y-8">
+            <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Thermodynamique : Calcul du volume d'expansion</h2>
+                <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
+                    Déterminez le volume d'expansion net ($V_{exp}$) en fonction de la contenance de votre réseau et de la température de service. Le coefficient de dilatation thermique augmente de façon exponentielle avec la chaleur.
+                </p>
+                
+                <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <h4 class="text-emerald-400 font-black uppercase tracking-widest text-xs">Paramètres du réseau</h4>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">Contenance totale (L)</label>
+                                <input type="number" id="v-total" value="250" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 mb-2">Température maximale (°C)</label>
+                                <select id="t-max" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
+                                    <option value="0.0054">40°C (Plancher Basse Temp.)</option>
+                                    <option value="0.0121">55°C (Chaleur Douce)</option>
+                                    <option value="0.0289" selected>80°C (Standard)</option>
+                                    <option value="0.0359">90°C (Haute Température)</option>
+                                </select>
+                            </div>
+                            <button onclick="calculate()" class="w-full bg-emerald-600 hover:bg-emerald-700 py-4 rounded-xl font-bold transition-transform active:scale-95">Calculer le volume net</button>
+                        </div>
+                        <div class="flex flex-col justify-center items-center bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
+                            <span class="text-slate-400 text-xs font-bold uppercase mb-4">Volume d'expansion net</span>
+                            <div class="text-6xl font-black text-emerald-500" id="res-val">7.22</div>
+                            <span class="text-slate-500 text-sm mt-2">Litres d'expansion</span>
+                            <div class="mt-8 pt-6 border-t border-slate-700 w-full text-center">
+                                <p class="text-[10px] text-slate-400 italic">Recommandé : Utilisez un vase avec marge de sécurité.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // State Management
+        let currentSection = 'accueil';
+        const views = ['accueil', 'circulateur', 'vase', 'pieuvre', 'diagonale', 'monotube', 'calculs'];
+
+        function nav(target) {
+            views.forEach(v => {
+                document.getElementById('page-' + v).classList.remove('active');
+                document.getElementById('nav-' + v).classList.remove('active');
+            });
+            document.getElementById('page-' + target).classList.add('active');
+            document.getElementById('nav-' + target).classList.add('active');
+            currentSection = target;
+            
+            setTimeout(resizeCanvases, 50);
+        }
+
+        // Calculation
+        function calculate() {
+            const v = parseFloat(document.getElementById('v-total').value);
+            const coeff = parseFloat(document.getElementById('t-max').value);
+            const result = v * coeff;
+            document.getElementById('res-val').innerText = result.toFixed(2);
+        }
+
+        // Canvas Animations
+        const canvasIds = ['canvas-circ', 'canvas-vase-sim', 'canvas-pieuvre-net', 'canvas-diag-flow'];
+        let time = 0;
+
+        function resizeCanvases() {
+            canvasIds.forEach(id => {
+                const cvs = document.getElementById(id);
+                if (cvs && cvs.offsetParent !== null) {
+                    cvs.width = cvs.parentElement.clientWidth;
+                    cvs.height = cvs.parentElement.clientHeight;
+                }
+            });
+        }
+
+        function animate() {
+            time += 0.05;
+            
+            if (currentSection === 'circulateur') drawCirc(time);
+            if (currentSection === 'vase') drawVase(time);
+            if (currentSection === 'pieuvre') drawPieuvre(time);
+            if (currentSection === 'diagonale') drawDiag(time);
+
+            requestAnimationFrame(animate);
+        }
+
+        function drawCirc(t) {
+            const ctx = document.getElementById('canvas-circ').getContext('2d');
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const cx = w/2, cy = h/2;
+            
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 30;
+            ctx.lineCap = 'round';
+            ctx.beginPath();
+            ctx.moveTo(50, cy);
+            ctx.lineTo(w-50, cy);
+            ctx.stroke();
+
+            ctx.fillStyle = '#1e293b';
+            ctx.beginPath();
+            ctx.arc(cx, cy, 60, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(t * 3);
+            ctx.strokeStyle = '#10b981'; // Emerald 500
+            ctx.lineWidth = 5;
+            for(let i=0; i<6; i++) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(40, 0);
+                ctx.stroke();
+                ctx.rotate(Math.PI/3);
+            }
+            ctx.restore();
+
+            ctx.fillStyle = '#34d399'; // Emerald 400
+            for(let i=0; i<15; i++) {
+                let px = (t * 100 + i * 60) % (w - 100) + 50;
+                ctx.beginPath();
+                ctx.arc(px, cy, 4, 0, Math.PI*2);
+                ctx.fill();
+            }
+        }
+
+        function drawVase(t) {
+            const ctx = document.getElementById('canvas-vase-sim').getContext('2d');
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const cx = w/2, cy = h/2;
+            const vw = 120, vh = 180;
+            const membraneY = cy + Math.sin(t) * 30;
+
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.roundRect(cx - vw/2, cy - vh/2, vw, vh, 20);
+            ctx.stroke();
+
+            ctx.fillStyle = 'rgba(16, 185, 129, 0.2)'; // Emerald transparent
+            ctx.beginPath();
+            ctx.moveTo(cx - vw/2, cy + vh/2);
+            ctx.lineTo(cx - vw/2, membraneY);
+            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw/2, membraneY);
+            ctx.lineTo(cx + vw/2, cy + vh/2);
+            ctx.fill();
+
+            ctx.strokeStyle = '#10b981';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(cx - vw/2, membraneY);
+            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw/2, membraneY);
+            ctx.stroke();
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = '10px bold sans-serif';
+            ctx.fillText('GAZ', cx - 15, cy - vh/3);
+            ctx.fillText('FLUIDE', cx - 20, cy + vh/3);
+        }
+
+        function drawPieuvre(t) {
+            const ctx = document.getElementById('canvas-pieuvre-net').getContext('2d');
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const cx = w/2, cy = h/2;
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(cx - 80, cy - 20, 160, 40);
+
+            const targets = [
+                {x: 100, y: 80}, {x: w-100, y: 80},
+                {x: 100, y: h-80}, {x: w-100, y: h-80}
+            ];
+
+            targets.forEach((pos, i) => {
+                ctx.beginPath();
+                ctx.moveTo(cx - 60 + i*40, cy);
+                ctx.bezierCurveTo(cx, pos.y, pos.x, cy, pos.x, pos.y);
+                ctx.strokeStyle = '#10b981';
+                ctx.setLineDash([10, 5]);
+                ctx.lineDashOffset = -t * 20;
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                ctx.fillStyle = '#f1f5f9';
+                ctx.fillRect(pos.x - 25, pos.y - 15, 50, 30);
+                ctx.strokeStyle = '#10b981';
+                ctx.strokeRect(pos.x - 25, pos.y - 15, 50, 30);
+            });
+        }
+
+        function drawDiag(t) {
+            const ctx = document.getElementById('canvas-diag-flow').getContext('2d');
+            const w = ctx.canvas.width;
+            const h = ctx.canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            
+            const rx = w/2 - 120, ry = h/2 - 60;
+            const rw = 240, rh = 120;
+
+            const grad = ctx.createLinearGradient(rx, ry, rx + rw, ry + rh);
+            grad.addColorStop(0, '#10b981'); // Emerald
+            grad.addColorStop(1, '#3b82f6'); // Blue (Cold)
+            
+            ctx.fillStyle = grad;
+            ctx.roundRect(rx, ry, rw, rh, 5);
+            ctx.fill();
+
+            ctx.fillStyle = '#10b981';
+            ctx.beginPath();
+            ctx.arc(rx, ry, 10, 0, Math.PI*2);
+            ctx.fill();
+
+            ctx.fillStyle = '#3b82f6';
+            ctx.beginPath();
+            ctx.arc(rx + rw, ry + rh, 10, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        window.onload = () => {
+            resizeCanvases();
+            animate();
+            window.addEventListener('resize', resizeCanvases);
+        };
+    </script>
+</body>
+</html>
