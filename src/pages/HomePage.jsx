@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { supabase, saveCache } from '../services/supabase'
+import { products as localProducts } from '../data/products'
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(40px); }
@@ -271,8 +272,20 @@ export const HomePage = ({ searchQuery = '' }) => {
           affiliateLink: finalLink
         }
       })
-      setProducts(formattedData)
-      if (activeCategory === 'Tous') saveCache(formattedData)
+      
+      // Combiner avec les produits locaux qui ne sont pas dans Supabase
+      const existingIds = new Set(formattedData.map(p => p.id));
+      const newLocalProducts = localProducts.filter(p => !existingIds.has(p.id));
+      
+      let allProducts = [...formattedData, ...newLocalProducts];
+      
+      // Réappliquer le filtre si une catégorie est sélectionnée
+      if (activeCategory !== 'Tous') {
+         allProducts = allProducts.filter(p => p.category === activeCategory);
+      }
+
+      setProducts(allProducts)
+      if (activeCategory === 'Tous') saveCache(allProducts)
     }
     setLoading(false)
   }
