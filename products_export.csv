@@ -1,0 +1,4 @@
+id,title,price,original_price,category,rating,reviews,image,badge,description,affiliate_link,in_stock,source
+9,الدليل الذهبي في صيانة أنظمة التدفئة,49.00,99.00,Livre,5.0,42,/chauffage/img1-transformed.jpeg,Nouveau,"دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة",/chauffage.html,true,local
+10,Guide interactif de la distribution des systèmes thermiques,29.00,59.00,Livre,4.9,18,/chauffage/img1-transformed.jpeg,Premium,"(Explications et schémas interactifs animés du chauffage et de ses composants (Guide numérique avancé)).",/chauffe_e.html,true,local
+20,"Exploration interactive des techniques de chauffage - Catalogue et module avancé",29,59,Livres pdf animation,4.9,18,/chauffage/img1-transformed.jpeg,Prenium,"Exploration interactive des techniques de chauffage - Catalogue et module avancé",/chauffe_e.html,true,supabase
