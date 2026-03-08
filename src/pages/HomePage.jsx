@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { supabase, saveCache } from '../services/supabase'
-import { products as localProducts } from '../data/products'
+import { products as localProducts, categories } from '../data/products'
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(40px); }
@@ -238,7 +238,7 @@ const RetryBtn = styled.button`
   &:hover { opacity: 0.85; }
 `
 
-const ALL_CATEGORIES = ['Tous', 'Tech', 'Audio', 'Montres', 'Maison', 'Mode', 'Livres']
+const ALL_CATEGORIES = categories
 
 export const HomePage = ({ searchQuery = '' }) => {
   const [products, setProducts] = useState([])
