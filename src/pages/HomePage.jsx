@@ -306,19 +306,19 @@ export const HomePage = ({ searchQuery = '' }) => {
       {/* ── Hero ── */}
       <HeroSection>
         <HeroContent>
-          <smoolBadge><span />🛍️ Les meilleures offres du moment</smoolBadge>
-          <SmoolTitle>
+          <HeroBadge><span />🛍️ Les meilleures offres du moment</HeroBadge>
+          <HeroTitle>
             Trouvez, Comparez,
             <span className="gradient">Achetez Mieux</span>
-          </SmoolTitle>
-          <MoyenSub>
+          </HeroTitle>
+          <HeroSub>
             Des dizaines de produits sélectionnés, des prix imbattables.<br />
             SerShop vous aide à faire les meilleurs choix.
-          </MoyenSub>
-          <MoyenCTA>
+          </HeroSub>
+          <HeroCTA>
             <BtnPrimary href="#products" id="hero-shop-btn">🚀 Découvrir les produits</BtnPrimary>
             <BtnSecondary href="https://temu.to/k/ecg15ib5igw" target="_blank" rel="noopener noreferrer">🔥 Mega Offres Temu ›</BtnSecondary>
-          </MoyenCTA>
+          </HeroCTA>
           <Stats>
             <Stat><strong>10k+</strong><span>Produits</span></Stat>
             <Stat><strong>50k+</strong><span>Clients</span></Stat>
