@@ -1,5 +1,3 @@
-﻿id,title,price,original_price,category,rating,reviews,image,badge,description,affiliate_link,in_stock
-1,Ecouteurs Bluetooth Pro Max,49.99,89.99,Audio,4.8,2341,https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&q=80,Bestseller,Son cristallin reduction de bruit avancee autonomie 30h.,https://temu.to/k/ecg15ib5igw,true
-2,Montre Connectee Sport Ultra,39.99,79.99,Montres,4.7,1892,https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=80,Nouveau,GPS integre etanche 5ATM suivi sante 24/7.,https://temu.to/k/ecg15ib5igw,true
-3,Clavier Mecanique RGB,59.99,99.99,Tech,4.8,2108,https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=400&q=80,Gaming,Switches blue retroeclairage RGB layout compact TKL.,https://temu.to/k/ecg15ib5igw,true
-4,الدليل الذهبي في صيانة أنظمة التدفئة (M207),49.00,99.00,Livres,5.0,42,/chauffage/img1.webp,Nouveau,دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة,/chauffage.html,true
+﻿id;title;price;original_price;category;rating;reviews;image;badge;description;affiliate_link;in_stock
+9;الدليل الذهبي في صيانة أنظمة التدفئة;49;99;Livre;5;42;/chauffage/img1-transformed.jpeg;Nouveau;دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب;/chauffage.html;true
+10;Guide interactif de la distribution des systèmes thermiques;29;59;Livre;4.8;18;/chauffage/img1-transformed.jpeg;Premium;Explications et schémas interactifs animés du chauffage.;/chauffe_e.html;true
