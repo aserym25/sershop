@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,30 +8,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
-        
+
         :root {
             --bg-main: #f8fafc;
-            --accent-warm: #10b981; /* Vert Emerald au lieu du rouge */
+            --accent-warm: #10b981;
+            /* Vert Emerald au lieu du rouge */
             --accent-cold: #3b82f6;
         }
 
-        body { 
+        body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg-main);
         }
 
-        .section-view { 
-            display: none; 
+        .section-view {
+            display: none;
             animation: fadeIn 0.5s ease-out forwards;
         }
 
-        .section-view.active { 
-            display: block; 
+        .section-view.active {
+            display: block;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .nav-item {
@@ -39,9 +48,12 @@
         }
 
         .nav-item.active {
-            background-color: #ecfdf5; /* Emerald 50 */
-            color: #065f46; /* Emerald 800 */
-            border-left-color: #10b981; /* Emerald 500 */
+            background-color: #ecfdf5;
+            /* Emerald 50 */
+            color: #065f46;
+            /* Emerald 800 */
+            border-left-color: #10b981;
+            /* Emerald 500 */
             font-weight: 700;
         }
 
@@ -68,6 +80,7 @@
         }
     </style>
 </head>
+
 <body class="h-screen flex flex-col md:flex-row overflow-hidden text-slate-900">
 
     <!-- Chosen Palette: Slate & Warm White with Emerald Green accents (Eco-Efficiency theme). -->
@@ -84,30 +97,39 @@
                 <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Manuel interactif v2.2</p>
             </div>
         </div>
-        
+
         <div class="flex-1 overflow-y-auto py-6 space-y-1">
-            <button onclick="nav('accueil')" id="nav-accueil" class="nav-item active w-full text-left px-8 py-4 flex items-center gap-3">
+            <button onclick="nav('accueil')" id="nav-accueil"
+                class="nav-item active w-full text-left px-8 py-4 flex items-center gap-3">
                 <span class="text-sm">Introduction & Synthèse</span>
             </button>
-            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Composants du circuit</div>
-            <button onclick="nav('circulateur')" id="nav-circulateur" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Composants du circuit
+            </div>
+            <button onclick="nav('circulateur')" id="nav-circulateur"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
                 <span class="text-sm">Le Circulateur</span>
             </button>
-            <button onclick="nav('vase')" id="nav-vase" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+            <button onclick="nav('vase')" id="nav-vase"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
                 <span class="text-sm">Vase d'Expansion</span>
             </button>
-            <button onclick="nav('monotube')" id="nav-monotube" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+            <button onclick="nav('monotube')" id="nav-monotube"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
                 <span class="text-sm">Vannes Monotubes</span>
             </button>
-            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Distribution Hydraulique</div>
-            <button onclick="showLock()" id="nav-pieuvre" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Distribution
+                Hydraulique</div>
+            <button onclick="showLock()" id="nav-pieuvre"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
                 <span class="text-sm">Système Pieuvre 🔒</span>
             </button>
-            <button onclick="showLock()" id="nav-diagonale" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
+            <button onclick="showLock()" id="nav-diagonale"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
                 <span class="text-sm">Raccordement Diagonale 🔒</span>
             </button>
             <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Dimensionnement</div>
-            <button onclick="showLock()" id="nav-calculs" class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
+            <button onclick="showLock()" id="nav-calculs"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
                 <span class="text-sm">Calcul de Dilatation 🔒</span>
             </button>
         </div>
@@ -115,29 +137,38 @@
 
     <!-- Content Area -->
     <main class="flex-1 overflow-y-auto relative p-6 md:p-12">
-        
+
         <!-- Page: Accueil -->
         <section id="page-accueil" class="section-view active max-w-5xl mx-auto space-y-8">
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
-                <h2 class="text-4xl font-black text-slate-900 mb-6 leading-tight">Exploration interactive des techniques de chauffage</h2>
+                <h2 class="text-4xl font-black text-slate-900 mb-6 leading-tight">Exploration interactive des techniques
+                    de chauffage</h2>
                 <div class="prose prose-slate max-w-none">
                     <p class="text-xl text-slate-600 leading-relaxed mb-8">
-                        Ce support transforme les données théoriques du rapport FGT-TSGC en une expérience interactive. Chaque section a été rigoureusement extraite et enrichie pour offrir une compréhension parfaite des phénomènes physiques à l'œuvre dans une installation de chauffage central, avec un accent mis sur l'efficacité thermique moderne.
+                        Ce support transforme les données théoriques du rapport FGT-TSGC en une expérience interactive.
+                        Chaque section a été rigoureusement extraite et enrichie pour offrir une compréhension parfaite
+                        des phénomènes physiques à l'œuvre dans une installation de chauffage central, avec un accent
+                        mis sur l'efficacité thermique moderne.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
                         <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                <span class="w-6 h-6 bg-emerald-500 text-white rounded-md flex items-center justify-center text-xs">01</span>
+                                <span
+                                    class="w-6 h-6 bg-emerald-500 text-white rounded-md flex items-center justify-center text-xs">01</span>
                                 Objectifs Pédagogiques
                             </h4>
-                            <p class="text-sm text-slate-600">Comprendre le rôle des organes de sécurité et maîtriser les calculs de dilatation thermique pour garantir la pérennité des installations.</p>
+                            <p class="text-sm text-slate-600">Comprendre le rôle des organes de sécurité et maîtriser
+                                les calculs de dilatation thermique pour garantir la pérennité des installations.</p>
                         </div>
                         <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
                             <h4 class="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                <span class="w-6 h-6 bg-emerald-600 text-white rounded-md flex items-center justify-center text-xs">02</span>
+                                <span
+                                    class="w-6 h-6 bg-emerald-600 text-white rounded-md flex items-center justify-center text-xs">02</span>
                                 Méthodologie Éco
                             </h4>
-                            <p class="text-sm text-slate-600">L'application utilise des simulations par Canvas pour illustrer les flux hydrauliques, favorisant une vision moderne de l'ingénierie verte.</p>
+                            <p class="text-sm text-slate-600">L'application utilise des simulations par Canvas pour
+                                illustrer les flux hydrauliques, favorisant une vision moderne de l'ingénierie verte.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -149,13 +180,19 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">Le Circulateur : Le cœur vert du réseau</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Le circulateur est une pompe centrifuge conçue pour maintenir le mouvement constant du fluide caloporteur. Sa fonction principale est de vaincre les pertes de charge du réseau. Les modèles modernes à régulation électronique (souvent identifiés par une étiquette d'efficacité verte) adaptent automatiquement leur puissance en fonction de la demande réelle. Un dimensionnement correct est crucial pour éviter les bruits de circulation et optimiser la consommation électrique du bâtiment.
+                    Le circulateur est une pompe centrifuge conçue pour maintenir le mouvement constant du fluide
+                    caloporteur. Sa fonction principale est de vaincre les pertes de charge du réseau. Les modèles
+                    modernes à régulation électronique (souvent identifiés par une étiquette d'efficacité verte)
+                    adaptent automatiquement leur puissance en fonction de la demande réelle. Un dimensionnement correct
+                    est crucial pour éviter les bruits de circulation et optimiser la consommation électrique du
+                    bâtiment.
                 </p>
                 <div class="canvas-box h-72">
                     <canvas id="canvas-circ"></canvas>
                 </div>
                 <div class="mt-6 p-4 bg-emerald-50 border-l-4 border-emerald-500 rounded-r-lg">
-                    <p class="text-sm text-emerald-800 font-semibold">Conseil technique : Toujours s'assurer de la purge complète de l'air avant la mise en service pour éviter la cavitation.</p>
+                    <p class="text-sm text-emerald-800 font-semibold">Conseil technique : Toujours s'assurer de la purge
+                        complète de l'air avant la mise en service pour éviter la cavitation.</p>
                 </div>
             </div>
         </section>
@@ -165,7 +202,10 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">Vase d'Expansion : La sécurité thermodynamique</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Le vase d'expansion absorbe la dilatation thermique du volume d'eau. Il contient une membrane flexible séparant l'eau d'un coussin d'azote. Lorsque l'eau chauffe et se dilate, elle comprime le gaz, maintenant la pression dans des limites acceptables. Sa vérification annuelle garantit que sa pression de gonflage est adaptée à la pression statique de l'installation.
+                    Le vase d'expansion absorbe la dilatation thermique du volume d'eau. Il contient une membrane
+                    flexible séparant l'eau d'un coussin d'azote. Lorsque l'eau chauffe et se dilate, elle comprime le
+                    gaz, maintenant la pression dans des limites acceptables. Sa vérification annuelle garantit que sa
+                    pression de gonflage est adaptée à la pression statique de l'installation.
                 </p>
                 <div class="canvas-box h-80 flex items-center justify-center">
                     <canvas id="canvas-vase-sim"></canvas>
@@ -178,7 +218,10 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">Distribution en Pieuvre (Système Hydrocâblé)</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Ce système repose sur un collecteur central (nourrice) distribuant le fluide vers chaque radiateur de manière indépendante. L'absence de raccords intermédiaires enterrés réduit drastiquement les risques de fuites. Chaque boucle peut être ajustée au niveau de la nourrice pour garantir un débit uniforme dans toute l'habitation, facilitant la maintenance et l'équilibrage hydraulique.
+                    Ce système repose sur un collecteur central (nourrice) distribuant le fluide vers chaque radiateur
+                    de manière indépendante. L'absence de raccords intermédiaires enterrés réduit drastiquement les
+                    risques de fuites. Chaque boucle peut être ajustée au niveau de la nourrice pour garantir un débit
+                    uniforme dans toute l'habitation, facilitant la maintenance et l'équilibrage hydraulique.
                 </p>
                 <div class="canvas-box h-80">
                     <canvas id="canvas-pieuvre-net"></canvas>
@@ -189,9 +232,13 @@
         <!-- Page: Raccordement Diagonale -->
         <section id="page-diagonale" class="section-view max-w-5xl mx-auto space-y-8">
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
-                <h2 class="text-3xl font-bold text-slate-900 mb-6">Raccordement en Diagonale : Optimisation Thermique</h2>
+                <h2 class="text-3xl font-bold text-slate-900 mb-6">Raccordement en Diagonale : Optimisation Thermique
+                </h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Le raccordement en diagonale force le fluide à traverser toute la surface d'échange du radiateur. En alimentant par le haut et en collectant par le bas opposé, on évite les zones mortes. C'est le mode privilégié pour les radiateurs de grande longueur, garantissant un gradient de température uniforme et favorisant le rendement global de l'installation.
+                    Le raccordement en diagonale force le fluide à traverser toute la surface d'échange du radiateur. En
+                    alimentant par le haut et en collectant par le bas opposé, on évite les zones mortes. C'est le mode
+                    privilégié pour les radiateurs de grande longueur, garantissant un gradient de température uniforme
+                    et favorisant le rendement global de l'installation.
                 </p>
                 <div class="canvas-box h-64">
                     <canvas id="canvas-diag-flow"></canvas>
@@ -204,7 +251,10 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">Vannes Monotubes et Système Bypass</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Dans une boucle monotube, les radiateurs sont montés en série. La vanne à bypass dérive une fraction du débit vers le radiateur tandis que le reste court-circuite l'appareil. Ce mélange progressif nécessite un surdimensionnement des derniers radiateurs de la série pour compenser la chute de température graduelle.
+                    Dans une boucle monotube, les radiateurs sont montés en série. La vanne à bypass dérive une fraction
+                    du débit vers le radiateur tandis que le reste court-circuite l'appareil. Ce mélange progressif
+                    nécessite un surdimensionnement des derniers radiateurs de la série pour compenser la chute de
+                    température graduelle.
                 </p>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-emerald-50 p-6 rounded-2xl border border-emerald-200">
@@ -232,34 +282,44 @@
             <div class="bg-white p-10 rounded-3xl shadow-sm border border-slate-200">
                 <h2 class="text-3xl font-bold text-slate-900 mb-6">Thermodynamique : Calcul du volume d'expansion</h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 text-justify">
-                    Déterminez le volume d'expansion net ($V_{exp}$) en fonction de la contenance de votre réseau et de la température de service. Le coefficient de dilatation thermique augmente de façon exponentielle avec la chaleur.
+                    Déterminez le volume d'expansion net ($V_{exp}$) en fonction de la contenance de votre réseau et de
+                    la température de service. Le coefficient de dilatation thermique augmente de façon exponentielle
+                    avec la chaleur.
                 </p>
-                
+
                 <div class="bg-slate-900 p-8 rounded-3xl shadow-2xl text-white">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="space-y-6">
-                            <h4 class="text-emerald-400 font-black uppercase tracking-widest text-xs">Paramètres du réseau</h4>
+                            <h4 class="text-emerald-400 font-black uppercase tracking-widest text-xs">Paramètres du
+                                réseau</h4>
                             <div>
                                 <label class="block text-xs font-bold text-slate-400 mb-2">Contenance totale (L)</label>
-                                <input type="number" id="v-total" value="250" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
+                                <input type="number" id="v-total" value="250"
+                                    class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
                             </div>
                             <div>
-                                <label class="block text-xs font-bold text-slate-400 mb-2">Température maximale (°C)</label>
-                                <select id="t-max" class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
+                                <label class="block text-xs font-bold text-slate-400 mb-2">Température maximale
+                                    (°C)</label>
+                                <select id="t-max"
+                                    class="w-full bg-slate-800 border-none rounded-xl p-4 text-white focus:ring-2 focus:ring-emerald-500 transition">
                                     <option value="0.0054">40°C (Plancher Basse Temp.)</option>
                                     <option value="0.0121">55°C (Chaleur Douce)</option>
                                     <option value="0.0289" selected>80°C (Standard)</option>
                                     <option value="0.0359">90°C (Haute Température)</option>
                                 </select>
                             </div>
-                            <button onclick="calculate()" class="w-full bg-emerald-600 hover:bg-emerald-700 py-4 rounded-xl font-bold transition-transform active:scale-95">Calculer le volume net</button>
+                            <button onclick="calculate()"
+                                class="w-full bg-emerald-600 hover:bg-emerald-700 py-4 rounded-xl font-bold transition-transform active:scale-95">Calculer
+                                le volume net</button>
                         </div>
-                        <div class="flex flex-col justify-center items-center bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
+                        <div
+                            class="flex flex-col justify-center items-center bg-slate-800/50 rounded-2xl p-6 border border-slate-700">
                             <span class="text-slate-400 text-xs font-bold uppercase mb-4">Volume d'expansion net</span>
                             <div class="text-6xl font-black text-emerald-500" id="res-val">7.22</div>
                             <span class="text-slate-500 text-sm mt-2">Litres d'expansion</span>
                             <div class="mt-8 pt-6 border-t border-slate-700 w-full text-center">
-                                <p class="text-[10px] text-slate-400 italic">Recommandé : Utilisez un vase avec marge de sécurité.</p>
+                                <p class="text-[10px] text-slate-400 italic">Recommandé : Utilisez un vase avec marge de
+                                    sécurité.</p>
                             </div>
                         </div>
                     </div>
@@ -269,24 +329,43 @@
 
         <!-- Page: Lock -->
         <section id="page-lock" class="section-view max-w-5xl mx-auto space-y-8" dir="rtl">
-            <div class="bg-white p-10 rounded-3xl shadow-sm border-2 border-dashed border-emerald-500 text-center relative overflow-hidden">
+            <div
+                class="bg-white p-10 rounded-3xl shadow-sm border-2 border-dashed border-emerald-500 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 rounded-full blur-3xl -z-10"></div>
                 <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl -z-10"></div>
-                
+
                 <h2 class="text-3xl font-bold text-emerald-600 mb-6 flex items-center justify-center gap-3">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-500"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        class="text-emerald-500">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
                     محتوى مقفل (Contenu Verrouillé)
                 </h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-                    لقد استنفدت الصفحات الأربعة المجانية للمعاينة. للوصول إلى باقي الشروحات التفاعلية، والرسوم المتحركة لأنظمة التوزيع (Pieuvre, Diagonale) وحاسبة التمدد الحراري، يرجى شراء النسخة الكاملة من هذا الدليل التفاعلي.
+                    لقد استنفدت الصفحات الأربعة المجانية للمعاينة. للوصول إلى باقي الشروحات التفاعلية، والرسوم المتحركة
+                    لأنظمة التوزيع (Pieuvre, Diagonale) وحاسبة التمدد الحراري، يرجى شراء النسخة الكاملة من هذا الدليل
+                    التفاعلي.
                 </p>
                 <div class="flex gap-4 justify-center flex-wrap">
-                    <button onclick="window.location.href='/'" class="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-emerald-200 flex items-center gap-2">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    <button onclick="window.location.href='/'"
+                        class="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-emerald-200 flex items-center gap-2">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <path d="M16 10a4 4 0 0 1-8 0" />
+                        </svg>
                         العودة للمتجر لشرائه
                     </button>
-                    <button onclick="window.location.href='https://wa.me/212658211267?text=أريد شراء الدليل التفاعلي chauffe_e'" class="px-8 py-4 bg-[#25D366] hover:bg-[#128c7e] text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-2" dir="ltr">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" /></svg>
+                    <button
+                        onclick="window.location.href='https://wa.me/212658211267?text=أريد chauffe_e شراء الدليل التفاعلي '"
+                        class="px-8 py-4 bg-[#25D366] hover:bg-[#128c7e] text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-2"
+                        dir="ltr">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                        </svg>
                         شراء عبر واتساب
                     </button>
                 </div>
@@ -303,15 +382,15 @@
             views.forEach(v => {
                 const page = document.getElementById('page-' + v);
                 const navItem = document.getElementById('nav-' + v);
-                if(page) page.classList.remove('active');
-                if(navItem) navItem.classList.remove('active');
+                if (page) page.classList.remove('active');
+                if (navItem) navItem.classList.remove('active');
             });
             const targetPage = document.getElementById('page-' + target);
             const targetNav = document.getElementById('nav-' + target);
-            if(targetPage) targetPage.classList.add('active');
-            if(targetNav) targetNav.classList.add('active');
+            if (targetPage) targetPage.classList.add('active');
+            if (targetNav) targetNav.classList.add('active');
             currentSection = target;
-            
+
             setTimeout(resizeCanvases, 50);
         }
 
@@ -343,7 +422,7 @@
 
         function animate() {
             time += 0.05;
-            
+
             if (currentSection === 'circulateur') drawCirc(time);
             if (currentSection === 'vase') drawVase(time);
             if (currentSection === 'pieuvre') drawPieuvre(time);
@@ -357,20 +436,20 @@
             const w = ctx.canvas.width;
             const h = ctx.canvas.height;
             ctx.clearRect(0, 0, w, h);
-            
-            const cx = w/2, cy = h/2;
-            
+
+            const cx = w / 2, cy = h / 2;
+
             ctx.strokeStyle = '#e2e8f0';
             ctx.lineWidth = 30;
             ctx.lineCap = 'round';
             ctx.beginPath();
             ctx.moveTo(50, cy);
-            ctx.lineTo(w-50, cy);
+            ctx.lineTo(w - 50, cy);
             ctx.stroke();
 
             ctx.fillStyle = '#1e293b';
             ctx.beginPath();
-            ctx.arc(cx, cy, 60, 0, Math.PI*2);
+            ctx.arc(cx, cy, 60, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.save();
@@ -378,20 +457,20 @@
             ctx.rotate(t * 3);
             ctx.strokeStyle = '#10b981'; // Emerald 500
             ctx.lineWidth = 5;
-            for(let i=0; i<6; i++) {
+            for (let i = 0; i < 6; i++) {
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(40, 0);
                 ctx.stroke();
-                ctx.rotate(Math.PI/3);
+                ctx.rotate(Math.PI / 3);
             }
             ctx.restore();
 
             ctx.fillStyle = '#34d399'; // Emerald 400
-            for(let i=0; i<15; i++) {
+            for (let i = 0; i < 15; i++) {
                 let px = (t * 100 + i * 60) % (w - 100) + 50;
                 ctx.beginPath();
-                ctx.arc(px, cy, 4, 0, Math.PI*2);
+                ctx.arc(px, cy, 4, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
@@ -401,36 +480,36 @@
             const w = ctx.canvas.width;
             const h = ctx.canvas.height;
             ctx.clearRect(0, 0, w, h);
-            
-            const cx = w/2, cy = h/2;
+
+            const cx = w / 2, cy = h / 2;
             const vw = 120, vh = 180;
             const membraneY = cy + Math.sin(t) * 30;
 
             ctx.strokeStyle = '#334155';
             ctx.lineWidth = 4;
             ctx.beginPath();
-            ctx.roundRect(cx - vw/2, cy - vh/2, vw, vh, 20);
+            ctx.roundRect(cx - vw / 2, cy - vh / 2, vw, vh, 20);
             ctx.stroke();
 
             ctx.fillStyle = 'rgba(16, 185, 129, 0.2)'; // Emerald transparent
             ctx.beginPath();
-            ctx.moveTo(cx - vw/2, cy + vh/2);
-            ctx.lineTo(cx - vw/2, membraneY);
-            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw/2, membraneY);
-            ctx.lineTo(cx + vw/2, cy + vh/2);
+            ctx.moveTo(cx - vw / 2, cy + vh / 2);
+            ctx.lineTo(cx - vw / 2, membraneY);
+            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw / 2, membraneY);
+            ctx.lineTo(cx + vw / 2, cy + vh / 2);
             ctx.fill();
 
             ctx.strokeStyle = '#10b981';
             ctx.lineWidth = 3;
             ctx.beginPath();
-            ctx.moveTo(cx - vw/2, membraneY);
-            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw/2, membraneY);
+            ctx.moveTo(cx - vw / 2, membraneY);
+            ctx.quadraticCurveTo(cx, membraneY - 20, cx + vw / 2, membraneY);
             ctx.stroke();
 
             ctx.fillStyle = '#64748b';
             ctx.font = '10px bold sans-serif';
-            ctx.fillText('GAZ', cx - 15, cy - vh/3);
-            ctx.fillText('FLUIDE', cx - 20, cy + vh/3);
+            ctx.fillText('GAZ', cx - 15, cy - vh / 3);
+            ctx.fillText('FLUIDE', cx - 20, cy + vh / 3);
         }
 
         function drawPieuvre(t) {
@@ -438,19 +517,19 @@
             const w = ctx.canvas.width;
             const h = ctx.canvas.height;
             ctx.clearRect(0, 0, w, h);
-            
-            const cx = w/2, cy = h/2;
+
+            const cx = w / 2, cy = h / 2;
             ctx.fillStyle = '#1e293b';
             ctx.fillRect(cx - 80, cy - 20, 160, 40);
 
             const targets = [
-                {x: 100, y: 80}, {x: w-100, y: 80},
-                {x: 100, y: h-80}, {x: w-100, y: h-80}
+                { x: 100, y: 80 }, { x: w - 100, y: 80 },
+                { x: 100, y: h - 80 }, { x: w - 100, y: h - 80 }
             ];
 
             targets.forEach((pos, i) => {
                 ctx.beginPath();
-                ctx.moveTo(cx - 60 + i*40, cy);
+                ctx.moveTo(cx - 60 + i * 40, cy);
                 ctx.bezierCurveTo(cx, pos.y, pos.x, cy, pos.x, pos.y);
                 ctx.strokeStyle = '#10b981';
                 ctx.setLineDash([10, 5]);
@@ -470,26 +549,26 @@
             const w = ctx.canvas.width;
             const h = ctx.canvas.height;
             ctx.clearRect(0, 0, w, h);
-            
-            const rx = w/2 - 120, ry = h/2 - 60;
+
+            const rx = w / 2 - 120, ry = h / 2 - 60;
             const rw = 240, rh = 120;
 
             const grad = ctx.createLinearGradient(rx, ry, rx + rw, ry + rh);
             grad.addColorStop(0, '#10b981'); // Emerald
             grad.addColorStop(1, '#3b82f6'); // Blue (Cold)
-            
+
             ctx.fillStyle = grad;
             ctx.roundRect(rx, ry, rw, rh, 5);
             ctx.fill();
 
             ctx.fillStyle = '#10b981';
             ctx.beginPath();
-            ctx.arc(rx, ry, 10, 0, Math.PI*2);
+            ctx.arc(rx, ry, 10, 0, Math.PI * 2);
             ctx.fill();
 
             ctx.fillStyle = '#3b82f6';
             ctx.beginPath();
-            ctx.arc(rx + rw, ry + rh, 10, 0, Math.PI*2);
+            ctx.arc(rx + rw, ry + rh, 10, 0, Math.PI * 2);
             ctx.fill();
         }
 
@@ -500,4 +579,5 @@
         };
     </script>
 </body>
+
 </html>

@@ -2,10 +2,10 @@ export const products = [
 
     {
         id: 9,
-        title: 'الدليل الذهبي في صيانة أنظمة التدفئة (M207)',
+        title: 'الدليل الذهبي في صيانة أنظمة التدفئة',
         price: 49.00,
         originalPrice: 99.00,
-        category: 'Livres',
+        category: 'Livre',
         rating: 5.0,
         reviews: 42,
         image: '/chauffage/img1-transformed.jpeg',
@@ -16,18 +16,18 @@ export const products = [
     },
     {
         id: 10,
-        title: 'الدليل التفاعلي لتوزيع الانظمة الحرارية (Eco)',
+        title: 'Guide interactif de la distribution des systèmes thermiques',
         price: 29.00,
         originalPrice: 59.00,
-        category: 'Livres',
+        category: 'Livre',
         rating: 4.9,
         reviews: 18,
         image: '/chauffage/img1-transformed.jpeg',
         badge: 'Premium',
-        description: 'شروحات ورسومات تفاعلية متحركة لمكونات الشوفاج والتدفئة (دليل رقمي متقدم).',
+        description: '(Explications et schémas interactifs animés du chauffage et de ses composants (Guide numérique avancé)).',
         affiliateLink: '/chauffe_e.html',
         inStock: true,
     }
 ]
 
-export const categories = ['Tous', 'Tech', 'Audio', 'Montres', 'Maison', 'Mode', 'Livres']
+export const categories = ['Tous', 'Video', 'Audio', 'Application', 'Maison', 'Service', 'Livre']

@@ -272,16 +272,16 @@ export const HomePage = ({ searchQuery = '' }) => {
           affiliateLink: finalLink
         }
       })
-      
+
       // Combiner avec les produits locaux qui ne sont pas dans Supabase
       const existingIds = new Set(formattedData.map(p => p.id));
       const newLocalProducts = localProducts.filter(p => !existingIds.has(p.id));
-      
+
       let allProducts = [...formattedData, ...newLocalProducts];
-      
+
       // Réappliquer le filtre si une catégorie est sélectionnée
       if (activeCategory !== 'Tous') {
-         allProducts = allProducts.filter(p => p.category === activeCategory);
+        allProducts = allProducts.filter(p => p.category === activeCategory);
       }
 
       setProducts(allProducts)
@@ -312,7 +312,7 @@ export const HomePage = ({ searchQuery = '' }) => {
             <span className="gradient">Achetez Mieux</span>
           </HeroTitle>
           <HeroSub>
-            Des milliers de produits sélectionnés, des prix imbattables.<br />
+            Des dizaines de produits sélectionnés, des prix imbattables.<br />
             SearShop vous aide à faire les meilleurs choix.
           </HeroSub>
           <HeroCTA>
