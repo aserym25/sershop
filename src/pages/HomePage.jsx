@@ -307,10 +307,10 @@ export const HomePage = ({ searchQuery = '' }) => {
       <HeroSection>
         <HeroContent>
           <HeroBadge><span />🛍️ Les meilleures offres du moment</HeroBadge>
-          <HeroTitle>
-            Trouvez, Comparez,<br />
+          <moyenTitle>
+            Trouvez, Comparez,
             <span className="gradient">Achetez Mieux</span>
-          </HeroTitle>
+          </moyenTitle>
           <HeroSub>
             Des dizaines de produits sélectionnés, des prix imbattables.<br />
             SearShop vous aide à faire les meilleurs choix.
