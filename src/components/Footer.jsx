@@ -142,6 +142,23 @@ const Bottom = styled.div`
   }
 `
 
+const supportLinks = [
+    { label: 'FAQ', to: '/faq' },
+    { label: 'Livraison', to: '/faq#livraison' },
+    { label: 'Retours', to: '/faq#retours' },
+    { label: 'Suivi commande', to: '/faq#suivi' },
+    { label: 'Contact', to: '/contact' },
+    { label: 'SAV', to: '/contact' },
+]
+
+const legalLinks = [
+    { label: 'Mentions légales', to: '/legal#mentions' },
+    { label: 'Confidentialité', to: '/legal#confidentialite' },
+    { label: 'CGU', to: '/legal#cgu' },
+    { label: 'Cookies', to: '/legal#cookies' },
+    { label: 'Partenaires', to: '/about#partenaires' },
+]
+
 export const Footer = () => (
     <FooterWrapper>
         <FooterGrid>
@@ -174,8 +191,8 @@ export const Footer = () => (
             <Column>
                 <ColTitle>Support</ColTitle>
                 <ColLinks>
-                    {['FAQ', 'Livraison', 'Retours', 'Suivi commande', 'Contact', 'SAV'].map(l => (
-                        <ColLink key={l}><a href="#">{l}</a></ColLink>
+                    {supportLinks.map(l => (
+                        <ColLink key={l.label}><Link to={l.to}>{l.label}</Link></ColLink>
                     ))}
                 </ColLinks>
             </Column>
@@ -183,8 +200,8 @@ export const Footer = () => (
             <Column>
                 <ColTitle>Légal</ColTitle>
                 <ColLinks>
-                    {['Mentions légales', 'Confidentialité', 'CGU', 'Cookies', 'Partenaires'].map(l => (
-                        <ColLink key={l}><a href="#">{l}</a></ColLink>
+                    {legalLinks.map(l => (
+                        <ColLink key={l.label}><Link to={l.to}>{l.label}</Link></ColLink>
                     ))}
                 </ColLinks>
             </Column>
@@ -195,7 +212,7 @@ export const Footer = () => (
         <Bottom>
             <p>© {new Date().getFullYear()} SearShop. Tous droits réservés.</p>
             <span>
-                Liens affiliés — <a href="#">En savoir plus</a>
+                Liens affiliés — <Link to="/legal#affiliation">En savoir plus</Link>
             </span>
         </Bottom>
     </FooterWrapper>

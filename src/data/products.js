@@ -25,7 +25,7 @@ export const products = [
         image: '/chauffage_e/interactive1_petit.jpg',
         badge: 'Premium',
         description: '(Explications et schémas interactifs animés du chauffage et de ses composants (Guide numérique avancé)).',
-        affiliateLink: '/chauffe_e.html',
+        affiliateLink: '/chauffage_e.html',
         inStock: true,
     }
 ]
