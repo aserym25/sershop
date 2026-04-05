@@ -142,6 +142,16 @@ const Bottom = styled.div`
   }
 `
 
+const boutiqueLinks = [
+    { label: 'Tous les produits', to: '/shop' },
+    { label: 'Audio', to: '/shop?cat=Audio' },
+    { label: 'Vidéo', to: '/shop?cat=Video' },
+    { label: 'Applications', to: '/shop?cat=Application' },
+    { label: 'Maison', to: '/shop?cat=Maison' },
+    { label: 'Livres', to: '/shop?cat=Livre' },
+    { label: '🔥 Offres Temu', to: 'https://temu.to/k/ecg15ib5igw', external: true },
+]
+
 const supportLinks = [
     { label: 'FAQ', to: '/faq' },
     { label: 'Livraison', to: '/faq#livraison' },
@@ -182,8 +192,14 @@ export const Footer = () => (
             <Column>
                 <ColTitle>Boutique</ColTitle>
                 <ColLinks>
-                    {['Nouveautés', 'Meilleures ventes', 'Promotions', 'Tech', 'Mode', 'Maison'].map(l => (
-                        <ColLink key={l}><Link to="/shop">{l}</Link></ColLink>
+                    {boutiqueLinks.map(l => (
+                        <ColLink key={l.label}>
+                            {l.external ? (
+                                <a href={l.to} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                            ) : (
+                                <Link to={l.to}>{l.label}</Link>
+                            )}
+                        </ColLink>
                     ))}
                 </ColLinks>
             </Column>

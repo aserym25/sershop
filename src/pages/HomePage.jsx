@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { supabase, saveCache } from '../services/supabase'
@@ -241,23 +242,25 @@ const RetryBtn = styled.button`
 const ALL_CATEGORIES = categories
 
 export const HomePage = ({ searchQuery = '' }) => {
+  const location = useLocation()
+  const urlCat = new URLSearchParams(location.search).get('cat')
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [activeCategory, setActiveCategory] = useState('Tous')
+  const [activeCategory, setActiveCategory] = useState(urlCat && categories.includes(urlCat) ? urlCat : 'Tous')
 
   const fetchProducts = async () => {
     setLoading(true)
     setError(null)
 
-    let query = supabase.from('products').select('*').order('id', { ascending: true })
-    if (activeCategory !== 'Tous') query = query.eq('category', activeCategory)
+    try {
+      let query = supabase.from('products').select('*').order('id', { ascending: true })
+      if (activeCategory !== 'Tous') query = query.eq('category', activeCategory)
 
-    const { data, error: err } = await query
+      const { data, error: err } = await query
 
-    if (err) {
-      setError('Impossible de charger les produits.')
-    } else {
+      if (err) throw err
+
       // Supabase returns 'in_stock' but frontend expects 'inStock'
       const formattedData = (data || []).map(p => {
         let finalLink = p.affiliate_link || p.affiliateLink;
@@ -286,9 +289,31 @@ export const HomePage = ({ searchQuery = '' }) => {
 
       setProducts(allProducts)
       if (activeCategory === 'Tous') saveCache(allProducts)
+
+    } catch (err) {
+      console.error('Supabase error, fallback to local products:', err)
+      // Fallback : utiliser les produits locaux si Supabase est indisponible
+      let fallback = [...localProducts]
+      if (activeCategory !== 'Tous') {
+        fallback = fallback.filter(p => p.category === activeCategory)
+      }
+      setProducts(fallback)
+      // Afficher un avertissement discret au lieu de bloquer la page
+      if (fallback.length === 0) {
+        setError('Aucun produit disponible pour le moment.')
+      } else {
+        setError(null) // Produits locaux disponibles, pas d'erreur bloquante
+      }
     }
+
     setLoading(false)
   }
+
+  useEffect(() => {
+    if (urlCat && categories.includes(urlCat) && urlCat !== activeCategory) {
+      setActiveCategory(urlCat)
+    }
+  }, [urlCat])
 
   useEffect(() => { fetchProducts() }, [activeCategory])
 
