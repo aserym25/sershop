@@ -8,7 +8,7 @@ export const products = [
         category: 'Livre',
         rating: 5.0,
         reviews: 42,
-        image: '/chauffage/img1-transformed.jpeg',
+        image: '/chauffage/dalil-dhabi.png',
         badge: 'Nouveau',
         description: 'دليل شامل لطلبة وتقنيي الهندسة الحرارية بالمغرب - باللغتين العربية والفرنسية صيانة وإصلاح أنظمة التدفئة',
         affiliateLink: '/chauffage.html',
@@ -25,7 +25,7 @@ export const products = [
         image: '/chauffage_e/interactive1_petit.jpg',
         badge: 'Premium',
         description: '(Explications et schémas interactifs animés du chauffage et de ses composants (Guide numérique avancé)).',
-        affiliateLink: '/chauffage_e.html',
+        affiliateLink: '/chauffe_e.html',
         inStock: true,
     }
 ]
