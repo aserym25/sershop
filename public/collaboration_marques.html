@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Collaborer avec des influenceurs et des marques</title>
+  <style>
+    :root { --ink:#172033; --muted:#64748b; --accent:#7c3aed; --teal:#0f766e; --soft:#f8fafc; --line:#e2e8f0; --dark:#111827; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--soft); font:16px/1.75 Inter,system-ui,sans-serif; }
+    main { max-width:980px; margin:auto; padding:2rem 1rem 5rem; }
+    .hero,.card,.quiz,.cta { background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 8px 24px rgba(15,23,42,.07); }
+    .hero { overflow:hidden; text-align:center; }
+    .hero img { display:block; width:100%; max-height:520px; object-fit:cover; }
+    .hero-content { padding:2rem 1.5rem 2.5rem; }
+    h1 { margin:.2rem 0 .5rem; color:var(--accent); font-size:clamp(2rem,5vw,3.5rem); line-height:1.15; }
+    h2 { color:#5b21b6; line-height:1.25; }
+    h3 { color:var(--teal); }
+    .meta { color:var(--muted); }
+    .card,.quiz,.cta { padding:1.5rem; margin-top:1.5rem; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; }
+    .grid .card { margin-top:0; }
+    .concept { background:#f5f3ff; border-left:4px solid var(--accent); padding:1rem 1.2rem; border-radius:10px; }
+    .prompt { background:var(--dark); color:#e5e7eb; padding:1.2rem; border-radius:12px; white-space:pre-wrap; }
+    .prompt strong { color:#c4b5fd; }
+    .answers { display:grid; gap:.7rem; }
+    .answers button { border:1px solid var(--line); background:#fff; border-radius:10px; padding:.8rem 1rem; text-align:left; cursor:pointer; color:var(--ink); }
+    .answers button.correct { border-color:#10b981; background:#ecfdf5; }
+    .answers button.wrong { border-color:#ef4444; background:#fef2f2; }
+    .feedback { color:#047857; font-weight:700; }
+    .cta { text-align:center; background:linear-gradient(135deg,#f5f3ff,#ecfeff); }
+    .actions { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; }
+    .actions a { display:inline-block; padding:.8rem 1.2rem; color:#fff; text-decoration:none; border-radius:999px; font-weight:700; }
+    .whatsapp { background:#25d366; } .cart { background:#7c3aed; }
+    footer { text-align:center; color:var(--muted); margin-top:2rem; }
+    @media (max-width:600px) { .hero-content,.card,.quiz,.cta { padding:1.1rem; } body { font-size:15px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <img src="./collaboration_marques/avatar2.bmp" alt="Collaborer avec des influenceurs et des marques">
+      <div class="hero-content">
+        <p class="meta">Formation pratique • Version 1.0</p>
+        <h1>Collaborer avec des influenceurs et des marques</h1>
+        <p>Identifier les bons partenaires, proposer une collaboration professionnelle et créer du contenu sponsorisé authentique.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Accélérer la croissance grâce aux collaborations</h2>
+      <p>Chaque créateur possède un public fidélisé. Une collaboration présente votre contenu à une nouvelle audience tout en profitant de la confiance déjà construite par le partenaire.</p>
+      <p>Pour un avatar IA comme Aria, les collaborations renforcent aussi la crédibilité : travailler avec de vrais créateurs et des marques reconnues montre que le contenu apporte une valeur concrète au secteur.</p>
+      <div class="concept"><strong>Idée clé :</strong> une bonne collaboration ne cherche pas seulement la visibilité. Elle crée un échange utile entre deux audiences compatibles.</div>
+    </section>
+
+    <div class="grid">
+      <article class="card">
+        <h2>Collaborations entre pairs</h2>
+        <p>Deux créateurs de niveau similaire partagent leurs publics, produisent ensemble ou organisent une promotion croisée. L’objectif est une visibilité mutuelle et équilibrée.</p>
+        <h3>Formats adaptés</h3>
+        <ul><li>Série de contenus en commun</li><li>Échange de mentions</li><li>Live ou interview croisée</li></ul>
+      </article>
+      <article class="card">
+        <h2>Partenariats avec des marques</h2>
+        <p>Une marque paie ou sponsorise une publication pour accéder de manière authentique à une audience ciblée. Le créateur reçoit un revenu et développe sa crédibilité.</p>
+        <h3>Avant d'accepter</h3>
+        <p>Vérifiez l’alignement du produit avec vos valeurs, vos piliers de contenu et les attentes de votre audience.</p>
+      </article>
+    </div>
+
+    <section class="quiz">
+      <h2>QCM : choisir une collaboration intéressante</h2>
+      <p>Sélectionnez les réponses correctes.</p>
+      <div class="answers">
+        <button data-correct="false">Le partenaire a beaucoup plus d’abonnés que vous.</button>
+        <button data-correct="true">La collaboration correspond aux valeurs et aux piliers de votre marque.</button>
+        <button data-correct="true">Le public du partenaire correspond à votre cible démographique.</button>
+        <button data-correct="false">La marque propose le tarif le plus élevé.</button>
+      </div>
+      <p class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <h2>Mesurer la qualité d’une audience</h2>
+      <p>Une audience engagée peut être plus utile qu’une audience beaucoup plus grande mais passive. Par exemple, 8 000 abonnés avec 9 % d’engagement peuvent produire plus d’actions que 50 000 abonnés avec seulement 1 %.</p>
+      <div class="concept"><strong>À retenir :</strong> analysez l’engagement, la cible démographique et la confiance, pas uniquement le nombre d’abonnés.</div>
+    </section>
+
+    <section class="card">
+      <h2>Contacter une marque de manière professionnelle</h2>
+      <p>Une proposition efficace répond à trois questions : qui êtes-vous, pourquoi votre public est pertinent pour la marque et quel contenu concret proposez-vous.</p>
+      <div class="prompt"><strong>Prompt Claude</strong>
+
+Écrivez un e-mail de prise de contact pour une collaboration envoyé par un créateur de contenu avatar IA à une marque de bien-être. La niche est le bien-être féminin, l’audience est composée de femmes actives de 30 à 45 ans. Proposez un Reel sponsorisé, expliquez le chevauchement des audiences et gardez un ton professionnel et chaleureux en moins de 150 mots.</div>
+    </section>
+
+    <section class="card">
+      <h2>Créer un contenu sponsorisé authentique</h2>
+      <img src="./collaboration_marques/AVATAR.bmp" alt="Avatar IA Aria pour une collaboration de marque" style="display:block;width:min(100%,720px);height:auto;margin:0 auto 1rem;border-radius:14px">
+      <p>Le produit doit apparaître naturellement dans une routine ou un conseil qui serait utile même sans la marque. La transparence est obligatoire : utilisez les outils de partenariat rémunéré de la plateforme et indiquez clairement le sponsoring.</p>
+      <h3>Structure recommandée</h3>
+      <ol><li><strong>Accroche :</strong> attirer l’attention sur un problème réel.</li><li><strong>Valeur :</strong> proposer une routine, une histoire ou un conseil concret.</li><li><strong>Produit :</strong> montrer son usage naturellement.</li><li><strong>Action :</strong> inviter le public à essayer ou à découvrir.</li></ol>
+      <div class="concept"><strong>Important pour un avatar IA :</strong> informez la marque dès le premier contact que le produit sera présenté par un avatar IA.</div>
+    </section>
+
+    <section class="card">
+      <h2>Le filtre d’alignement</h2>
+      <ul><li><strong>Chevauchement du public :</strong> leur audience correspond-elle à votre cible ?</li><li><strong>Alignement des valeurs :</strong> partagez-vous le même ton et les mêmes valeurs ?</li><li><strong>Adéquation du contenu :</strong> pouvez-vous l’intégrer naturellement ?</li><li><strong>Transparence :</strong> êtes-vous à l’aise pour tout divulguer ?</li></ul>
+      <p>Si une seule réponse est non, refusez poliment. Un partenariat aligné vaut mieux que plusieurs collaborations inadaptées.</p>
+    </section>
+
+    <section class="cta">
+      <h2>Prêt à développer des collaborations alignées ?</h2>
+      <p>Appliquez le filtre, préparez votre proposition et construisez des relations durables avec les bons créateurs et les bonnes marques.</p>
+      <div class="actions">
+        <a class="whatsapp" href="https://wa.me/212658211267?text=Bonjour%20Sershop%20!%20Je%20souhaite%20acheter%20la%20formation%20Collaborer%20avec%20des%20influenceurs%20et%20des%20marques." target="_blank" rel="noopener noreferrer">Acheter via WhatsApp</a>
+        <a class="cart" href="/shop?add=14">🛒 Mettre au panier</a>
+      </div>
+    </section>
+    <footer>Collaborer avec des influenceurs et des marques • Version 1.0</footer>
+  </main>
+  <script>
+    document.querySelectorAll('.answers button').forEach(button => button.addEventListener('click', () => {
+      button.classList.toggle(button.dataset.correct === 'true' ? 'correct' : 'wrong');
+      button.closest('.quiz').querySelector('.feedback').textContent = 'Les meilleures collaborations reposent sur l’alignement du public, des valeurs et du contenu.';
+    }));
+  </script>
+</body>
+</html>

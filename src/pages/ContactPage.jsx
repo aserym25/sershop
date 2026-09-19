@@ -119,6 +119,15 @@ const InfoContent = styled.div`
   }
 `
 
+const EmailLink = styled.a`
+  color: ${({ theme }) => theme.colors.primaryLight};
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 const FormSection = styled.form`
   animation: ${fadeUp} 0.7s ease 0.3s both;
   background: ${({ theme }) => theme.colors.bgCard};
@@ -263,7 +272,7 @@ export const ContactPage = () => {
             <InfoIcon>📧</InfoIcon>
             <InfoContent>
               <h3>Email</h3>
-              <p>contact@sershop.fr</p>
+              <p><EmailLink href="mailto:contact@sershop.fr">contact@sershop.fr</EmailLink></p>
             </InfoContent>
           </InfoCard>
 

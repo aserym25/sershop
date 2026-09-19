@@ -67,6 +67,13 @@ const SocialBtn = styled.a`
   }
 `
 
+const SocialLogo = styled.img`
+  width: 18px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 5px;
+`
+
 const Column = styled.div``
 
 const ColTitle = styled.h4`
@@ -149,7 +156,6 @@ const boutiqueLinks = [
     { label: 'Applications', to: '/shop?cat=Application' },
     { label: 'Maison', to: '/shop?cat=Maison' },
     { label: 'Livres', to: '/shop?cat=Livre' },
-    { label: '🔥 Offres Temu', to: 'https://temu.to/k/ecg15ib5igw', external: true },
 ]
 
 const supportLinks = [
@@ -166,7 +172,6 @@ const legalLinks = [
     { label: 'Confidentialité', to: '/legal#confidentialite' },
     { label: 'CGU', to: '/legal#cgu' },
     { label: 'Cookies', to: '/legal#cookies' },
-    { label: 'Partenaires', to: '/about#partenaires' },
 ]
 
 export const Footer = () => (
@@ -179,13 +184,23 @@ export const Footer = () => (
                     SearShop vous connecte aux deals les plus attractifs du moment.
                 </p>
                 <SocialLinks>
-                    {['facebook', 'twitter', 'instagram', 'tiktok'].map(s => (
-                        <SocialBtn key={s} href="#" aria-label={s}>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <circle cx="12" cy="12" r="10" />
-                            </svg>
-                        </SocialBtn>
-                    ))}
+                    <SocialBtn
+                        href="https://www.instagram.com/sershop.fr/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SearShop sur Instagram"
+                    >
+                        <SocialLogo src="/petit-logo.jpg" alt="" />
+                    </SocialBtn>
+                    <SocialBtn
+                        href="https://www.facebook.com/sershop.fr/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="SearShop sur Facebook"
+                        title="SearShop sur Facebook"
+                    >
+                        <span aria-hidden="true" style={{ fontWeight: 800, fontSize: '1.1rem' }}>f</span>
+                    </SocialBtn>
                 </SocialLinks>
             </Brand>
 

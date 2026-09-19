@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formation pratique de copywriting avec l'intelligence artificielle : stratégie, briefs, exemples, prompts et conversion.">
+  <title>Copywriting — Les mots qui font agir</title>
+  <style>
+    :root{--ink:#172033;--muted:#64748b;--violet:#7c3aed;--blue:#2563eb;--pink:#db2777;--teal:#0f766e;--gold:#f59e0b;--soft:#fff7ed;--line:#e2e8f0;--dark:#111827}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:linear-gradient(135deg,#fff7ed,#eff6ff 45%,#fdf2f8);font:16px/1.75 Inter,system-ui,sans-serif}
+    main{max-width:1080px;margin:auto;padding:1.25rem 1rem 5rem}.hero,.card,.quiz,.cta,.toc{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 12px 30px #17203312}
+    .hero{overflow:hidden;text-align:center}.hero img{display:block;width:100%;max-height:440px;object-fit:cover}.hero-content{padding:2rem 1.5rem 2.5rem}
+    h1{margin:.2rem 0;color:var(--violet);font-size:clamp(2.2rem,6vw,4.5rem);line-height:1.05}h2{color:var(--blue);line-height:1.2;margin-top:0}h3{color:var(--teal)}p{max-width:78ch}.meta{color:var(--muted);font-weight:700}.card,.quiz,.cta,.toc{padding:1.5rem;margin-top:1.5rem}
+    .switcher{text-align:center;background:#fff;border:1px solid var(--line);padding:1rem;border-radius:999px;box-shadow:0 8px 20px #17203312;margin:1.25rem auto;max-width:480px}.switcher button,.actions a{border:0;border-radius:999px;padding:.7rem 1.2rem;margin:.2rem;font-weight:800;cursor:pointer;text-decoration:none}.switcher .language-fr{background:var(--violet);color:#fff}.switcher .language-ar{background:var(--teal);color:#fff}
+    .toc ol{columns:2;column-gap:2rem}.toc a{color:var(--violet);font-weight:700}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}.grid .card{margin-top:0}
+    .concept{background:#f5f3ff;border-left:5px solid var(--violet);padding:1rem 1.2rem;border-radius:12px;margin:1rem 0}.example{background:#ecfeff;border-left:5px solid var(--teal);padding:1rem 1.2rem;border-radius:12px}.warning{background:#fff7ed;border-left:5px solid var(--gold);padding:1rem 1.2rem;border-radius:12px}
+    .prompt{background:var(--dark);color:#e5e7eb;padding:1.2rem;border-radius:14px;white-space:pre-wrap;overflow:auto}.prompt strong{color:#c4b5fd}.steps{counter-reset:item;list-style:none;padding:0}.steps li{counter-increment:item;margin:.8rem 0;padding:.75rem 1rem;background:#f8fafc;border-radius:10px}.steps li:before{content:counter(item);display:inline-grid;place-items:center;width:2rem;height:2rem;margin-right:.6rem;border-radius:50%;background:var(--pink);color:#fff;font-weight:800}
+    .answers{display:grid;gap:.65rem}.answers button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:.8rem;text-align:left;cursor:pointer;color:var(--ink)}.answers button.correct{border-color:#10b981;background:#ecfdf5}.answers button.wrong{border-color:#ef4444;background:#fef2f2}.feedback{font-weight:800;color:var(--teal)}
+    .ar{display:none}.actions{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap}.actions a{color:#fff}.whatsapp{background:#25d366}.cart{background:var(--violet)}footer{text-align:center;color:var(--muted);margin-top:2rem}@media(max-width:650px){.hero-content,.card,.quiz,.cta,.toc{padding:1.1rem}.toc ol{columns:1}body{font-size:15px}}
+  </style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <img src="./Copywriting/copy.png" alt="Copywriting : les mots qui font agir">
+    <div class="hero-content">
+      <p class="meta fr">Formation pratique • Copywriting avec l'IA</p><p class="meta ar">دورة عملية • كتابة الإعلانات بالذكاء الاصطناعي</p>
+      <h1 class="fr">Copywriting</h1><h1 class="ar">كتابة الإعلانات</h1>
+      <p class="fr">Les mots qui font agir : transformer l'attention en confiance, puis la confiance en action.</p>
+      <p class="ar">الكلمات التي تحفّز على الفعل: حوّل الانتباه إلى ثقة، ثم الثقة إلى إجراء.</p>
+    </div>
+  </section>
+  <div class="switcher"><strong>Choisir la langue / اختر اللغة</strong><br><button class="language-fr" onclick="setLanguage('fr')">Français</button><button class="language-ar" onclick="setLanguage('ar')">العربية</button></div>
+  <section class="toc fr"><h2>Sommaire</h2><ol><li><a href="#definition">Comprendre le copywriting</a></li><li><a href="#workflow">Le workflow professionnel</a></li><li><a href="#brief">Brief, cible et promesse</a></li><li><a href="#angles">Angles psychologiques et exemples</a></li><li><a href="#tools">Choisir le bon outil IA</a></li><li><a href="#critique">Critiquer et réécrire</a></li><li><a href="#practice">Exercices et QCM</a></li></ol></section>
+  <section class="toc ar"><h2>الفهرس</h2><ol><li><a href="#definition">فهم كتابة الإعلانات</a></li><li><a href="#expanded-ar">هندسة الإقناع للمقاولين والتقنيين</a></li><li><a href="#workflow">منهجية العمل الاحترافية</a></li><li><a href="#brief">الموجز والجمهور والوعد</a></li><li><a href="#angles">الزوايا النفسية والأمثلة</a></li><li><a href="#tools">اختيار أداة الذكاء الاصطناعي</a></li><li><a href="#critique">النقد وإعادة الكتابة</a></li><li><a href="#practice">التدريبات والاختبار</a></li></ol></section>
+
+  <section id="definition" class="card fr"><h2>1. Comprendre le copywriting</h2><p>Imaginez deux entreprises qui vendent le même produit au même prix. L'une convertit à 2 %, l'autre à 8 %. La différence ne vient pas forcément du produit ou du design : elle vient souvent des mots qui expliquent la valeur et guident la décision.</p><p>Le copywriting est une écriture orientée vers un objectif commercial ou marketing : acheter, s'inscrire, demander un devis, cliquer, faire confiance ou mémoriser une marque.</p><div class="concept"><strong>Différence essentielle :</strong> le contenu informe et apporte une valeur autonome ; le copywriting informe aussi, mais au service d'une action précise.</div><h3>Où le trouve-t-on ?</h3><p>Pages d'accueil, pages produit, tarifs, publicités, objets d'e-mails, séquences de nurturing, réseaux sociaux, pages de vente et campagnes de retargeting.</p><div class="example"><strong>Exemple :</strong> « PDF de 50 pages » décrit une caractéristique. « Maîtrisez le diagnostic du chauffage sans stress » exprime une transformation.</div></section>
+  <section id="definition" class="card ar"><h2>١. فهم كتابة الإعلانات</h2><p>تخيّل شركتين تبيعان المنتج نفسه بالسعر نفسه. الأولى تحقق نسبة تحويل ٢٪ والثانية ٨٪. غالباً لا يكمن الفرق في المنتج أو التصميم، بل في الكلمات التي توضّح القيمة وتوجّه القرار.</p><p>كتابة الإعلانات هي كتابة تهدف إلى إجراء تسويقي محدد: الشراء، التسجيل، طلب عرض، النقر، بناء الثقة أو تذكّر العلامة.</p><div class="concept"><strong>الفرق الأساسي:</strong> المحتوى يقدّم المعلومات، أما كتابة الإعلانات فتستخدم المعلومات من أجل دفع القارئ إلى خطوة واضحة.</div><h3>أين نجدها؟</h3><p>في الصفحة الرئيسية وصفحات المنتجات والأسعار والإعلانات ورسائل البريد وصفحات البيع وإعلانات إعادة الاستهداف.</p><div class="example"><strong>مثال:</strong> «ملف PDF من ٥٠ صفحة» يصف ميزة، بينما «أتقن تشخيص التدفئة دون توتر» يصف النتيجة.</div></section>
+  <section id="expanded-ar" class="card ar">
+    <h2>كتاب: هندسة الإقناع</h2>
+    <p><strong>الدليل الشامل للكوبي رايتينج للمقاولين والتقنيين — تأليف: محمد عسري</strong></p>
+    <p>هذه نسخة موسعة ومهيكلة بأسلوب احترافي، تجمع بين دقة المهندس وبراعة المسوّق. الكوبي رايتينج ليس مجرد كتابة محتوى للإخبار أو التعليم، بل كتابة تخدم هدفاً تجارياً: تقنع، تروّج، وتوجّه القارئ إلى الشراء أو الاشتراك أو حجز خدمة. ومع الذكاء الاصطناعي، لم يعد التحدي في سرعة الكتابة، بل في التوجيه الاستراتيجي لإنتاج نصوص تبيع بدلاً من النصوص العامة.</p>
+
+    <h2>مقدمة: لماذا الكوبي رايتينج؟ ولماذا الآن؟</h2>
+    <p>تخيّل شركتين تقدمان نفس الخدمة التقنية وبنفس السعر. الأولى تحقق تحويلات ومبيعات بنسبة ٢٪، والثانية ٨٪. الفرق ليس بالضرورة في جودة المنتج أو التصميم أو ميزانية الإعلانات، بل في طريقة شرح القيمة. هدف هذا الكتاب هو تحويل الكلمات من حبر على ورق إلى آلة بيع تعمل لصالحك على مدار الساعة.</p>
+
+    <h2>الفصل الأول: التأسيس الاستراتيجي — اعرف قبل أن تكتب</h2>
+    <p>النص الذي يصلح لكل الناس لا يقنع أحداً. قبل كتابة أي مسودة، ابنِ <strong>مثلث الرسالة</strong>:</p>
+    <ol class="steps"><li><strong>العرض:</strong> ماذا تبيع ولمن؟ لا تقل «نبيع مكيفات»، بل «أنظمة تبريد ذكية للمقاهي والفنادق تخفض فاتورة الكهرباء بنسبة ٣٠٪».</li><li><strong>النتيجة:</strong> ما الأثر الملموس؟ العميل لا يشتري المنتج بل يشتري الراحة والنسخة الأفضل من نفسه، مثل «تبريد الغرفة في خمس دقائق وسط حرارة الصيف».</li><li><strong>الإثبات:</strong> لماذا يثق بك؟ استخدم الدليل الاجتماعي، وشرح العملية التقنية، والأرقام الدقيقة، والشهادات والخبرة.</li></ol>
+    <div class="example"><strong>مثال تقني:</strong> «نساعد أصحاب الفنادق والمقاهي على تقليل تكاليف الصيانة عبر أنظمة Inverter الذكية». هذا أقوى من «نقدم خدمات صيانة وبيع معدات التبريد» لأنه يحدد العميل والمشكلة والنتيجة.</div>
+
+    <h2>الفصل الثاني: المحركات النفسية للإقناع</h2>
+    <ul><li><strong>نفور الخسارة:</strong> أظهر ما يخسره العميل الآن: «كل شهر تؤجل فيه صيانة أجهزتك قد تحرق ١٥٠٠ درهم إضافية في فاتورة الكهرباء».</li><li><strong>الاستعجال والندرة:</strong> استخدم موعداً حقيقياً أو عدداً حقيقياً، مثل «تبقت خمسة مقاعد فقط لضمان الجودة في الورشة»، ولا تصنع ندرة كاذبة.</li><li><strong>سُلّم الالتزام:</strong> الجمهور البارد يحتاج دليلاً مجانياً، والجمهور الدافئ يحتاج تجربة أو دراسة، أما الجمهور الساخن فيمكن دعوته إلى شراء النسخة الآن.</li></ul>
+
+    <h2>الفصل الثالث: هيكل الإقناع الكلاسيكي AIDA</h2>
+    <ol class="steps"><li><strong>الانتباه:</strong> «هل تعطل نظام التبريد لديك في ذروة حرارة الصيف؟»</li><li><strong>الاهتمام:</strong> «الغبار المتراكم يرفع استهلاك أجهزتك؛ هنا يأتي دور الصيانة الوقائية».</li><li><strong>الرغبة:</strong> «تخيل نوماً هادئاً وفاتورة كهرباء منخفضة وأجهزة تعمل بكفاءة حتى عند ٤٨ درجة».</li><li><strong>الفعل:</strong> «أرسل صورة بطاقة المكيف عبر واتساب، وسنخبرك بنوع الغاز وتكلفة الصيانة في أقل من خمس دقائق».</li></ol>
+
+    <h2>الفصل الرابع: خوارزمية التحرير وحلقة التطوير</h2>
+    <p>المسودة الأولى بداية فقط. استخدم قاعدة <strong>رافعة واحدة في كل مراجعة</strong>، ولا تعدّل كل شيء دفعة واحدة.</p>
+    <ul><li><strong>الوضوح:</strong> احذف كلمات مثل «مبتكر» و«رائد» إن لم تدعمها نتيجة.</li><li><strong>المبني للمعلوم:</strong> «أجهزتنا توفر لك ٣٠٪ من الطاقة» أقوى من «يتم توفير الطاقة بواسطة أجهزتنا».</li><li><strong>التحديد:</strong> إذا كان النص غير مقنع، أضف رقماً أو دليلاً أو مدة زمنية دقيقة.</li><li><strong>اختبار «وماذا بعد؟»:</strong> «نستخدم تكنولوجيا مبتكرة» عامة؛ «نستخدم Inverter يخفض الفاتورة ٣٠٪ ويحافظ على برودة ثابتة» محددة.</li></ul>
+    <div class="concept"><strong>نظام النسخ:</strong> احتفظ بـ V1 للمسودة الأولى، وV2 لتحسين الوضوح، وV3 لإضافة الدليل التقني، وV4 لأنسنة النص وجعله قريباً من لغة الخبير الذي ينصح زميله.</div>
+
+    <h2>الفصل الخامس: محركات البحث وفن صياغة العناوين</h2>
+    <p>العنوان يخدم القارئ ومحرك البحث والمساحة المتاحة. طابقه مع نية البحث:</p>
+    <ul><li><strong>معلوماتية:</strong> «كيف تقلل استهلاك المكيف للكهرباء في الصيف؟»</li><li><strong>تجارية:</strong> «أفضل خمسة أجهزة تبريد للمقاهي والمطاعم: مقارنة شاملة».</li><li><strong>شرائية:</strong> «أسعار وخطط تركيب أجهزة Inverter في الرشيدية ٢٠٢٦».</li></ul>
+    <p>في B2C ركّز على الراحة والسهولة: «احصل على نوم هادئ وصيف بارد». في B2B ركّز على العائد على الاستثمار وتقليل المخاطر: «خمسة حلول صيانة تقلل توقف غرف التبريد بنسبة ٢٥٪ وتحمي مخزونك».</p>
+
+    <h2>الفصل السادس: خاتمة — من كاتب محتوى إلى مهندس تحويل</h2>
+    <p>الكوبي رايتينج ليس سحراً، بل هندسة. عندما تجمع فهم الجمهور، والعرض الواضح، والإثبات، والهيكل، والتحرير الذكي بمساعدة الذكاء الاصطناعي، فإنك لا تكتب كلمات فقط؛ بل تبني نظام إقناع. طبّق اليوم قاعدة الرافعة الواحدة على أول منتج أو خدمة، وقارن النتائج بين النسخة الأولى والنسخة المحسّنة.</p>
+    <div class="warning"><strong>تذكير عملي:</strong> لا تستخدم أرقاماً أو شهادات أو ندرة إلا إذا كانت حقيقية وقابلة للتحقق. الثقة أصل طويل الأمد في كل مشروع تقني.</div>
+  </section>
+
+  <section id="workflow" class="card fr"><h2>2. Le workflow : brief → draft → critique → rewrite</h2><p>Demander simplement à une IA « écris une accroche » produit souvent des phrases correctes mais génériques. Le professionnel ne choisit pas la phrase qui sonne le mieux : il choisit celle qui répond le mieux au problème et qui convertit.</p><ol class="steps"><li><strong>Brief :</strong> définir audience, objectif, douleur, promesse, ton et format.</li><li><strong>Draft :</strong> demander une première version et plusieurs angles.</li><li><strong>Critique :</strong> évaluer clarté, spécificité, émotion et force du CTA.</li><li><strong>Rewrite :</strong> donner des corrections mesurables et réécrire.</li></ol><div class="warning"><strong>À éviter :</strong> « Pick the one that sounds best ». Le goût personnel n'est pas une preuve de conversion.</div></section>
+  <section id="workflow" class="card ar"><h2>٢. منهجية العمل: موجز ← مسودة ← نقد ← إعادة كتابة</h2><p>إن طلبت من الذكاء الاصطناعي «اكتب عنواناً» فقط، فستحصل غالباً على جمل صحيحة لكنها عامة. المحترف لا يختار الجملة الأجمل، بل الجملة التي تحل مشكلة الجمهور وتحفّز الإجراء.</p><ol class="steps"><li><strong>الموجز:</strong> تحديد الجمهور والهدف والمشكلة والوعد والنبرة والشكل.</li><li><strong>المسودة:</strong> طلب نسخة أولى وزوايا متعددة.</li><li><strong>النقد:</strong> تقييم الوضوح والدقة والتأثير وقوة الدعوة إلى الفعل.</li><li><strong>إعادة الكتابة:</strong> إعطاء تصحيحات قابلة للقياس وإعادة الصياغة.</li></ol><div class="warning"><strong>تجنّب:</strong> اختيار النص لأنه «يبدو جميلاً»؛ الجمال وحده لا يثبت التحويل.</div></section>
+
+  <section id="brief" class="grid fr"><article class="card"><h2>3. Construire un brief puissant</h2><p>Le contexte est le carburant de l'IA. Plus le problème est précis, moins le résultat contient de « generic fluff ».</p><ul><li><strong>Cible :</strong> qui lit ?</li><li><strong>Douleur :</strong> quel problème veut-il résoudre maintenant ?</li><li><strong>Promesse :</strong> quel bénéfice unique ?</li><li><strong>Preuve :</strong> pourquoi vous croire ?</li><li><strong>Action :</strong> que doit faire le lecteur ?</li></ul></article><article class="card"><h2>Exemple : café</h2><p><strong>Demande vague :</strong> « Écris une description pour mon café. »</p><p><strong>Brief utile :</strong> « Décris un abonnement de café éthiopien pour des professionnels pressés. Bénéfice : qualité café, prêt en 3 minutes. Ton direct et confiant. Termine par un appel à s'abonner. »</p><div class="example">Résultat attendu : « Pas besoin de café pour bien commencer. Un café d'origine, torréfié en petites quantités, prêt en 3 minutes. Abonnez-vous et ne tombez jamais à court. »</div></article></section>
+  <section id="brief" class="card ar"><h2>٣. بناء موجز قوي</h2><p>السياق هو وقود الذكاء الاصطناعي. كلما كانت المشكلة دقيقة، قلّ الكلام العام وزادت فائدة النتيجة.</p><ul><li><strong>الجمهور:</strong> من يقرأ؟</li><li><strong>المشكلة:</strong> ما الذي يريد حله الآن؟</li><li><strong>الوعد:</strong> ما الفائدة الفريدة؟</li><li><strong>الدليل:</strong> لماذا يصدقك؟</li><li><strong>الإجراء:</strong> ماذا تريد منه أن يفعل؟</li></ul><div class="example"><strong>مثال:</strong> بدلاً من «اكتب وصفاً للقهوة»، حدّد الجمهور والفائدة والنبرة والدعوة إلى الاشتراك.</div></section>
+
+  <section id="angles" class="card fr"><h2>4. Les angles psychologiques : vendre la transformation</h2><p>Pour une box repas destinée à des parents débordés, on ne vend pas une boîte de nourriture : on vend une soirée plus simple. Testez plusieurs angles au lieu de répéter le même argument.</p><div class="grid"><article><h3>Gain de temps</h3><p>« Récupérez 5 heures par semaine sans sacrifier le dîner. »</p></article><article><h3>Santé sans effort</h3><p>« Le pilote automatique pour des repas sains que toute la famille aime. »</p></article><article><h3>Paix familiale</h3><p>« Enfin un plat de légumes qui ne finit pas à la poubelle. »</p></article><article><h3>Budget</h3><p>« Moins cher qu'une livraison, meilleur qu'un plat surgelé. »</p></article><article><h3>Identité</h3><p>« Être un super parent ne demande pas deux heures en cuisine chaque soir. »</p></article></div><div class="concept"><strong>Pourquoi ces angles marchent :</strong> ils parlent de liberté, de charge mentale, de santé, de paix sociale, d'économie et de déculpabilisation — des résultats vécus, pas des caractéristiques.</div><p><strong>A/B testing :</strong> associez l'angle « approbation » à une vidéo d'un enfant qui finit son assiette et l'angle « temps » à une boîte livrée devant la porte.</p></section>
+  <section id="angles" class="card ar"><h2>٤. الزوايا النفسية: بيع التحوّل</h2><p>بالنسبة لصندوق وجبات للعائلات المشغولة، لا نبيع صندوق طعام فقط، بل نبيع أمسية أسهل. اختبر عدة زوايا بدلاً من تكرار الحجة نفسها.</p><div class="grid"><article><h3>توفير الوقت</h3><p>«استرجع ٥ ساعات أسبوعياً دون التضحية بالعشاء.»</p></article><article><h3>الصحة دون جهد</h3><p>«الطيار الآلي لوجبات صحية تحبها العائلة.»</p></article><article><h3>السلام العائلي</h3><p>«طبق الخضار الذي لا ينتهي في سلة المهملات.»</p></article><article><h3>الميزانية</h3><p>«أقل تكلفة من التوصيل وأفضل من الوجبات المجمدة.»</p></article><article><h3>الهوية</h3><p>«كونك والداً رائعاً لا يتطلب ساعتين في المطبخ كل ليلة.»</p></article></div><div class="concept"><strong>سبب النجاح:</strong> هذه الزوايا تتحدث عن الحرية والصحة والاقتصاد وراحة البال، أي عن نتائج يشعر بها العميل.</div></section>
+
+  <section id="tools" class="card fr"><h2>5. Choisir le bon outil IA</h2><div class="grid"><article><h3>ChatGPT</h3><p>Excellent pour réfléchir à une stratégie, explorer des angles, faire varier des accroches et résoudre un problème avant d'écrire.</p></article><article><h3>Claude</h3><p>Très utile pour les textes longs, les pages de vente, les séquences e-mail, la nuance de marque et la critique.</p></article><article><h3>Copy.ai</h3><p>Une machine à variations : publicités, accroches et appels à l'action pour remplir rapidement un plan de tests A/B.</p></article><article><h3>Jasper</h3><p>Adapté aux équipes : voix de marque cohérente, production à grande échelle et travail SEO collaboratif.</p></article></div><p>Le meilleur outil dépend du contrôle du contexte et du ton, du format, de la vitesse souhaitée et de la capacité à produire des variantes. Le modèle le plus puissant n'est pas toujours le meilleur outil pour votre tâche.</p></section>
+  <section id="tools" class="card ar"><h2>٥. اختيار أداة الذكاء الاصطناعي</h2><div class="grid"><article><h3>ChatGPT</h3><p>مفيد للتفكير في الاستراتيجية واستكشاف الزوايا وتوليد عناوين متعددة قبل الكتابة.</p></article><article><h3>Claude</h3><p>مناسب للنصوص الطويلة وصفحات البيع ورسائل البريد والنقد وإعادة الصياغة.</p></article><article><h3>Copy.ai</h3><p>ممتاز لإنتاج تنويعات كثيرة من الإعلانات والعناوين والدعوات إلى الفعل بسرعة.</p></article><article><h3>Jasper</h3><p>مناسب للفرق التي تحتاج إلى نبرة علامة ثابتة وإنتاج واسع وتحسين SEO.</p></article></div><p>اختيار الأداة يعتمد على التحكم في السياق والنبرة والشكل والسرعة، وليس على قوة النموذج وحدها.</p></section>
+
+  <section id="critique" class="card fr"><h2>6. Critiquer et réécrire avec l'IA</h2><p>L'auto-critique oblige l'IA à passer du rôle de rédacteur à celui d'éditeur. Elle peut repérer les clichés, vérifier la cohérence de la promesse et mesurer l'empathie.</p><div class="prompt"><strong>Prompt en deux étapes</strong>
+Étape 1 — Brief :
+Rédige la section « À propos » d'une page de vente pour une box repas.
+Cible : parents solos épuisés.
+Ton : direct, empathique, sans jargon, comme un ami autour d'un café.
+Objectif : montrer que le service rend la soirée plus simple, sans donner de leçon de cuisine.
+
+Étape 2 — Critique :
+Analyse ton texte selon mes objectifs. Le ton ressemble-t-il à un ami ou à une publicité ?
+Identifie les trois phrases les plus faibles ou clichées et propose une version plus brute et authentique.</div><div class="example"><strong>Règle :</strong> résultat = bénéfice en titre → mécanisme en phrase 1 → preuve ou émotion en phrase 2. Expliquez ce que le produit change, pas seulement ce qu'il est.</div></section>
+  <section id="critique" class="card ar"><h2>٦. النقد وإعادة الكتابة بالذكاء الاصطناعي</h2><p>النقد الذاتي يجعل الذكاء الاصطناعي ينتقل من دور الكاتب إلى دور المحرر. فهو يكتشف العبارات المبتذلة ويفحص انسجام الوعد ويقيّم التعاطف.</p><div class="prompt"><strong>موجّه من مرحلتين</strong>
+المرحلة الأولى: اكتب قسم «من نحن» لصفحة بيع صندوق وجبات.
+الجمهور: آباء وأمهات مرهقون.
+النبرة: مباشرة ومتعاطفة دون مصطلحات تسويقية.
+الهدف: إظهار أن الخدمة تجعل المساء أسهل دون إعطاء دروس في الطبخ.
+
+المرحلة الثانية: حلّل النص وفق هذه الأهداف، وحدد أضعف ثلاث جمل وأعد كتابتها بأسلوب أكثر صدقاً.</div><div class="example"><strong>قاعدة:</strong> النتيجة في العنوان، والآلية في الجملة الأولى، والدليل أو الشعور في الثانية.</div></section>
+
+  <section id="practice" class="quiz fr"><h2>7. QCM de validation</h2><p>Sélectionnez les bonnes réponses.</p><div class="answers"><button data-correct="true">Une séquence e-mail qui accompagne un prospect vers l'achat.</button><button data-correct="true">Une page de tarifs qui met en avant les bénéfices et un plan populaire.</button><button data-correct="false">Un article Wikipédia totalement neutre, sans appel à l'action.</button><button data-correct="true">Une publicité de retargeting pour un panier abandonné.</button></div><p class="feedback" aria-live="polite"></p></section>
+  <section id="practice" class="card ar"><h2>٧. اختبار قصير</h2><p>اختر الإجابات الصحيحة:</p><ul><li>سلسلة رسائل تقود العميل نحو الشراء.</li><li>صفحة أسعار تبرز الفوائد والخطة الأكثر شعبية.</li><li>مقال ويكيبيديا محايد تماماً دون دعوة إلى الفعل.</li><li>إعلان لإعادة استهداف سلة متروكة.</li></ul><p class="concept">الإجابات الصحيحة: السلسلة البريدية وصفحة الأسعار وإعلان إعادة الاستهداف. المقال المحايد يقدّم معلومات ولا يهدف إلى تحويل مباشر.</p></section>
+
+  <section class="cta fr"><h2>Votre prochaine action</h2><p>Choisissez un produit de Sershop, écrivez son brief en cinq lignes, demandez trois angles, puis critiquez et réécrivez la meilleure version. La conversion se mesure : testez les variantes au lieu de deviner.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=Je%20veux%20la%20formation%20Copywriting">Acheter via WhatsApp</a><a class="cart" href="/shop?add=16">Ajouter au panier</a></div></section>
+  <section class="cta ar"><h2>خطوتك التالية</h2><p>اختر منتجاً من Sershop، واكتب موجزه في خمسة أسطر، واطلب ثلاث زوايا، ثم انتقد أفضل نسخة وأعد كتابتها. اختبر النسخ ولا تعتمد على التخمين.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=أريد%20دورة%20Copywriting">الشراء عبر واتساب</a><a class="cart" href="/shop?add=16">أضف إلى السلة</a></div></section>
+  <footer>Copywriting • Formation numérique Sershop • Version française et العربية<br><a href="./Copywriting/copywriting-original.docx" style="color:var(--violet);font-weight:700">Télécharger le document source complet</a></footer>
+</main>
+<script>
+  function setLanguage(language){
+    document.querySelectorAll('.fr').forEach(el=>el.style.display=language==='fr'?'':'none');
+    document.querySelectorAll('.ar').forEach(el=>el.style.display=language==='ar'?'':'none');
+    document.documentElement.lang=language; document.documentElement.dir=language==='ar'?'rtl':'ltr';
+  }
+  document.querySelectorAll('.answers button').forEach(button=>button.addEventListener('click',()=>{
+    const group=button.parentElement; group.querySelectorAll('button').forEach(item=>item.disabled=true);
+    button.classList.add(button.dataset.correct==='true'?'correct':'wrong');
+    group.nextElementSibling.textContent=button.dataset.correct==='true'?'Bonne réponse !':'À revoir : le copywriting sert une action commerciale.';
+  }));
+  setLanguage('fr');
+</script>
+</body>
+</html>

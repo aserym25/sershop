@@ -214,7 +214,7 @@ const CGUSection = () => (
     <SubTitle>Nature du service</SubTitle>
     <Paragraph>
       SearShop est un service de recommandation et de comparaison de produits. Nous ne vendons pas directement de produits. 
-      Les achats sont effectués sur les sites de nos partenaires (Temu, Amazon, etc.). Nous percevons une commission d'affiliation sur les ventes réalisées via nos liens.
+      Les achats sont effectués sur les sites de nos partenaires. Nous percevons une commission d'affiliation sur les ventes réalisées via nos liens.
     </Paragraph>
     <SubTitle>Responsabilité</SubTitle>
     <BulletList>
@@ -262,7 +262,6 @@ const AffiliationSection = () => (
     </Paragraph>
     <SubTitle>Nos partenaires</SubTitle>
     <BulletList>
-      <li><strong>Temu</strong> — Notre partenaire principal pour les bonnes affaires</li>
     </BulletList>
     <SubTitle>Transparence</SubTitle>
     <Paragraph>

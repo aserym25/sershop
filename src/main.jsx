@@ -14,6 +14,7 @@ import { FAQPage } from './pages/FAQPage'
 import { ContactPage } from './pages/ContactPage'
 import { LegalPage } from './pages/LegalPage'
 import { AboutPage } from './pages/AboutPage'
+import { Seo } from './components/Seo'
 
 function App() {
     return (
@@ -21,6 +22,7 @@ function App() {
             <GlobalStyles />
             <CartProvider>
                 <Router>
+                    <Seo />
                     <Header />
                     <main>
                         <Routes>
