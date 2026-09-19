@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mesurer l'essentiel et fédérer une communauté</title>
+  <style>
+    :root { --ink:#172033; --muted:#64748b; --accent:#0f766e; --purple:#6d28d9; --soft:#f8fafc; --line:#e2e8f0; --dark:#111827; }
+    * { box-sizing:border-box; } body { margin:0; color:var(--ink); background:var(--soft); font:16px/1.75 Inter,system-ui,sans-serif; }
+    main { max-width:980px; margin:auto; padding:2rem 1rem 5rem; }
+    .hero,.card,.quiz,.cta { background:#fff; border:1px solid var(--line); border-radius:20px; box-shadow:0 8px 24px rgba(15,23,42,.07); }
+    .hero { overflow:hidden; text-align:center; } .hero img { display:block; width:100%; max-height:520px; object-fit:cover; }
+    .hero-content { padding:2rem 1.5rem 2.5rem; } h1 { margin:.2rem 0 .5rem; color:var(--purple); font-size:clamp(2rem,5vw,3.4rem); line-height:1.15; }
+    h2 { color:#5b21b6; line-height:1.25; } h3 { color:var(--accent); } .meta { color:var(--muted); }
+    .card,.quiz,.cta { padding:1.5rem; margin-top:1.5rem; } .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; }
+    .grid .card { margin-top:0; } .concept { background:#ecfdf5; border-left:4px solid #10b981; padding:1rem 1.2rem; border-radius:10px; }
+    .prompt { background:var(--dark); color:#e5e7eb; padding:1.2rem; border-radius:12px; white-space:pre-wrap; } .prompt strong { color:#a7f3d0; }
+    .answers { display:grid; gap:.7rem; } .answers button { border:1px solid var(--line); background:#fff; border-radius:10px; padding:.8rem 1rem; text-align:left; cursor:pointer; color:var(--ink); }
+    .answers button.correct { border-color:#10b981; background:#ecfdf5; } .answers button.wrong { border-color:#ef4444; background:#fef2f2; }
+    .feedback { color:#047857; font-weight:700; } .cta { text-align:center; background:linear-gradient(135deg,#ecfdf5,#f5f3ff); }
+    .actions { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; } .actions a { display:inline-block; padding:.8rem 1.2rem; color:#fff; text-decoration:none; border-radius:999px; font-weight:700; }
+    .whatsapp { background:#25d366; } .cart { background:#6d28d9; } footer { text-align:center; color:var(--muted); margin-top:2rem; }
+    @media (max-width:600px) { .hero-content,.card,.quiz,.cta { padding:1.1rem; } body { font-size:15px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <img src="./community/publi_community.bmp" alt="Mesurer l'essentiel et fédérer une communauté">
+      <div class="hero-content">
+        <p class="meta">Formation pratique • Version 1.0</p>
+        <h1>Mesurer l'essentiel et fédérer une communauté</h1>
+        <p>Analyser les bons indicateurs, améliorer ses contenus et transformer ses abonnés en communauté engagée.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Les chiffres racontent une histoire</h2>
+      <p>Publier régulièrement ne suffit pas. Pour progresser, il faut comprendre ce qui résonne vraiment auprès du public, repérer les contenus utiles et transformer les données en décisions concrètes.</p>
+      <p>Cette formation apprend à suivre les indicateurs de croissance pertinents, analyser les publications et construire une audience qui vous appartient.</p>
+      <div class="concept"><strong>Idée clé :</strong> une vue compte une fois, mais un enregistrement, un partage ou une réponse montre une intention réelle.</div>
+    </section>
+
+    <section class="quiz">
+      <h2>QCM : quel indicateur révèle le mieux la résonance ?</h2>
+      <p>Sélectionnez les réponses correctes.</p>
+      <div class="answers">
+        <button data-correct="false">Le nombre total de vues uniquement.</button>
+        <button data-correct="true">Le taux de complétion.</button>
+        <button data-correct="true">Les enregistrements.</button>
+        <button data-correct="true">Les partages.</button>
+      </div>
+      <p class="feedback" aria-live="polite"></p>
+    </section>
+
+    <div class="grid">
+      <article class="card">
+        <h2>Indicateurs de vanité</h2>
+        <p>Le nombre d’abonnés, les vues totales et les mentions J’aime indiquent surtout la portée. Ils peuvent sembler impressionnants sans prouver que le contenu a été utile.</p>
+      </article>
+      <article class="card">
+        <h2>Indicateurs d’engagement</h2>
+        <p>Les enregistrements, partages, commentaires, réponses et taux de complétion montrent comment le public interagit réellement et si le contenu atteint son objectif.</p>
+      </article>
+    </div>
+
+    <section class="card">
+      <h2>Les indicateurs par plateforme</h2>
+      <h3>Instagram Reels</h3><p>Suivez les enregistrements et les partages. Un Reel enregistré possède une valeur durable et peut continuer à être recommandé.</p>
+      <h3>TikTok</h3><p>Le taux de complétion est essentiel. Une vidéo regardée jusqu’à la fin retient l’attention, même si elle est courte ou simple.</p>
+      <h3>Instagram Stories</h3><p>Analysez les réponses, sondages, questions et curseurs. Les interactions signalent une conversation, pas seulement un passage.</p>
+    </section>
+
+    <section class="card">
+      <h2>La boucle de rétroaction</h2>
+      <p>Les métriques sont des instructions : <strong>publier → mesurer → apprendre → itérer</strong>. Faites un bilan hebdomadaire de quinze minutes, puis un examen mensuel pour repérer les tendances de vos piliers et plateformes.</p>
+      <div class="prompt"><strong>Prompt Claude — analyser une semaine</strong>
+
+Voici les performances de mon contenu cette semaine : [vues, enregistrements, partages, commentaires, taux de complétion]. Mes piliers sont : [piliers]. Identifie les contenus les plus et les moins performants et suggère deux ajustements précis pour la semaine prochaine.</div>
+    </section>
+
+    <section class="card">
+      <h2>Transformer l’engagement en croissance</h2>
+      <p>La croissance organique dépend de trois éléments : découvrabilité, régularité et engagement. Répondez aux commentaires dans la première heure, créez des contenus qui invitent à participer et reconnaissez vos habitués.</p>
+      <p>Une question concrète comme « Où placez-vous votre micro-entraînement ? » génère une conversation plus facilement qu’un simple « Abonnez-vous ».</p>
+      <div class="concept"><strong>Pour un avatar IA :</strong> restez transparent sur la personne qui répond. Utilisez la voix d’Aria ou celle du créateur, mais ne prétendez jamais qu’elle est humaine.</div>
+    </section>
+
+    <section class="card">
+      <h2>Passer d’une audience louée à une audience possédée</h2>
+      <p>Les abonnés sociaux restent dépendants des plateformes et de leurs algorithmes. L’objectif est de créer un pont vers une liste e-mail, un site ou une communauté contrôlée.</p>
+      <p>Un lead magnet — checklist, guide de sept jours ou suivi d’habitudes — offre une valeur concrète en échange d’une adresse e-mail et prolonge la relation au-delà du fil d’actualité.</p>
+    </section>
+
+    <section class="quiz">
+      <h2>QCM : quelle stratégie donne le plus de contrôle ?</h2>
+      <div class="answers">
+        <button data-correct="false">Se concentrer uniquement sur 50 000 abonnés Instagram.</button>
+        <button data-correct="true">Développer Instagram tout en construisant une liste e-mail engagée.</button>
+      </div>
+      <p class="feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="cta">
+      <h2>Construisez une communauté qui grandit intelligemment</h2>
+      <p>Apprenez à lire vos données, répéter ce qui fonctionne et créer une relation durable avec votre audience.</p>
+      <div class="actions">
+        <a class="whatsapp" href="https://wa.me/212658211267?text=Bonjour%20Sershop%20!%20Je%20souhaite%20acheter%20la%20formation%20Mesurer%20l%27essentiel%20et%20f%C3%A9d%C3%A9rer%20une%20communaut%C3%A9." target="_blank" rel="noopener noreferrer">Acheter via WhatsApp</a>
+        <a class="cart" href="/shop?add=15">🛒 Mettre au panier</a>
+      </div>
+    </section>
+    <footer>Mesurer l'essentiel et fédérer une communauté • Version 1.0</footer>
+  </main>
+  <script>
+    document.querySelectorAll('.answers button').forEach(button => button.addEventListener('click', () => {
+      button.classList.toggle(button.dataset.correct === 'true' ? 'correct' : 'wrong');
+      button.closest('.quiz').querySelector('.feedback').textContent = 'Les bons indicateurs montrent une intention réelle : regarder jusqu’au bout, enregistrer, partager et répondre.';
+    }));
+  </script>
+</body>
+</html>

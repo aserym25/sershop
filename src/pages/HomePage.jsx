@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react'
-import { useLocation } from 'react-router-dom'
+import React, { useState, useEffect, useMemo, useRef } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { supabase, saveCache } from '../services/supabase'
 import { products as localProducts, categories } from '../data/products'
+import { useCart } from '../context/CartContext'
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(40px); }
@@ -73,7 +74,7 @@ const HeroBadge = styled.div`
 `
 const HeroTitle = styled.h1`
   font-family: ${({ theme }) => theme.fonts.heading};
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
   font-weight: ${({ theme }) => theme.fontWeights.black};
   line-height: 1.1;
   margin-bottom: 1.5rem;
@@ -243,7 +244,11 @@ const ALL_CATEGORIES = categories
 
 export const HomePage = ({ searchQuery = '' }) => {
   const location = useLocation()
+  const navigate = useNavigate()
+  const { addToCart } = useCart()
   const urlCat = new URLSearchParams(location.search).get('cat')
+  const requestedProductId = new URLSearchParams(location.search).get('add')
+  const handledProductRequest = useRef(false)
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -264,9 +269,8 @@ export const HomePage = ({ searchQuery = '' }) => {
       // Supabase returns 'in_stock' but frontend expects 'inStock'
       const formattedData = (data || []).map(p => {
         let finalLink = p.affiliate_link || p.affiliateLink;
-        // Remplacement dynamique du lien temu car la base de données n'est pas mise à jour
-        if (finalLink && finalLink.includes('temu.com')) {
-          finalLink = 'https://temu.to/k/ecg15ib5igw';
+        if (finalLink && /temu\.to|temu\.com/i.test(finalLink)) {
+          finalLink = null;
         }
         return {
           ...p,
@@ -317,6 +321,17 @@ export const HomePage = ({ searchQuery = '' }) => {
 
   useEffect(() => { fetchProducts() }, [activeCategory])
 
+  useEffect(() => {
+    if (loading || !requestedProductId || handledProductRequest.current) return
+
+    const product = products.find(item => String(item.id) === requestedProductId)
+    if (!product) return
+
+    addToCart(product)
+    handledProductRequest.current = true
+    navigate('/cart', { replace: true })
+  }, [loading, products, requestedProductId, addToCart, navigate])
+
   const filtered = useMemo(() => {
     if (!searchQuery) return products
     const q = searchQuery.toLowerCase()
@@ -333,7 +348,7 @@ export const HomePage = ({ searchQuery = '' }) => {
         <HeroContent>
           <HeroBadge><span />🛍️ Les meilleures offres du moment</HeroBadge>
           <HeroTitle>
-            Trouvez, Comparez,
+            Trouvez, Apprenez,
             <span className="gradient">Achetez Mieux</span>
           </HeroTitle>
           <HeroSub>
@@ -342,7 +357,6 @@ export const HomePage = ({ searchQuery = '' }) => {
           </HeroSub>
           <HeroCTA>
             <BtnPrimary href="#products" id="hero-shop-btn">🚀 Découvrir les produits</BtnPrimary>
-            <BtnSecondary href="https://temu.to/k/ecg15ib5igw" target="_blank" rel="noopener noreferrer">🔥 Mega Offres Temu ›</BtnSecondary>
           </HeroCTA>
           <Stats>
             <Stat><strong>10k+</strong><span>Produits</span></Stat>

@@ -6,7 +6,7 @@
 // Ex : 212661234567  (Maroc)
 // Configurable via VITE_WHATSAPP_NUMBER dans .env
 const WHATSAPP_NUMBER =
-    import.meta.env.VITE_WHATSAPP_NUMBER || '212600000000'
+    import.meta.env.VITE_WHATSAPP_NUMBER || '212658211267'
 
 /**
  * Ouvre WhatsApp avec un message pré-rempli pour UN produit.

@@ -220,7 +220,6 @@ export const Header = ({ onSearch, onCartOpen }) => {
       <NavLinks>
         <NavLink to="/" $active={location.pathname === '/'}>Accueil</NavLink>
         <NavLink to="/shop" $active={location.pathname === '/shop'}>Boutique</NavLink>
-        <NavLink as="a" href="https://temu.to/k/ecg15ib5igw" target="_blank" rel="noopener noreferrer">🔥 Offres Temu</NavLink>
         <NavLink to="/about" $active={location.pathname === '/about'}>À propos</NavLink>
       </NavLinks>
 

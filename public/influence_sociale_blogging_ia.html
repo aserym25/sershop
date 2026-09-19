@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Influence sociale et blogging_ia</title>
+  <style>
+    :root { --ink:#1e293b; --muted:#64748b; --accent:#6366f1; --soft:#f8fafc; --dark:#0f172a; --line:#e2e8f0; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--soft); color:var(--ink); font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.75; }
+    .progress { position:fixed; inset:0 0 auto; z-index:10; height:5px; background:var(--line); }
+    .progress i { display:block; height:100%; width:0; background:linear-gradient(90deg,#8b5cf6,#06b6d4); }
+    main { max-width:980px; margin:0 auto; padding:2rem 1rem 5rem; }
+    .hero, .card, .prompt, .quiz, .cta { background:#fff; border:1px solid var(--line); border-radius:18px; box-shadow:0 8px 24px rgba(15,23,42,.06); }
+    .hero { overflow:hidden; text-align:center; }
+    .hero img { display:block; width:100%; max-height:500px; object-fit:cover; }
+    .hero-content { padding:2rem 1.5rem 2.5rem; }
+    h1 { margin:.2rem 0 .5rem; color:var(--accent); font-size:clamp(2rem,5vw,3.4rem); line-height:1.15; }
+    h2 { margin-top:0; color:#4338ca; line-height:1.25; }
+    h3 { color:#0f766e; }
+    .meta { color:var(--muted); }
+    .layout { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:1.25rem; margin-top:1.5rem; }
+    .card { padding:1.4rem; }
+    .card p:last-child { margin-bottom:0; }
+    .distribution { display:flex; height:34px; overflow:hidden; border-radius:999px; margin:1rem 0; color:#fff; font-weight:700; font-size:.85rem; text-align:center; }
+    .distribution span { display:grid; place-items:center; }
+    .build { flex:4; background:#6366f1; } .connect { flex:4; background:#0ea5e9; } .convert { flex:2; background:#f97316; }
+    .prompt { position:relative; padding:1.2rem; margin:1rem 0; background:var(--dark); color:#e2e8f0; direction:ltr; text-align:left; }
+    .prompt strong { display:block; color:#a5b4fc; margin-bottom:.5rem; }
+    .prompt button { float:right; border:1px solid #475569; border-radius:8px; background:#1e293b; color:#fff; padding:.4rem .7rem; cursor:pointer; }
+    .prompt button.copied { background:#047857; }
+    pre { white-space:pre-wrap; margin:0; font:inherit; }
+    .quiz { padding:1.4rem; margin-top:1.5rem; }
+    .answers { display:grid; gap:.65rem; }
+    .answers button { border:1px solid var(--line); background:#fff; border-radius:10px; padding:.8rem 1rem; text-align:left; cursor:pointer; color:var(--ink); }
+    .answers button:hover { border-color:var(--accent); }
+    .answers button.correct { border-color:#10b981; background:#ecfdf5; }
+    .answers button.wrong { border-color:#ef4444; background:#fef2f2; }
+    .feedback { margin:.9rem 0 0; color:#047857; font-weight:600; }
+    .cta { padding:1.5rem; margin-top:1.5rem; text-align:center; background:linear-gradient(135deg,#eef2ff,#ecfeff); }
+    .cta a { display:inline-block; margin-top:.5rem; padding:.7rem 1.2rem; border-radius:999px; background:var(--accent); color:#fff; text-decoration:none; }
+    footer { text-align:center; color:var(--muted); margin-top:2rem; padding:1.5rem; }
+    .ebook-footer-actions { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .ebook-footer-actions a { display:inline-block; padding:.75rem 1.2rem; border-radius:999px; color:#fff; text-decoration:none; font-weight:700; }
+    .whatsapp-action { background:#25d366; }
+    .cart-action { background:#6366f1; }
+  </style>
+</head>
+<body>
+  <div class="progress"><i id="progress"></i></div>
+  <main>
+    <section class="hero">
+      <img src="./influence_blogging/publier1.webp" alt="Couverture Influence sociale et blogging_ia">
+      <div class="hero-content">
+        <p class="meta">Formation pratique • Version 1.0 • 15 septembre 2026</p>
+        <h1>Influence sociale et blogging_ia</h1>
+        <img src="https://sershop.fr/influence_blogging/influence_1.webp" alt="Illustration Influence sociale et blogging avec l'IA">
+        <p>Une stratégie de contenu efficace, de l'idée à la publication.</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>Votre système de contenu</h2>
+      <p>Vous connaissez votre marque et votre public. L'étape suivante consiste à créer un système capable de transformer votre stratégie en contenu concret, régulièrement et sans vous épuiser.</p>
+      <p>Dans cette leçon, vous apprendrez à créer du contenu ciblé, structurer des publications captivantes, rédiger des prompts pour vos outils IA et bâtir un calendrier éditorial hebdomadaire.</p>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem; text-align:center">
+      <h2>Exemple visuel</h2>
+      <img src="./influence_blogging/influence_1.webp" alt="Exemple visuel de stratégie de contenu"
+           style="display:block; width:min(100%, 720px); margin:0 auto; border-radius:14px; box-shadow:0 8px 24px rgba(15,23,42,.12)">
+    </section>
+
+    <div class="layout">
+      <article class="card">
+        <h2>1. Définir une stratégie</h2>
+        <p>Une stratégie de contenu précise ce que vous créez, pourquoi vous le créez, à qui vous vous adressez et quelle action vous souhaitez provoquer.</p>
+        <p>Chaque publication doit répondre à un besoin du public et faire avancer un objectif de marque. La régularité seule ne suffit pas.</p>
+      </article>
+      <article class="card">
+        <h2>Les trois objectifs</h2>
+        <ul>
+          <li><strong>Construire :</strong> établir votre expertise.</li>
+          <li><strong>Créer du lien :</strong> approfondir la confiance.</li>
+          <li><strong>Convertir :</strong> encourager une action précise.</li>
+        </ul>
+      </article>
+    </div>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>La répartition 40/40/20</h2>
+      <p>Un système équilibré informe, crée une relation puis propose une action. Votre public doit vous faire confiance avant de suivre vos recommandations.</p>
+      <div class="distribution"><span class="build">40 % construire</span><span class="connect">40 % créer du lien</span><span class="convert">20 % convertir</span></div>
+    </section>
+
+    <section class="quiz">
+      <h2>QCM : qu'est-ce qu'un contenu stratégique ?</h2>
+      <p>Sélectionnez toutes les réponses possibles.</p>
+      <div class="answers">
+        <button data-correct="true">Chaque publication sert un objectif précis.</button>
+        <button data-correct="false">Chaque publication doit pousser à acheter.</button>
+        <button data-correct="true">Les sujets répondent aux douleurs et désirs du public.</button>
+        <button data-correct="false">Les publications sont toujours programmées à la même heure.</button>
+      </div>
+      <p class="feedback" id="quiz-feedback" aria-live="polite"></p>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>2. L'accroche et la structure</h2>
+      <p>Vous avez environ deux secondes pour arrêter le défilement. Une bonne accroche ouvre une boucle et donne envie de continuer.</p>
+      <ul>
+        <li><strong>Point de douleur :</strong> nommer une frustration réelle.</li>
+        <li><strong>Curiosité :</strong> créer un manque d'information.</li>
+        <li><strong>Contre-courant :</strong> remettre en question une croyance.</li>
+      </ul>
+      <p>Chaque contenu suit un cadre simple : <strong>Accroche → Valeur → Appel à l'action</strong>. La valeur doit être concrète. Le CTA peut inviter à sauvegarder, essayer ou répondre, pas seulement à acheter.</p>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>Prompt Claude : trouver des accroches</h2>
+      <p>Adaptez ce prompt à vos piliers de contenu et à votre voix de marque.</p>
+      <div class="prompt"><button data-copy>Copier le prompt</button><strong>Claude</strong><pre>Mes piliers de contenu sont : [piliers]. Mon audience est : [audience]. La voix de ma marque est : [ton]. Rédige 2 accroches pour chaque pilier : une accroche sur un point de douleur et une accroche de curiosité. Limite chaque accroche à moins de 15 mots.</pre></div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>3. Produire avec Jasper</h2>
+      <p>La fonctionnalité Brand Voice permet de conserver le ton et le style de votre marque dans les légendes, emails, blogs et descriptions de produits. Donnez toujours à l'outil le contexte, le public, le format et l'objectif.</p>
+      <div class="prompt"><button data-copy>Copier le prompt</button><strong>Jasper</strong><pre>Voix de marque : chaleureuse, calme, phrases courtes. Public : femmes actives de 30 à 45 ans. Sujet : [sujet]. Utilise la structure accroche-valeur-CTA pour rédiger une légende Instagram de moins de 150 mots. Ne force pas la vente et termine par une question qui crée du lien.</pre></div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>4. Visualiser votre univers</h2>
+      <p>Les visuels doivent appartenir au même univers. Définissez vos couleurs, votre lumière et votre atmosphère, puis réutilisez ces repères dans chaque création.</p>
+      <p>Une référence de style conserve l'ambiance visuelle. Une référence de personnage conserve les traits d'un avatar. Ensemble, elles renforcent la cohérence d'une série de publications.</p>
+      <div class="prompt"><button data-copy>Copier le prompt</button><strong>Midjourney</strong><pre>Photo lifestyle éditoriale d'une créatrice dans [décor], lumière naturelle douce, tons neutres chauds, ambiance calme et sincère, qualité éditoriale épurée --ar 4:5 --oref [référence du personnage]</pre></div>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem">
+      <h2>5. Le calendrier éditorial</h2>
+      <p>Planifiez la plateforme, le format, le pilier, l'objectif et l'accroche. Un rythme réaliste vaut mieux qu'un calendrier impossible à tenir.</p>
+      <div class="layout">
+        <div><h3>Lundi</h3><p>Reel — routine — construire</p></div>
+        <div><h3>Mardi</h3><p>TikTok — conseil rapide — créer du lien</p></div>
+        <div><h3>Jeudi</h3><p>Carrousel — productivité — construire</p></div>
+        <div><h3>Vendredi</h3><p>TikTok — coulisses — créer du lien</p></div>
+        <div><h3>Dimanche</h3><p>Carrousel — guide — convertir</p></div>
+      </div>
+      <div class="prompt"><button data-copy>Copier le prompt</button><strong>ChatGPT</strong><pre>Crée un calendrier de contenu d'une semaine pour [activité] sur [plateformes]. Piliers : [piliers]. Respecte la répartition 40 % construire, 40 % créer du lien, 20 % convertir. Pour chaque publication, indique la plateforme, le format, le pilier, l'objectif et une accroche.</pre></div>
+    </section>
+
+    <section class="cta">
+      <h2>Votre système est prêt</h2>
+      <p>Vous savez désormais identifier l'objectif d'une publication, écrire une accroche, structurer une légende, produire avec l'IA et planifier votre semaine sans vous épuiser.</p>
+    </section>
+    <footer>
+      <div class="ebook-footer-actions">
+        <a class="whatsapp-action" href="https://wa.me/212658211267?text=Bonjour%20Sershop%20!%20Je%20souhaite%20acheter%20la%20formation%20compl%C3%A8te%20Influence%20sociale%20et%20blogging_ia." target="_blank" rel="noopener noreferrer">Acheter la formation complète sur WhatsApp</a>
+        <a class="cart-action" href="/shop?add=13">🛒 Mettre au panier</a>
+      </div>
+      Influence sociale et blogging_ia • Version 1.0<br><strong>Première édition - fin</strong>
+    </footer>
+  </main>
+  <script>
+    const progress = document.getElementById('progress');
+    addEventListener('scroll', () => {
+      const height = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = `${height ? (scrollY / height) * 100 : 0}%`;
+    });
+    document.querySelectorAll('[data-copy]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const text = button.parentElement.querySelector('pre').textContent;
+        await navigator.clipboard.writeText(text);
+        button.textContent = 'Copié !';
+        button.classList.add('copied');
+        setTimeout(() => { button.textContent = 'Copier le prompt'; button.classList.remove('copied'); }, 2000);
+      });
+    });
+    document.querySelectorAll('.answers button').forEach(button => {
+      button.addEventListener('click', () => {
+        button.classList.toggle(button.dataset.correct === 'true' ? 'correct' : 'wrong');
+        document.getElementById('quiz-feedback').textContent = 'Les bonnes réponses sont celles qui servent un objectif et répondent à un besoin réel du public.';
+      });
+    });
+  </script>
+</body>
+</html>

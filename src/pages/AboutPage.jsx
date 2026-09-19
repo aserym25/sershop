@@ -239,7 +239,7 @@ export const AboutPage = () => {
           sur une seule plateforme élégante et facile à utiliser.
         </Paragraph>
         <Paragraph>
-          Nous travaillons avec des partenaires de confiance comme <strong>Temu</strong> pour vous donner accès 
+          Nous travaillons avec des partenaires de confiance pour vous donner accès 
           à des milliers de produits à prix réduit, directement depuis notre site.
         </Paragraph>
 
@@ -249,22 +249,6 @@ export const AboutPage = () => {
           chez notre partenaire, nous recevons une petite commission — <strong>sans aucun surcoût pour vous</strong>. 
           Cela nous permet de maintenir le site et de continuer à vous proposer les meilleures offres.
         </Paragraph>
-
-        <div id="partenaires">
-          <SectionTitle>Nos partenaires</SectionTitle>
-          <Paragraph>
-            Nous collaborons avec des plateformes reconnues pour vous offrir un large choix de produits :
-          </Paragraph>
-          <Grid>
-            <Card $delay="0.2s">
-              <CardIcon>🛒</CardIcon>
-              <CardTitle>Temu</CardTitle>
-              <CardText>
-                Notre partenaire principal. Des millions de produits à prix mini avec livraison en France.
-              </CardText>
-            </Card>
-          </Grid>
-        </div>
 
         <CTASection>
           <CTATitle>Prêt à faire de bonnes affaires ?</CTATitle>

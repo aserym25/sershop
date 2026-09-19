@@ -137,7 +137,7 @@ const faqData = [
     items: [
       {
         q: 'Quels sont les délais de livraison ?',
-        a: 'Les délais varient selon les fournisseurs. En général, comptez 7 à 15 jours ouvrés pour les produits expédiés depuis l\'international (Temu, etc.). Les estimations sont indiquées sur chaque fiche produit.'
+        a: 'Les délais varient selon les fournisseurs. En général, comptez 7 à 15 jours ouvrés pour les produits expédiés depuis l\'international. Les estimations sont indiquées sur chaque fiche produit.'
       },
       {
         q: 'La livraison est-elle gratuite ?',
@@ -155,7 +155,7 @@ const faqData = [
     items: [
       {
         q: 'Comment retourner un produit ?',
-        a: 'Les retours sont gérés directement par le vendeur partenaire (Temu, Amazon, etc.). Rendez-vous sur votre espace client chez le vendeur pour initier un retour. La plupart offrent un délai de 30 jours.'
+        a: 'Les retours sont gérés directement par le vendeur partenaire. Rendez-vous sur votre espace client chez le vendeur pour initier un retour. La plupart offrent un délai de 30 jours.'
       },
       {
         q: 'Quand serai-je remboursé ?',
@@ -197,7 +197,7 @@ const faqData = [
     items: [
       {
         q: 'Qu\'est-ce que SearShop ?',
-        a: 'SearShop est un site de comparaison et de recommandation de produits. Nous sélectionnons les meilleures offres sur des plateformes partenaires (Temu, etc.) pour vous aider à trouver les meilleurs prix.'
+        a: 'SearShop est un site de comparaison et de recommandation de produits. Nous sélectionnons les meilleures offres sur des plateformes partenaires pour vous aider à trouver les meilleurs prix.'
       },
       {
         q: 'SearShop vend-il directement des produits ?',

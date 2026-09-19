@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expertise Thermique : Manuel Interactif de Chauffage (Version Éco)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
 
@@ -78,10 +77,185 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
+        /* Local production styles: no runtime CSS dependency. */
+        *, *::before, *::after { box-sizing: border-box; }
+        html { min-width: 320px; scroll-behavior: smooth; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            color: #0f172a;
+        }
+        button, a { font: inherit; }
+        button { cursor: pointer; }
+        .h-screen { min-height: 100vh; height: auto; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-1 { flex: 1 1 0%; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .flex-wrap { flex-wrap: wrap; }
+        .gap-2 { gap: .5rem; }
+        .gap-3 { gap: .75rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .w-full { width: 100%; }
+        .max-w-5xl { max-width: 64rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-none { max-width: none; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .overflow-hidden { overflow: hidden; }
+        .overflow-y-auto { overflow-y: auto; }
+        .text-left { text-align: left; }
+        .text-center { text-align: center; }
+        .text-justify { text-align: justify; }
+        .text-white { color: #fff; }
+        .text-slate-900 { color: #0f172a; }
+        .text-slate-600 { color: #475569; }
+        .text-slate-500 { color: #64748b; }
+        .text-slate-400 { color: #94a3b8; }
+        .text-emerald-900 { color: #064e3b; }
+        .text-emerald-800 { color: #065f46; }
+        .text-emerald-600 { color: #059669; }
+        .text-emerald-500 { color: #10b981; }
+        .bg-white { background: #fff; }
+        .bg-slate-50 { background: #f8fafc; }
+        .bg-slate-300 { background: #cbd5e1; }
+        .bg-emerald-50 { background: #ecfdf5; }
+        .bg-emerald-100 { background: #d1fae5; }
+        .bg-emerald-500 { background: #10b981; }
+        .bg-emerald-600 { background: #059669; }
+        .border-slate-100 { border-color: #f1f5f9; }
+        .border-slate-200 { border-color: #e2e8f0; }
+        .border-emerald-100 { border-color: #d1fae5; }
+        .border-emerald-200 { border-color: #a7f3d0; }
+        .border-emerald-500 { border-color: #10b981; }
+        .border { border-width: 1px; border-style: solid; }
+        .border-l-4 { border-left: 4px solid; }
+        .border-2 { border-width: 2px; border-style: solid; }
+        .rounded-md { border-radius: .375rem; }
+        .rounded-lg { border-radius: .5rem; }
+        .rounded-xl { border-radius: .75rem; }
+        .rounded-2xl { border-radius: 1rem; }
+        .rounded-3xl { border-radius: 1.5rem; }
+        .shadow-sm { box-shadow: 0 4px 12px rgba(15,23,42,.06); }
+        .p-4 { padding: 1rem; }
+        .p-6 { padding: 1.5rem; }
+        .p-8 { padding: 2rem; }
+        .p-10 { padding: 2.5rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-3 { padding-top: .75rem; padding-bottom: .75rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mt-2 { margin-top: .5rem; }
+        .mt-3 { margin-top: .75rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-12 { margin-top: 3rem; }
+        .space-y-1 > * + * { margin-top: .25rem; }
+        .space-y-8 > * + * { margin-top: 2rem; }
+        .text-xs { font-size: .75rem; }
+        .text-sm { font-size: .875rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .text-3xl { font-size: 1.875rem; }
+        .text-4xl { font-size: 2.25rem; }
+        .font-bold { font-weight: 700; }
+        .font-black { font-weight: 900; }
+        .font-extrabold { font-weight: 800; }
+        .leading-tight { line-height: 1.25; }
+        .leading-relaxed { line-height: 1.75; }
+        .uppercase { text-transform: uppercase; }
+        .tracking-tight { letter-spacing: -.025em; }
+        .tracking-widest { letter-spacing: .1em; }
+        .grid { display: grid; }
+        .grid-cols-1 { grid-template-columns: 1fr; }
+        .h-4 { height: 1rem; }
+        .h-6 { height: 1.5rem; }
+        .h-64 { height: 16rem; }
+        .h-72 { height: 18rem; }
+        .h-80 { height: 20rem; }
+        .w-2 { width: .5rem; }
+        .w-6 { width: 1.5rem; }
+        .prose { max-width: 65ch; }
+        .prose p { margin: 0 0 1rem; }
+        .nav-item { background: transparent; border: 0; }
+        main { width: 100%; min-width: 0; }
+        nav { flex: 0 0 20rem; }
+        @media (min-width: 768px) {
+            .md\\:flex-row { flex-direction: row; }
+            .md\\:w-80 { width: 20rem; }
+            .md\\:h-full { height: 100vh; }
+            .md\\:p-12 { padding: 3rem; }
+            .md\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            nav { position: sticky; top: 0; }
+            main { height: 100vh; }
+        }
+        @media (max-width: 767px) {
+            body { font-size: 15px; }
+            nav { flex: none; border-right: 0; border-bottom: 1px solid #e2e8f0; }
+            nav > div:first-child { padding: 1.25rem; }
+            nav > div:nth-child(2) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: .75rem; max-height: 18rem; overflow-y: auto; }
+            nav > div:nth-child(2) > div { grid-column: 1 / -1; padding: .5rem .75rem; }
+            .nav-item { padding: .75rem; font-size: .85rem; }
+            main { padding: 1rem; }
+            .p-10 { padding: 1.25rem; }
+            .p-8 { padding: 1.25rem; }
+            .text-4xl { font-size: 1.8rem; }
+            .text-3xl { font-size: 1.5rem; }
+            .text-xl { font-size: 1.05rem; }
+            .text-lg { font-size: 1rem; }
+            .h-80, .h-72 { height: 14rem; }
+            .text-justify { text-align: left; }
+        }
+
+        /* Mode sombre lisible et cohérent avec les schémas interactifs. */
+        body {
+            background: #090f1d;
+            color: #e5edf7;
+        }
+        nav, .bg-white, .canvas-box { background: #111827; }
+        .border-slate-100, .border-slate-200 { border-color: #263449; }
+        .bg-slate-50 { background: #172033; }
+        .text-slate-900 { color: #f8fafc; }
+        .text-slate-600 { color: #cbd5e1; }
+        .text-slate-500 { color: #94a3b8; }
+        .text-slate-400 { color: #94a3b8; }
+        .nav-item { color: #cbd5e1; }
+        .nav-item:hover { background: #1e293b; color: #6ee7b7; }
+        .nav-item.active { background: #064e3b; color: #a7f3d0; }
+        .prose p, p { color: inherit; }
+        .bg-emerald-50 { background: #063b31; }
+        .text-emerald-900, .text-emerald-800 { color: #a7f3d0; }
+        .border-emerald-100, .border-emerald-200 { border-color: #176b54; }
+        .explanation-card {
+            margin: -1rem 0 1.5rem;
+            padding: .85rem 1rem;
+            border: 1px solid #245b4b;
+            border-left: 3px solid #34d399;
+            border-radius: .75rem;
+            background: #0d2b29;
+            color: #c7f9e5;
+            font-size: .9rem;
+        }
+        .explanation-card summary {
+            cursor: pointer;
+            color: #6ee7b7;
+            font-weight: 700;
+        }
+        .explanation-card p { margin: .65rem 0 0; color: #c7f9e5; }
+        .paid-card { background: linear-gradient(135deg, #102d2c, #172554); }
     </style>
 </head>
 
-<body class="h-screen flex flex-col md:flex-row overflow-hidden text-slate-900">
+<body class="h-screen flex flex-col md:flex-row text-slate-900">
 
     <!-- Chosen Palette: Slate & Warm White with Emerald Green accents (Eco-Efficiency theme). -->
     <!-- Application Structure Plan: Navigation par onglets (SPA). Remplacement du rouge par le vert Emerald pour une thématique "efficacité énergétique". Les schémas Canvas sont mis à jour avec des flux verts. -->
@@ -119,18 +293,23 @@
             </button>
             <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Distribution
                 Hydraulique</div>
-            <button onclick="showLock()" id="nav-pieuvre"
-                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
-                <span class="text-sm">Système Pieuvre 🔒</span>
+            <button onclick="nav('pieuvre')" id="nav-pieuvre"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Système Pieuvre</span>
             </button>
-            <button onclick="showLock()" id="nav-diagonale"
-                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
-                <span class="text-sm">Raccordement Diagonale 🔒</span>
+            <button onclick="nav('diagonale')" id="nav-diagonale"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Raccordement Diagonale</span>
             </button>
             <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Dimensionnement</div>
-            <button onclick="showLock()" id="nav-calculs"
-                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3 opacity-60">
-                <span class="text-sm">Calcul de Dilatation 🔒</span>
+            <button onclick="nav('calculs')" id="nav-calculs"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Calcul de Dilatation</span>
+            </button>
+            <div class="px-8 py-3 text-[10px] font-black text-slate-400 uppercase tracking-widest">Suite professionnelle</div>
+            <button onclick="nav('lock')" id="nav-lock"
+                class="nav-item w-full text-left px-8 py-4 flex items-center gap-3">
+                <span class="text-sm">Formation complète payante</span>
             </button>
         </div>
     </nav>
@@ -327,10 +506,10 @@
             </div>
         </section>
 
-        <!-- Page: Lock -->
+        <!-- Page: paid continuation -->
         <section id="page-lock" class="section-view max-w-5xl mx-auto space-y-8" dir="rtl">
             <div
-                class="bg-white p-10 rounded-3xl shadow-sm border-2 border-dashed border-emerald-500 text-center relative overflow-hidden">
+                class="paid-card bg-white p-10 rounded-3xl shadow-sm border-2 border-dashed border-emerald-500 text-center relative overflow-hidden">
                 <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-100 rounded-full blur-3xl -z-10"></div>
                 <div class="absolute bottom-0 left-0 w-32 h-32 bg-blue-100 rounded-full blur-3xl -z-10"></div>
 
@@ -340,12 +519,12 @@
                         <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                     </svg>
-                    محتوى مقفل (Contenu Verrouillé)
+                    suite de formation professionnelle (payante)
                 </h2>
                 <p class="text-lg text-slate-600 leading-relaxed mb-8 max-w-2xl mx-auto">
-                    لقد استنفدت الصفحات الأربعة المجانية للمعاينة. للوصول إلى باقي الشروحات التفاعلية، والرسوم المتحركة
-                    لأنظمة التوزيع (Pieuvre, Diagonale) وحاسبة التمدد الحراري، يرجى شراء النسخة الكاملة من هذا الدليل
-                    التفاعلي.
+                    جميع فصول هذا guide interactif، بما في ذلك Pieuvre وDiagonale وحاسبة التمدد الحراري، متاحة gratuitement
+                    للقراءة والتجربة. هذه الصفحة présente فقط la suite de formation professionnelle payante : accompagnement,
+                    exercices avancés, corrections détaillées et ressources supplémentaires.
                 </p>
                 <div class="flex gap-4 justify-center flex-wrap">
                     <button onclick="window.location.href='/'"
@@ -356,24 +535,52 @@
                             <line x1="3" y1="6" x2="21" y2="6" />
                             <path d="M16 10a4 4 0 0 1-8 0" />
                         </svg>
-                        العودة للمتجر لشرائه
+                        اكتشاف العرض في المتجر
                     </button>
                     <button
                         onclick="window.location.href='https://wa.me/212658211267?text=أريد chauffe_e شراء الدليل التفاعلي '"
-                        class="px-8 py-4 bg-[#25D366] hover:bg-[#128c7e] text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-2"
+                        class="px-8 py-4 bg-[#25D366] hover:bg-[#128c7e] text-black font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-200 flex items-center gap-2"
                         dir="ltr">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path
                                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                         </svg>
-                        شراء عبر واتساب
+                        شراء عبر الوات ساب
                     </button>
                 </div>
             </div>
         </section>
     </main>
+    <footer style="text-align:center; padding:2rem 1rem; background:#0f172a; color:#e2e8f0;">
+        <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+            <a href="https://wa.me/212658211267?text=Bonjour%20Sershop%20!%20Je%20souhaite%20acheter%20la%20suite%20de%20formation%20professionnelle%20du%20guide%20thermique." target="_blank" rel="noopener noreferrer" style="padding:.8rem 1.2rem; border-radius:999px; background:#25D366; color:#fff; text-decoration:none; font-weight:700;">شراء عبر الوات ساب</a>
+            <a href="https://sershop.fr/shop?add=10" style="padding:.8rem 1.2rem; border-radius:999px; background:#6c5ce7; color:#fff; text-decoration:none; font-weight:700;">🛒 Mettre au panier</a>
+        </div>
+    </footer>
 
     <script>
+        const explanationFor = (text, heading) => {
+            const source = `${heading} ${text}`.toLowerCase();
+            if (source.includes('circulateur')) return 'Le circulateur met l’eau en mouvement et compense les pertes de charge. Une bonne purge et une puissance adaptée évitent le bruit, la cavitation et une consommation électrique inutile.';
+            if (source.includes('vase d’expansion') || source.includes("vase d'expansion")) return 'Le vase absorbe l’augmentation de volume de l’eau quand elle chauffe. La membrane et la pression d’azote stabilisent le circuit et protègent les composants.';
+            if (source.includes('pieuvre') || source.includes('collecteur')) return 'La distribution en pieuvre part d’un collecteur vers chaque radiateur. Chaque boucle indépendante facilite l’équilibrage, la maintenance et la détection des fuites.';
+            if (source.includes('diagonale')) return 'Le raccordement diagonal fait traverser l’eau sur toute la surface du radiateur. Il réduit les zones froides et améliore l’uniformité de chauffe.';
+            if (source.includes('monotube') || source.includes('bypass')) return 'Dans un réseau monotube, le bypass partage le débit entre le radiateur et la conduite directe. Le réglage doit compenser la baisse de température au fil de la boucle.';
+            if (source.includes('dilatation') || source.includes('volume')) return 'Le calcul de dilatation estime l’augmentation de volume du fluide. Cette valeur aide à choisir un vase d’expansion suffisamment dimensionné et à maintenir une pression sûre.';
+            if (source.includes('formation') || source.includes('professionnelle')) return 'Cette partie correspond à l’accompagnement payant : exercices avancés, corrections et ressources supplémentaires. Les chapitres techniques du livre restent consultables gratuitement.';
+            return 'Ce paragraphe présente l’objectif du chapitre et son intérêt pratique pour concevoir, régler ou entretenir une installation de chauffage plus fiable et plus efficace.';
+        };
+
+        document.querySelectorAll('.section-view:not(#page-lock) p').forEach((paragraph) => {
+            const section = paragraph.closest('.section-view');
+            const heading = section?.querySelector('h2')?.textContent || '';
+            const explanation = document.createElement('details');
+            explanation.className = 'explanation-card';
+            explanation.open = true;
+            explanation.innerHTML = `<summary>💡 Afficher l’explication</summary><p>${explanationFor(paragraph.textContent, heading)}</p>`;
+            paragraph.insertAdjacentElement('afterend', explanation);
+        });
+
         // State Management
         let currentSection = 'accueil';
         const views = ['accueil', 'circulateur', 'vase', 'pieuvre', 'diagonale', 'monotube', 'calculs', 'lock'];
@@ -392,10 +599,6 @@
             currentSection = target;
 
             setTimeout(resizeCanvases, 50);
-        }
-
-        function showLock() {
-            nav('lock');
         }
 
         // Calculation
