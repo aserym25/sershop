@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Application Sershop de bilan thermique et d'estimation de puissance frigorifique et compresseur.">
+  <title>Bilan thermique et puissance frigorifique | Sershop</title>
+  <style>
+    :root{--ink:#172033;--muted:#64748b;--blue:#2563eb;--blue-dark:#1e3a8a;--cyan:#0891b2;--green:#059669;--orange:#ea580c;--soft:#eff6ff;--line:#dbe4f0;--card:#fff}
+    *{box-sizing:border-box}body{margin:0;color:var(--ink);background:linear-gradient(135deg,#eff6ff,#ecfeff 55%,#f8fafc);font:16px/1.65 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .topbar{display:flex;justify-content:center;padding:.6rem;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 3px 12px #17203312}.topbar a{display:inline-flex;align-items:center;gap:.6rem;color:var(--ink);text-decoration:none;font-weight:800}.topbar img{width:42px;height:42px;object-fit:contain;border-radius:10px}
+    main{max-width:1120px;margin:auto;padding:1rem 1rem 4rem}.hero,.panel,.explain,.results,.cta{background:var(--card);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 26px #17203312}.hero{overflow:hidden;text-align:center}.hero img{display:block;width:100%;max-height:430px;object-fit:cover}.hero-content{padding:1.8rem 1.2rem 2.2rem}h1{margin:.2rem 0;color:var(--blue-dark);font-size:clamp(2rem,5vw,3.8rem);line-height:1.1}h2{margin-top:0;color:var(--blue-dark);line-height:1.25}h3{color:#075985}.meta{color:var(--muted);font-weight:700}.layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:1.3rem;margin-top:1.3rem}.panel,.explain,.results,.cta{padding:1.35rem;margin-top:1.3rem}.layout>.panel,.layout>.explain{margin-top:0}
+    .room{padding:1rem;margin:1rem 0;background:#f8fbff;border:1px solid var(--line);border-radius:14px;position:relative}.room-title{display:flex;align-items:center;justify-content:space-between;gap:.8rem;border-bottom:1px solid var(--line);padding-bottom:.55rem}.room-title h3{margin:.1rem 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem}.field label{display:block;font-weight:700;color:#334155;margin-bottom:.25rem}.field input,.field select{width:100%;padding:.72rem;border:1px solid #b9c7d8;border-radius:9px;background:#fff;color:var(--ink);font:inherit}.field input:focus,.field select:focus{outline:3px solid #bfdbfe;border-color:var(--blue)}button{font:inherit;cursor:pointer}.primary,.secondary,.remove{border:0;border-radius:10px;padding:.75rem 1rem;font-weight:800}.primary{width:100%;color:#fff;background:var(--blue);margin-top:.8rem}.primary:hover{background:#1d4ed8}.secondary{width:100%;color:#1e3a8a;background:#dbeafe;border:2px dashed #93c5fd;margin-top:.35rem}.remove{font-size:.82rem;color:#991b1b;background:#fee2e2}.results{display:none;background:#f0f9ff;border-left:5px solid var(--cyan)}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}.metric{background:#fff;border:1px solid #bae6fd;border-radius:12px;padding:.9rem;text-align:center}.metric strong{display:block;color:var(--blue-dark);font-size:1.35rem}.metric span{color:var(--muted);font-size:.86rem}.notice{padding:.8rem 1rem;border-radius:10px;background:#fff7ed;border-left:4px solid var(--orange);color:#7c2d12}.formula{padding:.9rem 1rem;background:#f8fafc;border-radius:10px;border-left:4px solid var(--blue);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;overflow:auto}.details{color:#334155}.details li{margin:.3rem 0}.cta{text-align:center;background:linear-gradient(135deg,#dbeafe,#ecfeff)}.cta a{display:inline-block;padding:.75rem 1.15rem;margin:.25rem;border-radius:999px;color:#fff;text-decoration:none;font-weight:800}.whatsapp{background:#25d366}.contact{background:var(--blue)}footer{text-align:center;color:var(--muted);margin-top:1.5rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:800px){.layout{grid-template-columns:1fr}.layout>.explain{margin-top:0}.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){main{padding:.65rem}.grid{grid-template-columns:1fr}.hero-content,.panel,.explain,.results,.cta{padding:1rem}body{font-size:15px}}
+  </style>
+</head>
+<body>
+  <header class="topbar"><a href="https://sershop.fr/" aria-label="Retour à Sershop"><img src="./petit-logo.jpg" alt="Sershop"><span>Sershop.fr</span></a></header>
+  <main>
+    <section class="hero">
+      <img src="./calcule climatisation/bilan thermique.webp" alt="Bilan thermique de climatisation">
+      <div class="hero-content">
+        <p class="meta">Application gratuite • Pré-dimensionnement résidentiel et petit tertiaire</p>
+        <h1>Bilan thermique &amp; puissance frigorifique</h1>
+        <p>Estimez la charge de refroidissement de chaque pièce, la puissance totale de l’installation et la puissance électrique indicative du compresseur.</p>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <h2>1. Décrivez les pièces à climatiser</h2>
+        <p>Renseignez les caractéristiques de chaque zone. Les valeurs par défaut servent d’exemple et doivent être adaptées au projet réel.</p>
+        <div id="rooms">
+          <article class="room" data-room="1">
+            <div class="room-title"><h3>Pièce 1</h3></div>
+            <div class="grid">
+              <div class="field"><label>Surface au sol (m²)<input class="surface" type="number" min="0.1" step="0.1" placeholder="Ex. 25"></label></div>
+              <div class="field"><label>Hauteur sous plafond (m)<input class="height" type="number" min="1" step="0.1" value="2.8"></label></div>
+              <div class="field"><label>Isolation<select class="insulation"><option value="bonne">Très bonne — bâtiment récent</option><option value="moyenne" selected>Moyenne — standard</option><option value="faible">Faible — bâtiment ancien</option></select></label></div>
+              <div class="field"><label>Vitrage total (m²)<input class="windows" type="number" min="0" step="0.1" value="2"></label></div>
+              <div class="field"><label>Occupants habituels<input class="people" type="number" min="0" step="1" value="2"></label></div>
+              <div class="field"><label>Équipements internes (W)<input class="equipment" type="number" min="0" step="10" value="0" placeholder="TV, PC, éclairage"></label></div>
+            </div>
+          </article>
+        </div>
+        <button class="secondary" id="add-room" type="button">+ Ajouter une autre pièce</button>
+        <button class="primary" id="calculate" type="button">Calculer le bilan thermique</button>
+      </section>
+
+      <aside class="explain">
+        <h2>2. Comprendre le calcul</h2>
+        <h3>Charges principales</h3>
+        <ul>
+          <li><strong>Volume :</strong> surface × hauteur.</li>
+          <li><strong>Enveloppe :</strong> le coefficient dépend du niveau d’isolation.</li>
+          <li><strong>Personnes :</strong> chaleur sensible et latente dégagée par les occupants.</li>
+          <li><strong>Vitrage :</strong> apports solaires estimés.</li>
+          <li><strong>Équipements :</strong> chaleur des appareils et de l’éclairage.</li>
+        </ul>
+        <div class="formula">Charge froid = (volume × coefficient) + occupants + vitrage + équipements
+Marge de sécurité = charge × 1,15
+BTU/h = watts × 3,41214</div>
+        <h3>Puissance du compresseur</h3>
+        <p>Le compresseur consomme une puissance électrique différente de la puissance frigorifique. L’estimation utilise le <strong>COP/EER</strong> saisi ci-dessous : puissance électrique ≈ puissance frigorifique ÷ COP.</p>
+        <img class="module-image" src="./calcule climatisation/climatiseur compresseur.webp" alt="Compresseur de climatiseur">
+        <p class="example"><strong>Lecture de l’image :</strong> le compresseur est l’organe qui met le fluide frigorigène en circulation. La puissance frigorifique calculée indique la chaleur à extraire ; la puissance électrique estimée indique l’ordre de grandeur de l’énergie absorbée par le cycle. Ces deux valeurs ne doivent pas être confondues.</p>
+        <div class="notice"><strong>Important :</strong> ce résultat est un pré-dimensionnement. Un technicien doit vérifier l’orientation, l’ensoleillement, le renouvellement d’air, les parois, le fluide, la tension et les données constructeur avant installation.</div>
+      </aside>
+    </div>
+
+    <section class="panel">
+      <h2>3. Paramètres de l’unité extérieure</h2>
+      <div class="grid">
+        <div class="field"><label>Coefficient COP/EER estimé<input id="cop" type="number" min="1" max="8" step="0.1" value="3.2"></label></div>
+        <div class="field"><label>Facteur de simultanéité multi-split (%)<input id="simultaneity" type="number" min="50" max="100" step="1" value="100"></label></div>
+      </div>
+      <p class="meta">COP/EER : rendement indicatif. Utilisez la valeur de la fiche technique lorsque vous la connaissez. La simultanéité permet d’estimer un usage où toutes les unités ne fonctionnent pas à pleine charge en même temps.</p>
+    </section>
+
+    <section id="results" class="results" aria-live="polite">
+      <h2>Résultats estimatifs</h2>
+      <div class="metric-grid">
+        <div class="metric"><span>Froid total</span><strong id="cooling-w">0 W</strong><span id="cooling-btu">0 BTU/h</span></div>
+        <div class="metric"><span>Froid simultané</span><strong id="simultaneous-w">0 W</strong><span>charge unité ext.</span></div>
+        <div class="metric"><span>Compresseur estimé</span><strong id="compressor-w">0 W</strong><span>électrique indicatif</span></div>
+        <div class="metric"><span>Capacité conseillée</span><strong id="capacity-kw">0 kW</strong><span>froid nominal</span></div>
+      </div>
+      <p id="recommendation" class="notice"></p>
+      <h3>Détail par pièce</h3>
+      <ul id="details" class="details"></ul>
+    </section>
+
+    <section class="cta">
+      <h2>Besoin d’une validation professionnelle ?</h2>
+      <p>Envoyez vos résultats et les caractéristiques du local. Pour une étude complète, un choix de compresseur et un devis, contactez Sershop sur WhatsApp.</p>
+      <a class="whatsapp" href="https://wa.me/212658211267?text=Bonjour%20Sershop%2C%20je%20souhaite%20faire%20valider%20mon%20bilan%20thermique%20et%20le%20choix%20du%20compresseur.">Contacter sur WhatsApp</a>
+      <a class="contact" href="https://sershop.fr/contact">Demander une étude</a>
+    </section>
+    <footer>Outil d’aide au pré-dimensionnement • Sershop.fr</footer>
+  </main>
+  <script>
+    let roomNumber = 1;
+    const number = value => Number.parseFloat(value) || 0;
+    const format = value => Math.round(value).toLocaleString('fr-FR');
+    document.getElementById('add-room').addEventListener('click', () => {
+      roomNumber += 1;
+      const room = document.createElement('article');
+      room.className = 'room';
+      room.dataset.room = roomNumber;
+      room.innerHTML = `<div class="room-title"><h3>Pièce ${roomNumber}</h3><button type="button" class="remove">Supprimer</button></div>
+        <div class="grid">
+          <div class="field"><label>Surface au sol (m²)<input class="surface" type="number" min="0.1" step="0.1" placeholder="Ex. 25"></label></div>
+          <div class="field"><label>Hauteur sous plafond (m)<input class="height" type="number" min="1" step="0.1" value="2.8"></label></div>
+          <div class="field"><label>Isolation<select class="insulation"><option value="bonne">Très bonne — bâtiment récent</option><option value="moyenne" selected>Moyenne — standard</option><option value="faible">Faible — bâtiment ancien</option></select></label></div>
+          <div class="field"><label>Vitrage total (m²)<input class="windows" type="number" min="0" step="0.1" value="2"></label></div>
+          <div class="field"><label>Occupants habituels<input class="people" type="number" min="0" step="1" value="2"></label></div>
+          <div class="field"><label>Équipements internes (W)<input class="equipment" type="number" min="0" step="10" value="0"></label></div>
+        </div>`;
+      room.querySelector('.remove').addEventListener('click', () => room.remove());
+      document.getElementById('rooms').appendChild(room);
+    });
+    document.getElementById('calculate').addEventListener('click', () => {
+      const rooms = [...document.querySelectorAll('.room')];
+      let total = 0;
+      const details = [];
+      rooms.forEach((room, index) => {
+        const surface = number(room.querySelector('.surface').value);
+        const height = number(room.querySelector('.height').value);
+        if (!surface || !height) return;
+        const volume = surface * height;
+        const insulation = room.querySelector('.insulation').value;
+        const coefficient = insulation === 'bonne' ? 30 : insulation === 'faible' ? 50 : 40;
+        const people = number(room.querySelector('.people').value);
+        const windows = number(room.querySelector('.windows').value);
+        const equipment = number(room.querySelector('.equipment').value);
+        const base = volume * coefficient + people * 130 + windows * 150 + equipment;
+        const load = Math.round(base * 1.15);
+        total += load;
+        details.push(`<li><strong>Pièce ${index + 1} :</strong> ${format(load)} W — ${format(load * 3.41214)} BTU/h, volume ${volume.toFixed(1)} m³.</li>`);
+      });
+      const results = document.getElementById('results');
+      if (!total) {
+        results.style.display = 'block';
+        document.getElementById('recommendation').textContent = 'Veuillez renseigner au moins une surface et une hauteur valides.';
+        document.getElementById('details').innerHTML = '';
+        return;
+      }
+      const simultaneity = Math.min(100, Math.max(50, number(document.getElementById('simultaneity').value) || 100)) / 100;
+      const cop = Math.min(8, Math.max(1, number(document.getElementById('cop').value) || 3.2));
+      const simultaneous = total * simultaneity;
+      const compressor = simultaneous / cop;
+      const btu = total * 3.41214;
+      const capacity = Math.ceil(simultaneous / 1000 * 10) / 10;
+      document.getElementById('cooling-w').textContent = `${format(total)} W`;
+      document.getElementById('cooling-btu').textContent = `${format(btu)} BTU/h`;
+      document.getElementById('simultaneous-w').textContent = `${format(simultaneous)} W`;
+      document.getElementById('compressor-w').textContent = `${format(compressor)} W`;
+      document.getElementById('capacity-kw').textContent = `${capacity.toFixed(1)} kW`;
+      document.getElementById('details').innerHTML = details.join('');
+      document.getElementById('recommendation').textContent = `Prévoir une unité extérieure d’environ ${capacity.toFixed(1)} kW frigorifiques. Le choix final doit être confirmé avec la puissance nominale et la puissance absorbée du compresseur du fabricant.`;
+      results.style.display = 'block';
+      results.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  </script>
+</body>
+</html>
