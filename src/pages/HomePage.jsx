@@ -54,28 +54,6 @@ const HeroContent = styled(m.div)`
   z-index: 1;
   max-width: 820px;
 `
-const HeroBadge = styled(m.div)`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(108,92,231,0.15);
-  border: 1px solid rgba(108,92,231,0.35);
-  border-radius: ${({ theme }) => theme.radii.full};
-  padding: 0.4rem 1.1rem;
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  color: ${({ theme }) => theme.colors.primaryLight};
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-
-  span {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.colors.accent};
-    animation: pulse 2s ease-in-out infinite;
-  }
-`
 const HeroTitle = styled(m.h1)`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2rem, 4.5vw, 3.75rem);
@@ -354,7 +332,6 @@ export const HomePage = ({ searchQuery = '' }) => {
       {/* ── Hero ── */}
       <HeroSection>
         <HeroContent variants={heroContainerVariants} initial="hidden" animate="visible">
-          <HeroBadge variants={heroItemVariants}><span />🛍️ Les meilleures offres du moment</HeroBadge>
           <HeroTitle variants={heroItemVariants}>
             Trouvez, Apprenez,
             {' '}<span className="gradient">Achetez Mieux</span>
