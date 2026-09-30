@@ -20,6 +20,12 @@
   </style>
 </head>
 <body>
+<header style="position:sticky;top:0;z-index:20;display:flex;justify-content:center;padding:.65rem;background:rgba(255,255,255,.94);border-bottom:1px solid #e2e8f0;backdrop-filter:blur(8px)">
+  <a href="https://sershop.fr/" aria-label="Retour à Sershop" style="display:inline-flex;align-items:center;gap:.6rem;color:#172033;text-decoration:none;font-weight:800">
+    <img src="./petit-logo.jpg" alt="Sershop" style="width:42px;height:42px;object-fit:contain;border-radius:10px">
+    <span>Sershop.fr</span>
+  </a>
+</header>
 <main>
   <section class="hero">
     <img src="./Copywriting/copy.png" alt="Copywriting : les mots qui font agir">
@@ -30,7 +36,7 @@
       <p class="ar">الكلمات التي تحفّز على الفعل: حوّل الانتباه إلى ثقة، ثم الثقة إلى إجراء.</p>
     </div>
   </section>
-  <div class="switcher"><strong>Choisir la langue / اختر اللغة</strong><br><button class="language-fr" onclick="setLanguage('fr')">Français</button><button class="language-ar" onclick="setLanguage('ar')">العربية</button></div>
+  <div class="switcher"><strong>Choisir la langue / اختر اللغة</strong><br><button class="language-fr" onclick="setLanguage('fr')">Français</button><button class="language-ar" onclick="window.location.href='./copywriting/ar.html'">العربية</button></div>
   <section class="toc fr"><h2>Sommaire</h2><ol><li><a href="#definition">Comprendre le copywriting</a></li><li><a href="#workflow">Le workflow professionnel</a></li><li><a href="#brief">Brief, cible et promesse</a></li><li><a href="#angles">Angles psychologiques et exemples</a></li><li><a href="#tools">Choisir le bon outil IA</a></li><li><a href="#critique">Critiquer et réécrire</a></li><li><a href="#practice">Exercices et QCM</a></li></ol></section>
   <section class="toc ar"><h2>الفهرس</h2><ol><li><a href="#definition">فهم كتابة الإعلانات</a></li><li><a href="#expanded-ar">هندسة الإقناع للمقاولين والتقنيين</a></li><li><a href="#workflow">منهجية العمل الاحترافية</a></li><li><a href="#brief">الموجز والجمهور والوعد</a></li><li><a href="#angles">الزوايا النفسية والأمثلة</a></li><li><a href="#tools">اختيار أداة الذكاء الاصطناعي</a></li><li><a href="#critique">النقد وإعادة الكتابة</a></li><li><a href="#practice">التدريبات والاختبار</a></li></ol></section>
 
@@ -103,8 +109,8 @@ Identifie les trois phrases les plus faibles ou clichées et propose une version
   <section id="practice" class="quiz fr"><h2>7. QCM de validation</h2><p>Sélectionnez les bonnes réponses.</p><div class="answers"><button data-correct="true">Une séquence e-mail qui accompagne un prospect vers l'achat.</button><button data-correct="true">Une page de tarifs qui met en avant les bénéfices et un plan populaire.</button><button data-correct="false">Un article Wikipédia totalement neutre, sans appel à l'action.</button><button data-correct="true">Une publicité de retargeting pour un panier abandonné.</button></div><p class="feedback" aria-live="polite"></p></section>
   <section id="practice" class="card ar"><h2>٧. اختبار قصير</h2><p>اختر الإجابات الصحيحة:</p><ul><li>سلسلة رسائل تقود العميل نحو الشراء.</li><li>صفحة أسعار تبرز الفوائد والخطة الأكثر شعبية.</li><li>مقال ويكيبيديا محايد تماماً دون دعوة إلى الفعل.</li><li>إعلان لإعادة استهداف سلة متروكة.</li></ul><p class="concept">الإجابات الصحيحة: السلسلة البريدية وصفحة الأسعار وإعلان إعادة الاستهداف. المقال المحايد يقدّم معلومات ولا يهدف إلى تحويل مباشر.</p></section>
 
-  <section class="cta fr"><h2>Votre prochaine action</h2><p>Choisissez un produit de Sershop, écrivez son brief en cinq lignes, demandez trois angles, puis critiquez et réécrivez la meilleure version. La conversion se mesure : testez les variantes au lieu de deviner.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=Je%20veux%20la%20formation%20Copywriting">Acheter via WhatsApp</a><a class="cart" href="/shop?add=16">Ajouter au panier</a></div></section>
-  <section class="cta ar"><h2>خطوتك التالية</h2><p>اختر منتجاً من Sershop، واكتب موجزه في خمسة أسطر، واطلب ثلاث زوايا، ثم انتقد أفضل نسخة وأعد كتابتها. اختبر النسخ ولا تعتمد على التخمين.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=أريد%20دورة%20Copywriting">الشراء عبر واتساب</a><a class="cart" href="/shop?add=16">أضف إلى السلة</a></div></section>
+  <section class="cta fr"><h2>Votre prochaine action</h2><p>Choisissez un produit de Sershop, écrivez son brief en cinq lignes, demandez trois angles, puis critiquez et réécrivez la meilleure version. La conversion se mesure : testez les variantes au lieu de deviner.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=Je%20veux%20la%20formation%20Copywriting">Acheter via WhatsApp</a><a href="https://www.paypal.com/ncp/payment/AEGZ9V4SFDD6G" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:.7rem 1.2rem;margin:.2rem;font-weight:800;text-decoration:none;border-radius:999px;background:#0070ba;color:#fff">Payer avec PayPal</a><a class="cart" href="/shop?add=16">Ajouter au panier</a></div></section>
+  <section class="cta ar"><h2>خطوتك التالية</h2><p>اختر منتجاً من Sershop، واكتب موجزه في خمسة أسطر، واطلب ثلاث زوايا، ثم انتقد أفضل نسخة وأعد كتابتها. اختبر النسخ ولا تعتمد على التخمين.</p><div class="actions"><a class="whatsapp" href="https://wa.me/212658211267?text=أريد%20دورة%20Copywriting">الشراء عبر واتساب</a><a href="https://www.paypal.com/ncp/payment/AEGZ9V4SFDD6G" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:.7rem 1.2rem;margin:.2rem;font-weight:800;text-decoration:none;border-radius:999px;background:#0070ba;color:#fff">الدفع عبر PayPal</a><a class="cart" href="/shop?add=16">أضف إلى السلة</a></div></section>
   <footer>Copywriting • Formation numérique Sershop • Version française et العربية<br><a href="./Copywriting/copywriting-original.docx" style="color:var(--violet);font-weight:700">Télécharger le document source complet</a></footer>
 </main>
 <script>

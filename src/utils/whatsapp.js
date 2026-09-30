@@ -50,6 +50,18 @@ export const orderCartViaWhatsApp = (cartItems) => {
     openWhatsApp(message)
 }
 
+export const requestServiceViaWhatsApp = ({ nom, telephone, typeAppareil, marque, panne }) => {
+    const message =
+        `Bonjour Sershop ! Je souhaite demander une intervention.\n` +
+        `Nom : ${nom}\n` +
+        `Téléphone : ${telephone}\n` +
+        `Équipement : ${typeAppareil}\n` +
+        `Marque : ${marque}\n` +
+        `Besoin / panne : ${panne}`
+
+    openWhatsApp(message)
+}
+
 /** @private */
 const openWhatsApp = (message) => {
     const encoded = encodeURIComponent(message)

@@ -1,28 +1,32 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { LayoutGroup, m } from 'framer-motion'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { supabase, saveCache } from '../services/supabase'
 import { products as localProducts, categories } from '../data/products'
 import { useCart } from '../context/CartContext'
 
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(40px); }
-  to   { opacity: 1; transform: translateY(0); }
-`
 const shimmer = keyframes`
   0%   { background-position: -600px 0; }
   100% { background-position:  600px 0; }
 `
+const heroContainerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.12 } }
+}
+const heroItemVariants = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0 }
+}
 
 /* ── Hero ───────────────────────────────────────────────── */
 const HeroSection = styled.section`
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8rem 2rem 4rem;
+  padding: 6.5rem 2rem 2.5rem;
   background: ${({ theme }) => theme.colors.gradientHero};
   position: relative;
   overflow: hidden;
@@ -40,39 +44,16 @@ const HeroSection = styled.section`
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 200px;
+    height: 120px;
     background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.colors.bg});
   }
 `
-const HeroContent = styled.div`
+const HeroContent = styled(m.div)`
   position: relative;
   z-index: 1;
   max-width: 820px;
-  animation: ${fadeUp} 0.9s ease both;
 `
-const HeroBadge = styled.div`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(108,92,231,0.15);
-  border: 1px solid rgba(108,92,231,0.35);
-  border-radius: ${({ theme }) => theme.radii.full};
-  padding: 0.4rem 1.1rem;
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: ${({ theme }) => theme.fontWeights.semibold};
-  color: ${({ theme }) => theme.colors.primaryLight};
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1.5rem;
-
-  span {
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: ${({ theme }) => theme.colors.accent};
-    animation: pulse 2s ease-in-out infinite;
-  }
-`
-const HeroTitle = styled.h1`
+const HeroTitle = styled(m.h1)`
   font-family: ${({ theme }) => theme.fonts.heading};
   font-size: clamp(2rem, 4.5vw, 3.75rem);
   font-weight: ${({ theme }) => theme.fontWeights.black};
@@ -87,20 +68,20 @@ const HeroTitle = styled.h1`
     background-clip: text;
   }
 `
-const HeroSub = styled.p`
+const HeroSub = styled(m.p)`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.textSecondary};
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   line-height: 1.75;
 `
-const HeroCTA = styled.div`
+const HeroCTA = styled(m.div)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
 `
-const BtnPrimary = styled.a`
+const BtnPrimary = styled(m.a)`
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -110,9 +91,9 @@ const BtnPrimary = styled.a`
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   color: white;
   box-shadow: 0 8px 30px rgba(108,92,231,0.4);
-  transition: all ${({ theme }) => theme.transitions.spring};
+  transition: box-shadow ${({ theme }) => theme.transitions.spring};
 
-  &:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(108,92,231,0.6); }
+  &:hover { box-shadow: 0 12px 40px rgba(108,92,231,0.6); }
 `
 const BtnSecondary = styled.a`
   display: inline-flex;
@@ -133,15 +114,15 @@ const BtnSecondary = styled.a`
     background: rgba(108,92,231,0.1);
   }
 `
-const Stats = styled.div`
+const Stats = styled(m.div)`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 `
-const Stat = styled.div`
+const Stat = styled(m.div)`
   text-align: center;
   strong {
     display: block;
@@ -190,7 +171,7 @@ const FilterRow = styled.div`
   gap: 0.5rem;
   flex-wrap: wrap;
 `
-const FilterBtn = styled.button`
+const FilterBtn = styled(m.button)`
   padding: 0.4rem 1.1rem;
   border-radius: ${({ theme }) => theme.radii.full};
   font-size: ${({ theme }) => theme.fontSizes.sm};
@@ -257,6 +238,18 @@ export const HomePage = ({ searchQuery = '' }) => {
   const fetchProducts = async () => {
     setLoading(true)
     setError(null)
+
+    // Supabase non configuré : on utilise directement les produits locaux, sans tenter d'appel réseau ni logguer d'erreur
+    if (!supabase) {
+      let fallback = [...localProducts]
+      if (activeCategory !== 'Tous') {
+        fallback = fallback.filter(p => p.category === activeCategory)
+      }
+      setProducts(fallback)
+      setError(fallback.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
+      setLoading(false)
+      return
+    }
 
     try {
       let query = supabase.from('products').select('*').order('id', { ascending: true })
@@ -345,24 +338,31 @@ export const HomePage = ({ searchQuery = '' }) => {
     <>
       {/* ── Hero ── */}
       <HeroSection>
-        <HeroContent>
-          <HeroBadge><span />🛍️ Les meilleures offres du moment</HeroBadge>
-          <HeroTitle>
+        <HeroContent variants={heroContainerVariants} initial="hidden" animate="visible">
+          <HeroTitle variants={heroItemVariants}>
             Trouvez, Apprenez,
-            <span className="gradient">Achetez Mieux</span>
+            {' '}<span className="gradient">Achetez Mieux</span>
           </HeroTitle>
-          <HeroSub>
+          <HeroSub variants={heroItemVariants}>
             Des dizaines de produits sélectionnés, des prix imbattables.<br />
             SerShop vous aide à faire les meilleurs choix.
           </HeroSub>
-          <HeroCTA>
-            <BtnPrimary href="#products" id="hero-shop-btn">🚀 Découvrir les produits</BtnPrimary>
+          <HeroCTA variants={heroItemVariants}>
+            <BtnPrimary
+              href="#products"
+              id="hero-shop-btn"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 360, damping: 22 }}
+            >
+              🚀 Découvrir les produits
+            </BtnPrimary>
           </HeroCTA>
-          <Stats>
-            <Stat><strong>10k+</strong><span>Produits</span></Stat>
-            <Stat><strong>50k+</strong><span>Clients</span></Stat>
-            <Stat><strong>-40%</strong><span>En moyenne</span></Stat>
-            <Stat><strong>4.8★</strong><span>Satisfaction</span></Stat>
+          <Stats variants={heroContainerVariants}>
+            <Stat variants={heroItemVariants}><strong>10k+</strong><span>Produits</span></Stat>
+            <Stat variants={heroItemVariants}><strong>50k+</strong><span>Clients</span></Stat>
+            <Stat variants={heroItemVariants}><strong>-40%</strong><span>En moyenne</span></Stat>
+            <Stat variants={heroItemVariants}><strong>4.8★</strong><span>Satisfaction</span></Stat>
           </Stats>
         </HeroContent>
       </HeroSection>
@@ -378,6 +378,7 @@ export const HomePage = ({ searchQuery = '' }) => {
                 $active={activeCategory === cat}
                 onClick={() => setActiveCategory(cat)}
                 id={`filter-${cat.toLowerCase()}`}
+                whileTap={{ scale: 0.96 }}
               >
                 {cat}
               </FilterBtn>
@@ -385,44 +386,46 @@ export const HomePage = ({ searchQuery = '' }) => {
           </FilterRow>
         </SectionHeader>
 
-        <Grid>
-          {loading ? (
-            Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
-          ) : error ? (
-            <Empty>
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="12" cy="12" r="10" /><path d="M12 8v4m0 4h.01" />
-              </svg>
-              <p>{error}</p>
-              <RetryBtn onClick={fetchProducts}>↺ Réessayer</RetryBtn>
-            </Empty>
-          ) : filtered.length > 0 ? (
-            filtered.map((p, i) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                index={i}
-                onClick={() => {
-                  const link = p.affiliate_link || p.affiliateLink;
-                  if (link) {
-                    if (link.startsWith('/')) {
-                      window.location.href = link;
-                    } else {
-                      window.open(link, '_blank', 'noopener,noreferrer');
+        <LayoutGroup>
+          <Grid>
+            {loading ? (
+              Array.from({ length: 8 }).map((_, i) => <SkeletonCard key={i} />)
+            ) : error ? (
+              <Empty>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="12" cy="12" r="10" /><path d="M12 8v4m0 4h.01" />
+                </svg>
+                <p>{error}</p>
+                <RetryBtn onClick={fetchProducts}>↺ Réessayer</RetryBtn>
+              </Empty>
+            ) : filtered.length > 0 ? (
+              filtered.map((p, i) => (
+                <ProductCard
+                  key={p.id}
+                  product={p}
+                  index={i}
+                  onClick={() => {
+                    const link = p.affiliate_link || p.affiliateLink;
+                    if (link) {
+                      if (link.startsWith('/')) {
+                        window.location.href = link;
+                      } else {
+                        window.open(link, '_blank', 'noopener,noreferrer');
+                      }
                     }
-                  }
-                }}
-              />
-            ))
-          ) : (
-            <Empty>
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
-              </svg>
-              <p>Aucun produit trouvé{searchQuery ? ` pour "${searchQuery}"` : '.'}</p>
-            </Empty>
-          )}
-        </Grid>
+                  }}
+                />
+              ))
+            ) : (
+              <Empty>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" />
+                </svg>
+                <p>Aucun produit trouvé{searchQuery ? ` pour "${searchQuery}"` : '.'}</p>
+              </Empty>
+            )}
+          </Grid>
+        </LayoutGroup>
       </ShopSection>
     </>
   )

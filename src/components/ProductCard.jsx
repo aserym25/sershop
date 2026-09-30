@@ -1,26 +1,34 @@
 import React, { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import { m } from 'framer-motion'
+import styled from 'styled-components'
 import { useCart } from '../context/CartContext'
 import { orderProductViaWhatsApp } from '../utils/whatsapp'
 
-const fadeIn = keyframes`
-  from { opacity: 0; transform: scale(0.95) translateY(10px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
-`
+const cardVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0 },
+  hover: {
+    y: -7,
+    transition: { type: 'spring', stiffness: 320, damping: 24 }
+  }
+}
+const imageVariants = {
+  hidden: { scale: 1 },
+  visible: { scale: 1 },
+  hover: { scale: 1.06, transition: { duration: 0.3 } }
+}
 
-const Card = styled.article`
+const Card = styled(m.article)`
   background: ${({ theme }) => theme.colors.bgCard};
   border: 1px solid ${({ theme }) => theme.colors.border};
   border-radius: ${({ theme }) => theme.radii.xl};
   overflow: hidden;
-  transition: all ${({ theme }) => theme.transitions.normal};
-  animation: ${fadeIn} 0.5s ease both;
-  animation-delay: ${({ $index }) => $index * 0.06}s;
+  transition: border-color ${({ theme }) => theme.transitions.normal},
+    box-shadow ${({ theme }) => theme.transitions.normal};
   cursor: pointer;
   position: relative;
 
   &:hover {
-    transform: translateY(-8px);
     border-color: ${({ theme }) => theme.colors.borderHover};
     box-shadow: ${({ theme }) => theme.shadows.card};
   }
@@ -32,16 +40,11 @@ const ImageWrapper = styled.div`
   overflow: hidden;
   background: ${({ theme }) => theme.colors.bgSecondary};
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform ${({ theme }) => theme.transitions.slow};
-  }
-
-  ${Card}:hover & img {
-    transform: scale(1.08);
-  }
+`
+const ProductImage = styled(m.img)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `
 
 const Badge = styled.span`
@@ -80,7 +83,7 @@ const OutOfStock = styled.div`
   text-transform: uppercase;
 `
 
-const WishlistBtn = styled.button`
+const WishlistBtn = styled(m.button)`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -220,7 +223,7 @@ const Discount = styled.span`
   border-radius: ${({ theme }) => theme.radii.sm};
 `
 
-const AddButton = styled.button`
+const AddButton = styled(m.button)`
   width: 40px;
   height: 40px;
   border-radius: ${({ theme }) => theme.radii.md};
@@ -244,7 +247,7 @@ const AddButton = styled.button`
   }
 `
 
-const WhatsAppButton = styled.button`
+const WhatsAppButton = styled(m.button)`
   width: 40px;
   height: 40px;
   border-radius: ${({ theme }) => theme.radii.md};
@@ -301,14 +304,29 @@ export const ProductCard = ({ product, index = 0, onClick }) => {
   const discount = originalPrice > price ? getDiscount(price, originalPrice) : 0
 
   return (
-    <Card $index={index} onClick={onClick}>
+    <Card
+      onClick={onClick}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      whileHover="hover"
+      layout="position"
+      transition={{ duration: 0.42, delay: Math.min(index * 0.04, 0.24), ease: 'easeOut' }}
+    >
       <ImageWrapper>
-        <img src={product.image} alt={product.title} loading="lazy" />
+        <ProductImage
+          src={product.image}
+          alt={product.title}
+          loading="lazy"
+          variants={imageVariants}
+        />
         {product.badge && <Badge $type={product.badge}>{product.badge}</Badge>}
         {!product.inStock && <OutOfStock>Épuisé</OutOfStock>}
         <WishlistBtn
           $active={wishlisted}
           onClick={(e) => { e.stopPropagation(); setWishlisted(!wishlisted) }}
+          whileTap={{ scale: 0.88 }}
           aria-label="Ajouter aux favoris"
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill={wishlisted ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
@@ -346,6 +364,8 @@ export const ProductCard = ({ product, index = 0, onClick }) => {
           <AddButton
             onClick={handleAdd}
             disabled={!product.inStock}
+            whileTap={{ scale: 0.9 }}
+            animate={{ scale: added ? [1, 1.12, 1] : 1 }}
             aria-label="Ajouter au panier"
             id={`add-to-cart-${product.id}`}
           >
@@ -363,6 +383,7 @@ export const ProductCard = ({ product, index = 0, onClick }) => {
           <WhatsAppButton
             onClick={handleWhatsApp}
             disabled={!product.inStock}
+            whileTap={{ scale: 0.9 }}
             aria-label="Commander via WhatsApp"
             id={`whatsapp-order-${product.id}`}
             title="Commander via WhatsApp"
