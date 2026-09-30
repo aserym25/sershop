@@ -22,12 +22,11 @@ const heroItemVariants = {
 
 /* ── Hero ───────────────────────────────────────────────── */
 const HeroSection = styled.section`
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 8rem 2rem 4rem;
+  padding: 6.5rem 2rem 2.5rem;
   background: ${({ theme }) => theme.colors.gradientHero};
   position: relative;
   overflow: hidden;
@@ -45,7 +44,7 @@ const HeroSection = styled.section`
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 200px;
+    height: 120px;
     background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.colors.bg});
   }
 `
@@ -72,7 +71,7 @@ const HeroTitle = styled(m.h1)`
 const HeroSub = styled(m.p)`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.textSecondary};
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   line-height: 1.75;
 `
 const HeroCTA = styled(m.div)`
@@ -120,7 +119,7 @@ const Stats = styled(m.div)`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-  margin-top: 3rem;
+  margin-top: 2rem;
   flex-wrap: wrap;
 `
 const Stat = styled(m.div)`

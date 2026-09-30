@@ -226,7 +226,7 @@ const SuccessIcon = styled.div`
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: rgba(0, 200, 150, 0.15);
+  background: rgba(28, 228, 178, 0.15);
   color: ${({ theme }) => theme.colors.accent};
   font-size: 1.8rem;
 `
