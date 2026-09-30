@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AnimatePresence, m } from 'framer-motion'
 import styled, { keyframes } from 'styled-components'
 import { requestServiceViaWhatsApp } from '../utils/whatsapp'
 
@@ -31,7 +32,7 @@ const Hero = styled.section`
   }
 `
 
-const HeroContent = styled.div`
+const HeroContent = styled(m.div)`
   position: relative;
   z-index: 1;
   max-width: 850px;
@@ -106,7 +107,7 @@ const ServiceGrid = styled.div`
   }
 `
 
-const ServiceCard = styled.article`
+const ServiceCard = styled(m.article)`
   padding: 2rem;
   border-radius: ${({ theme }) => theme.radii.xl};
   background: ${({ theme }) => theme.colors.bgCard};
@@ -142,7 +143,12 @@ const ServiceIcon = styled.div`
   place-items: center;
   border-radius: ${({ theme }) => theme.radii.lg};
   background: rgba(108, 92, 231, 0.15);
-  font-size: 1.7rem;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    color: ${({ theme }) => theme.colors.primaryLight};
+  }
 `
 
 const RequestPanel = styled.section`
@@ -184,11 +190,60 @@ const RequestIntro = styled.div`
   li + li { margin-top: 0.5rem; }
 `
 
-const RequestForm = styled.form`
+const RequestForm = styled(m.form)`
   padding: 2.5rem;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
     padding: 1.5rem;
+  }
+`
+
+const SubmissionSuccess = styled(m.div)`
+  min-height: 100%;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  h2 {
+    font-family: ${({ theme }) => theme.fonts.heading};
+    font-size: ${({ theme }) => theme.fontSizes['2xl']};
+    color: ${({ theme }) => theme.colors.textPrimary};
+    margin: 1.25rem 0 0.75rem;
+  }
+
+  p {
+    color: ${({ theme }) => theme.colors.textSecondary};
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+`
+
+const SuccessIcon = styled.div`
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(0, 200, 150, 0.15);
+  color: ${({ theme }) => theme.colors.accent};
+  font-size: 1.8rem;
+`
+
+const SecondaryButton = styled.button`
+  padding: 0.75rem 1.25rem;
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.radii.full};
+  background: transparent;
+  color: ${({ theme }) => theme.colors.textPrimary};
+  font: inherit;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  cursor: pointer;
+  transition: border-color ${({ theme }) => theme.transitions.fast};
+
+  &:hover {
+    border-color: ${({ theme }) => theme.colors.primaryLight};
   }
 `
 
@@ -261,28 +316,34 @@ const SubmitButton = styled.button`
   }
 `
 
-const FormNotice = styled.p`
-  margin-top: 1rem;
-  color: ${({ theme }) => theme.colors.accent};
-  font-size: ${({ theme }) => theme.fontSizes.sm};
-  line-height: 1.6;
-`
-
 const services = [
   {
-    icon: '❄️',
-    title: 'Installation et mise en service',
-    description: 'Installation de climatiseurs split, multisplit et gainables, ainsi que d’équipements frigorifiques. Dimensionnement et raccordement soignés.',
+    icon: (
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+      </svg>
+    ),
+    title: 'Installation & mise en service',
+    description: 'Pose professionnelle de climatiseurs (split-système, multisplit, gainable) et d’équipements frigorifiques industriels ou commerciaux. Dimensionnement thermique et raccordement soignés.',
   },
   {
-    icon: '🛠️',
+    icon: (
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <circle cx="12" cy="12" r="3" strokeWidth="1.8" />
+      </svg>
+    ),
     title: 'Entretien préventif',
-    description: 'Nettoyage des filtres, entretien des évaporateurs et contrôle de l’installation pour préserver les performances et la durée de vie de vos équipements.',
+    description: 'Nettoyage des filtres, désinfection des évaporateurs, contrôle des compresseurs et vérification des pressions. Prolongez la durée de vie de vos équipements et optimisez leur consommation.',
   },
   {
-    icon: '🔧',
+    icon: (
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+      </svg>
+    ),
     title: 'Réparation et dépannage',
-    description: 'Diagnostic des pannes de climatisation et de froid : compresseur, circuit frigorifique, composants électriques ou fuite de fluide.',
+    description: 'Intervention sur les pannes de circuits frigorifiques, les problèmes de cartes électroniques ou les fuites de fluides. Diagnostic des compresseurs, relais et pressostats.',
   },
 ]
 
@@ -296,23 +357,32 @@ const initialForm = {
 
 export const ServicePage = () => {
   const [form, setForm] = useState(initialForm)
-  const [notice, setNotice] = useState('')
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submittedBrand, setSubmittedBrand] = useState('')
 
   const handleChange = (event) => {
     setForm(current => ({ ...current, [event.target.name]: event.target.value }))
-    setNotice('')
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     requestServiceViaWhatsApp(form)
-    setNotice('Votre demande est prête dans WhatsApp. Envoyez le message pour nous la transmettre.')
+    setSubmittedBrand(form.marque)
+    setIsSubmitted(true)
+  }
+
+  const handleNewRequest = () => {
+    setForm(initialForm)
+    setIsSubmitted(false)
   }
 
   return (
     <PageWrapper>
       <Hero>
-        <HeroContent>
+        <HeroContent initial="hidden" animate="visible" variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+        }}>
           <Eyebrow>Installation · Entretien · Dépannage</Eyebrow>
           <HeroTitle>Services froid & <span>climatisation</span></HeroTitle>
           <HeroText>
@@ -330,9 +400,19 @@ export const ServicePage = () => {
         </SectionHeading>
 
         <ServiceGrid>
-          {services.map(service => (
-            <ServiceCard key={service.title}>
-              <ServiceIcon aria-hidden="true">{service.icon}</ServiceIcon>
+          {services.map((service, index) => (
+            <ServiceCard
+              key={service.title}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-50px' }}
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { delay: index * 0.15, duration: 0.5 } },
+              }}
+              whileHover={{ y: -8, boxShadow: '0 15px 30px rgba(0,0,0,0.2)' }}
+            >
+              <ServiceIcon>{service.icon}</ServiceIcon>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
             </ServiceCard>
@@ -353,40 +433,68 @@ export const ServicePage = () => {
             </ul>
           </RequestIntro>
 
-          <RequestForm onSubmit={handleSubmit}>
-            <FormTitle>Demander une intervention</FormTitle>
-            <FieldGrid>
-              <Field>
-                <label htmlFor="service-name">Nom complet</label>
-                <input id="service-name" name="nom" autoComplete="name" required value={form.nom} onChange={handleChange} />
-              </Field>
-              <Field>
-                <label htmlFor="service-phone">Téléphone</label>
-                <input id="service-phone" name="telephone" type="tel" autoComplete="tel" required value={form.telephone} onChange={handleChange} />
-              </Field>
-            </FieldGrid>
-            <FieldGrid>
-              <Field>
-                <label htmlFor="service-equipment">Type d’équipement</label>
-                <select id="service-equipment" name="typeAppareil" value={form.typeAppareil} onChange={handleChange}>
-                  <option>Climatiseur (split / gainable)</option>
-                  <option>Réfrigérateur / congélateur</option>
-                  <option>Chambre froide</option>
-                  <option>Autre matériel</option>
-                </select>
-              </Field>
-              <Field>
-                <label htmlFor="service-brand">Marque</label>
-                <input id="service-brand" name="marque" required value={form.marque} onChange={handleChange} placeholder="Ex. Daikin, Samsung, LG" />
-              </Field>
-            </FieldGrid>
-            <Field>
-              <label htmlFor="service-issue">Nature de la panne ou du besoin</label>
-              <textarea id="service-issue" name="panne" required value={form.panne} onChange={handleChange} placeholder="Décrivez le problème ou l’installation souhaitée..." />
-            </Field>
-            <SubmitButton type="submit">Continuer sur WhatsApp</SubmitButton>
-            {notice && <FormNotice role="status">{notice}</FormNotice>}
-          </RequestForm>
+          <AnimatePresence mode="wait" initial={false}>
+            {!isSubmitted ? (
+              <RequestForm
+                key="service-form"
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, x: -30 }}
+                transition={{ duration: 0.2 }}
+              >
+                <FormTitle>Demander une intervention</FormTitle>
+                <FieldGrid>
+                  <Field>
+                    <label htmlFor="service-name">Nom complet</label>
+                    <input id="service-name" name="nom" autoComplete="name" required value={form.nom} onChange={handleChange} />
+                  </Field>
+                  <Field>
+                    <label htmlFor="service-phone">Téléphone</label>
+                    <input id="service-phone" name="telephone" type="tel" autoComplete="tel" required value={form.telephone} onChange={handleChange} />
+                  </Field>
+                </FieldGrid>
+                <FieldGrid>
+                  <Field>
+                    <label htmlFor="service-equipment">Type d’équipement</label>
+                    <select id="service-equipment" name="typeAppareil" value={form.typeAppareil} onChange={handleChange}>
+                      <option>Climatiseur</option>
+                      <option>Réfrigérateur / congélateur</option>
+                      <option>Chambre froide</option>
+                      <option>Autre matériel</option>
+                    </select>
+                  </Field>
+                  <Field>
+                    <label htmlFor="service-brand">Marque</label>
+                    <input id="service-brand" name="marque" required value={form.marque} onChange={handleChange} placeholder="Ex. Daikin, Samsung, LG" />
+                  </Field>
+                </FieldGrid>
+                <Field>
+                  <label htmlFor="service-issue">Nature de la panne</label>
+                  <textarea id="service-issue" name="panne" required value={form.panne} onChange={handleChange} placeholder="Décrivez le problème (ex. fuite d’eau, compresseur à l’arrêt, code erreur...)" />
+                </Field>
+                <SubmitButton type="submit">Envoyer la demande</SubmitButton>
+              </RequestForm>
+            ) : (
+              <SubmissionSuccess
+                key="service-success"
+                role="status"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, x: 30 }}
+                transition={{ duration: 0.25 }}
+              >
+                <SuccessIcon aria-hidden="true">✓</SuccessIcon>
+                <h2>Votre demande est prête</h2>
+                <p>
+                  Un message contenant les informations de votre équipement
+                  {submittedBrand ? ` ${submittedBrand}` : ''} a été préparé dans WhatsApp.
+                  Envoyez-le dans WhatsApp pour nous transmettre votre demande.
+                </p>
+                <SecondaryButton type="button" onClick={handleNewRequest}>Faire une autre demande</SecondaryButton>
+              </SubmissionSuccess>
+            )}
+          </AnimatePresence>
         </RequestPanel>
       </Content>
     </PageWrapper>
