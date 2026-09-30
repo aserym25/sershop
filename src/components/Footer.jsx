@@ -159,6 +159,7 @@ const boutiqueLinks = [
 ]
 
 const supportLinks = [
+    { label: 'Service', to: '/service' },
     { label: 'FAQ', to: '/faq' },
     { label: 'Livraison', to: '/faq#livraison' },
     { label: 'Retours', to: '/faq#retours' },

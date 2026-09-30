@@ -221,6 +221,7 @@ export const Header = ({ onSearch, onCartOpen }) => {
         <NavLink to="/" $active={location.pathname === '/'}>Accueil</NavLink>
         <NavLink to="/shop" $active={location.pathname === '/shop'}>Boutique</NavLink>
         <NavLink to="/about" $active={location.pathname === '/about'}>À propos</NavLink>
+        <NavLink to="/service" $active={location.pathname === '/service'}>Service</NavLink>
       </NavLinks>
 
       <NavActions>
