@@ -33,11 +33,10 @@ export const saveCache = (data) => {
 }
 
 export const warmupSupabase = async () => {
-    try {
-        if (!supabase) {
-            throw new Error('Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
-        }
+    // Supabase non configuré : on ne tente rien et on ne pollue pas la console
+    if (!supabase) return
 
+    try {
         await supabase.from('products').select('id').limit(1)
         console.log('Sershop Supabase est réveillé et prêt ! 🚀')
     } catch (error) {

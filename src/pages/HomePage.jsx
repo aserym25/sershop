@@ -239,11 +239,19 @@ export const HomePage = ({ searchQuery = '' }) => {
     setLoading(true)
     setError(null)
 
-    try {
-      if (!supabase) {
-        throw new Error('Supabase is not configured. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY.')
+    // Supabase non configuré : on utilise directement les produits locaux, sans tenter d'appel réseau ni logguer d'erreur
+    if (!supabase) {
+      let fallback = [...localProducts]
+      if (activeCategory !== 'Tous') {
+        fallback = fallback.filter(p => p.category === activeCategory)
       }
+      setProducts(fallback)
+      setError(fallback.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
+      setLoading(false)
+      return
+    }
 
+    try {
       let query = supabase.from('products').select('*').order('id', { ascending: true })
       if (activeCategory !== 'Tous') query = query.eq('category', activeCategory)
 
