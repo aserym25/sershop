@@ -62,6 +62,10 @@ export const requestServiceViaWhatsApp = ({ nom, telephone, typeAppareil, marque
     openWhatsApp(message)
 }
 
+export const sendChatMessageViaWhatsApp = (text) => {
+    openWhatsApp(`Bonjour Sershop ! ${text}`)
+}
+
 /** @private */
 const openWhatsApp = (message) => {
     const encoded = encodeURIComponent(message)

@@ -8,6 +8,7 @@ import { GlobalStyles } from './styles/GlobalStyles'
 import { CartProvider } from './context/CartContext'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
+import { ChatWidget } from './components/ChatWidget'
 import { Seo } from './components/Seo'
 
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -46,6 +47,7 @@ function App() {
                                 </Suspense>
                             </main>
                             <Footer />
+                            <ChatWidget />
                         </Router>
                     </CartProvider>
                 </LazyMotion>
