@@ -6,6 +6,7 @@ import { domMax, LazyMotion, MotionConfig } from 'framer-motion'
 import { theme } from './styles/theme'
 import { GlobalStyles } from './styles/GlobalStyles'
 import { CartProvider } from './context/CartContext'
+import { RegionProvider } from './context/RegionContext'
 import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { Seo } from './components/Seo'
@@ -25,7 +26,7 @@ function App() {
             <MotionConfig reducedMotion="user">
                 <LazyMotion features={domMax}>
                     <GlobalStyles />
-                    <CartProvider>
+                    <RegionProvider><CartProvider>
                         <Router>
                             <Seo />
                             <Header />
@@ -47,7 +48,7 @@ function App() {
                             </main>
                             <Footer />
                         </Router>
-                    </CartProvider>
+                    </CartProvider></RegionProvider>
                 </LazyMotion>
             </MotionConfig>
         </ThemeProvider>

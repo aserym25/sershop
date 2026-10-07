@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { LayoutGroup, m } from 'framer-motion'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
+import { useRegion } from '../context/RegionContext'
 import { supabase, saveCache } from '../services/supabase'
 import { products as localProducts, categories } from '../data/products'
 import { useCart } from '../context/CartContext'
@@ -225,6 +226,7 @@ const ALL_CATEGORIES = categories
 
 export const HomePage = ({ searchQuery = '' }) => {
   const location = useLocation()
+  const { country } = useRegion()
   const navigate = useNavigate()
   const { addToCart } = useCart()
   const urlCat = new URLSearchParams(location.search).get('cat')
@@ -326,13 +328,12 @@ export const HomePage = ({ searchQuery = '' }) => {
   }, [loading, products, requestedProductId, addToCart, navigate])
 
   const filtered = useMemo(() => {
-    if (!searchQuery) return products
     const q = searchQuery.toLowerCase()
-    return products.filter(p =>
-      p.title?.toLowerCase().includes(q) ||
-      p.description?.toLowerCase().includes(q)
-    )
-  }, [products, searchQuery])
+    const list = searchQuery ? products.filter(p => p.title?.toLowerCase().includes(q) || p.description?.toLowerCase().includes(q)) : [...products]
+    // MA : produits physiques (livraison) d'abord ; autres pays : produits numeriques d'abord
+    const dir = country === 'MA' ? 1 : -1
+    return list.sort((a, b) => dir * (Number(!!a.isDigital) - Number(!!b.isDigital)))
+  }, [products, searchQuery, country])
 
   return (
     <>

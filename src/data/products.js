@@ -153,7 +153,22 @@ export const products = [
         description: 'Guide pratique sur le confort, le mode réversible, le compresseur, le climatiseur à eau, l’installation et l’entretien.',
         affiliateLink: '/climatiseur-individuel.html',
         inStock: true,
+    },
+    {
+        id: 20,
+        title: 'Python – Module 6 : POO, exceptions et fichiers',
+        price: 90.00,
+        originalPrice: 150.00,
+        category: 'Python',
+        rating: 4.9,
+        reviews: 27,
+        image: '/Python/module 6.webp',
+        badge: 'Nouveau',
+        description: 'Éléments essentiels de la programmation en Python : approche orientée objet, classes, méthodes et objets, gestion des exceptions et travail avec les fichiers. Module complet avec exemples de code.',
+        affiliateLink: '/python-module6.html',
+        inStock: true,
+        isDigital: true,
     }
 ]
 
-export const categories = ['Tous', 'Video', 'Audio', 'Application', 'Maison', 'Service', 'Livre']
+export const categories = ['Tous', 'Video', 'Audio', 'Application', 'Maison', 'Service', 'Livre', 'Python']

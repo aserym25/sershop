@@ -1,5 +1,12 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
+import { geoHandler } from './geo.js'
+
+const geoPlugin = {
+  name: 'geo-api',
+  configureServer: s => s.middlewares.use(geoHandler),
+  configurePreviewServer: s => s.middlewares.use(geoHandler),
+}
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
@@ -7,6 +14,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      geoPlugin,
       react({
         babel: {
           plugins: [

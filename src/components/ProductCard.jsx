@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { m } from 'framer-motion'
 import styled from 'styled-components'
 import { useCart } from '../context/CartContext'
+import { useRegion } from '../context/RegionContext'
 import { orderProductViaWhatsApp } from '../utils/whatsapp'
 
 const cardVariants = {
@@ -282,6 +283,7 @@ const getDiscount = (price, original) =>
 
 export const ProductCard = ({ product, index = 0, onClick }) => {
   const { addToCart } = useCart()
+  const { formatPrice } = useRegion()
   const [wishlisted, setWishlisted] = useState(false)
   const [added, setAdded] = useState(false)
 
@@ -354,10 +356,10 @@ export const ProductCard = ({ product, index = 0, onClick }) => {
         <PriceRow>
           <Prices>
             <Price style={{ color: '#D4AF37', fontWeight: 'bold' }}>
-              {price.toFixed(2)} MAD
+              {formatPrice(price)}
             </Price>
             {originalPrice > price && (
-              <OriginalPrice>{originalPrice.toFixed(2)} MAD</OriginalPrice>
+              <OriginalPrice>{formatPrice(originalPrice)}</OriginalPrice>
             )}
             {discount > 0 && <Discount>-{discount}%</Discount>}
           </Prices>
