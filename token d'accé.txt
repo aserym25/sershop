@@ -1,0 +1,23 @@
+1556304032317882|HKvmhhcVi8T-pNv9gKQCjZT2cl0
+
+
+facebook
+
+GraphRequest request = GraphRequest.newMeRequest( accessToken, new GraphRequest.GraphJSONObjectCallback() { @Override public void onCompleted(JSONObject object, GraphResponse response) { // Insert your code here }});Bundle parameters = new Bundle();parameters.putString("fields", "id,name");request.setParameters(parameters);request.executeAsync();
+{
+"id": "28957104333875833",
+
+"name": "Mohamed Asery"
+
+}
+
+La requête a réussi : l’utilisateur Meta connecté est Mohamed Asery avec l’ID 28957104333875833.
+
+Attention : cet identifiant est seulement un User ID. Pour publier automatiquement les produits, il faut encore :
+
+l’ID de la page Facebook SearShop ;
+un Page Access Token avec les permissions de publication ;
+un compte Instagram professionnel relié à cette page ;
+un token Instagram adapté.
+Ne partagez jamais publiquement un access token.
+

@@ -1,0 +1,106 @@
+ohv 
+frkkskfhfKJ@E/.D
+
+
+
+mot de pass de serveur hetzner  SSH root@62.238.105.149/32 
+hggfdHJUYè-89@o      +5Y%x(Ba*7++m2P/
+
+   	62.238.105.149/32
+
+	hhbsk7MrAUxdjk9eH9th
+
+OVH CLOUD      TERWI.COM@     frkkskfhfKJ@E/.D
+
+serveur hetzner
+Credentials
+User	root
+Password	    KXdmi7wKsfqA
+
+JJp7dbX4vnin
+
+Credentials
+User	root
+Password	7iJwqVgUJRpt
+
+ssh_keygen -lf /etc/ssh/ssh_host_ed25519_key.pub -E sha256
+
+mkdir -p /tmp/mnt/
+
+
+7iJwqVgUJRpt2    new password console hetzner
+
+
+Credentials
+User	root
+Password	sb3xwpHhn4w9
+
+KxnjTunqPVsV
+
+Credentials
+User	root
+Password	m2vac7Xk4uNgt
+
+
+Credentials
+User	root
+Password	RxafeANNWtMb
+
+RxafeANNWtMbkji67
+
+chmod 700 /root/.ssh 
+rm -f /root/authorized_keys; touch /root/.ssh/authorized_keys; chmod 600 /root/.ssh/authorized_keys
+
+echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFBh6dV1TqJtfJzimQlT61XdDKC1cmcbR+sNnfy34tU sershop-hetzner-deploy >> /root/.ssh/authorized_keys
+
+ rm -rf /root/.ssh/authorized_keys; echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFBh6dV1TqJtfJzimQlT61XdDKC1cmcbR+sNnfy34tU sershop-hetzner-deploy > /root/.ssh/authorized_keys
+chmod 600 /root/.ssh/authorized_keys
+
+sshd -T | grep -E 'permitrootlogin|pubkeyauthentication|authorizedkeysfile'; ls -ld /root /root/.ssh; ls -l /root/.ssh/authorized_keys
+-v sshd; ps aux | grep '[s]sh'; cat /etc/os-release
+
+useradd -m -s /bin/bash deploy; usermod -aG sudo deploy
+mkdir -p /home/deploy/.ssh
+cp /root/.ssh/authorized_keys /home/deploy/.ssh/authorized_keys
+chown -R deploy:deploy /home/deploy/.ssh
+chmod 700 /home/deploy/.ssh
+ chmod 600 /home/deploy/.ssh/authorized_keys
+
+
+
+rm -rf /root/.ssh/authorized_keys /home/deploy/.ssh/authorized_keys
+echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFBh6dV1TqJtfJzimQlT61XdDKC1cmcbR+sNnfy34tU sershop-hetzner-deploy > /home/deploy/.ssh/authorized_keys
+chown -R deploy:deploy /home/deploy/.ssh
+chmod 700 /home/deploy/.ssh
+chmod 600 /home/deploy/.ssh/authorized_keys 
+
+
+rm -rf /home/deploy/.ssh/authorized_keys
+touch /home/deploy/.ssh/authorized_keys
+ chmod 600 /home/deploy/.ssh/authorized_keys
+
+
+
+echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILFBh6dV1TqJtfJzimQlT61XdDKC1cmcbR+sNnfy34tU sershop-hetzner-deploy >> /home/deploy/.ssh/authorized_keys 
+
+
+chown -R deploy:deploy /home/deploy/.ssh
+chmod 700 /home/deploy/.ssh 
+chmod 600 /home/deploy/.ssh/authorized_keys 
+
+cat /home/deploy/.ssh/authorized_keys 
+stat -c '%U %G %a %n' /home/deploy /home/deploy/.ssh /home/deploy/.ssh/authorized_keys
+grep -R 'AuthorizedKeysFile\|AllowUsers\|PubkeyAuthentication' /etc/ssh/sshd_config /etc/ssh/sshd_config.d 2>/dev/null 
+ls -la /etc/ssh
+
+Permitionrootlogin yes
+Passwordauthentication yes
+autre commande sans réponse
+
+sed -i 's/cbR=sNn/cbR+sNn/' /home/deploy/.ssh/authorized_keys
+ssh-keygen -lf /home/deploy/.ssh/authorized_keys
+
+
+ rm -rf /root/.ssh/authorized_keys
+ cp /home/deploy/.ssh/authorized_keys /root/.ssh/authorized_keys
+ chmod 700 /root/.ssh; chmod 600 /root/.ssh/authorized_keys
