@@ -28,3 +28,6 @@ npm-debug.log*
 Thumbs.db
 .vercel
 .env*.local
+
+# Fichiers des e-books (jamais dans public/ ni sur Git)
+private/
