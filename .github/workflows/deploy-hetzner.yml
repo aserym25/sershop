@@ -1,0 +1,56 @@
+# Met en ligne sershop.fr sur le serveur Hetzner à chaque push sur main
+name: Deploy to Hetzner (sershop.fr)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# Un seul déploiement à la fois, sans annuler celui en cours
+concurrency:
+  group: hetzner
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HETZNER_HOST: ${{ vars.HETZNER_HOST || '62.238.105.149' }}
+      HETZNER_USER: ${{ vars.HETZNER_USER || 'mohamed' }}
+      HETZNER_WEBROOT: ${{ vars.HETZNER_WEBROOT }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check secrets
+        id: check
+        env:
+          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
+          HETZNER_KNOWN_HOSTS: ${{ secrets.HETZNER_KNOWN_HOSTS }}
+        run: |
+          if [ -z "$HETZNER_SSH_KEY" ] || [ -z "$HETZNER_KNOWN_HOSTS" ]; then
+            echo "::warning::Secrets HETZNER_SSH_KEY / HETZNER_KNOWN_HOSTS absents : déploiement Hetzner ignoré."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up SSH key
+        if: steps.check.outputs.skip != 'true'
+        env:
+          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
+          HETZNER_KNOWN_HOSTS: ${{ secrets.HETZNER_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$HETZNER_SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$HETZNER_KNOWN_HOSTS" > ~/.ssh/known_hosts
+
+      - name: Build and deploy on the server
+        if: steps.check.outputs.skip != 'true'
+        run: |
+          ssh -i ~/.ssh/id_deploy -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            "$HETZNER_USER@$HETZNER_HOST" \
+            "BRANCH=main WEBROOT='${HETZNER_WEBROOT}' bash -s" < scripts/deploy-hetzner.sh
