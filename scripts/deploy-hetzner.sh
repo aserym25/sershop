@@ -36,8 +36,9 @@ if find dist \( -iname '*.docx' -o -iname '*.pdf' \) | grep -q .; then
   exit 1
 fi
 
-if [ -w "$WEBROOT" ]; then rsync -a --delete dist/ "$WEBROOT"/
-else sudo -n rsync -a --delete dist/ "$WEBROOT"/; fi
+# Sans --delete : on ajoute et met à jour, on ne retire jamais rien de ce qui est déjà en ligne
+if [ -w "$WEBROOT" ]; then rsync -a dist/ "$WEBROOT"/
+else sudo -n rsync -a dist/ "$WEBROOT"/; fi
 
 # Le site en ligne doit servir exactement le index.html qui vient d'être construit
 if curl -fsS https://sershop.fr/ | cmp -s - dist/index.html; then
