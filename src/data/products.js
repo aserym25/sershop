@@ -30,7 +30,7 @@ export const products = [
     },
     {
         id: 11,
-        title: 'كيف تبحث مع Gemini',
+        title: 'Comment chercher avec Gemini',
         price: 9.90,
         originalPrice: 19.90,
         category: 'Livre',

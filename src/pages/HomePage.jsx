@@ -48,6 +48,10 @@ const HeroSection = styled.section`
     height: 120px;
     background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.colors.bg});
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: 5rem 1rem 1.5rem;
+  }
 `
 const HeroContent = styled(m.div)`
   position: relative;
@@ -68,12 +72,23 @@ const HeroTitle = styled(m.h1)`
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: clamp(1.75rem, 8vw, 2.4rem);
+    margin-bottom: 1rem;
+  }
 `
 const HeroSub = styled(m.p)`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.textSecondary};
   margin-bottom: 2rem;
   line-height: 1.75;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
 `
 const HeroCTA = styled(m.div)`
   display: flex;
@@ -122,6 +137,11 @@ const Stats = styled(m.div)`
   gap: 3rem;
   margin-top: 2rem;
   flex-wrap: wrap;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    gap: 1rem 1.5rem;
+    margin-top: 1.25rem;
+  }
 `
 const Stat = styled(m.div)`
   text-align: center;
@@ -141,6 +161,10 @@ const Stat = styled(m.div)`
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    strong { font-size: ${({ theme }) => theme.fontSizes['2xl']}; }
+  }
 `
 
 /* ── Shop Section ───────────────────────────────────────── */
@@ -148,6 +172,10 @@ const ShopSection = styled.section`
   max-width: 1300px;
   margin: 0 auto;
   padding: 4rem 2rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: 2.5rem 1rem;
+  }
 `
 const SectionHeader = styled.div`
   display: flex;
