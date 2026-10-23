@@ -1,0 +1,40 @@
+name: Deploy to Hetzner
+
+# Déclenche le workflow à chaque push sur main ou manuellement
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Déploiement serveur Hetzner
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Exécution du script de déploiement via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          BRANCH: main
+        with:
+          host: ${{ secrets.HETZNER_IP }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          known_hosts: ${{ secrets.HETZNER_KNOWN_HOSTS }}
+          envs: BRANCH
+          # Exécute le script situé sur votre serveur
+          script: |
+            # S'assure que le dossier source existe pour le premier clone
+            mkdir -p $HOME/sershop-src
+            cd $HOME/sershop-src
+            
+            # Si le script n'existe pas encore, on le télécharge depuis le repo
+            if [ ! -f deploy-hetzner.sh ]; then
+              curl -sO https://raw.githubusercontent.com/aserym25/sershop/main/deploy-hetzner.sh
+            fi
+            
+            chmod +x deploy-hetzner.sh
+            ./deploy-hetzner.sh
+            
+           

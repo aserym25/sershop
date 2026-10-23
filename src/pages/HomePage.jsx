@@ -4,7 +4,6 @@ import { LayoutGroup, m } from 'framer-motion'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { useRegion } from '../context/RegionContext'
-import { supabase, saveCache } from '../services/supabase'
 import { products as localProducts, categories } from '../data/products'
 import { useCart } from '../context/CartContext'
 
@@ -269,70 +268,12 @@ export const HomePage = ({ searchQuery = '' }) => {
     setLoading(true)
     setError(null)
 
-    // Supabase non configuré : on utilise directement les produits locaux, sans tenter d'appel réseau ni logguer d'erreur
-    if (!supabase) {
-      let fallback = [...localProducts]
-      if (activeCategory !== 'Tous') {
-        fallback = fallback.filter(p => p.category === activeCategory)
-      }
-      setProducts(fallback)
-      setError(fallback.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
-      setLoading(false)
-      return
+    let items = [...localProducts]
+    if (activeCategory !== 'Tous') {
+      items = items.filter(p => p.category === activeCategory)
     }
-
-    try {
-      let query = supabase.from('products').select('*').order('id', { ascending: true })
-      if (activeCategory !== 'Tous') query = query.eq('category', activeCategory)
-
-      const { data, error: err } = await query
-
-      if (err) throw err
-
-      // Supabase returns 'in_stock' but frontend expects 'inStock'
-      const formattedData = (data || []).map(p => {
-        let finalLink = p.affiliate_link || p.affiliateLink;
-        if (finalLink && /temu\.to|temu\.com/i.test(finalLink)) {
-          finalLink = null;
-        }
-        return {
-          ...p,
-          inStock: p.in_stock,
-          affiliate_link: finalLink,
-          affiliateLink: finalLink
-        }
-      })
-
-      // Combiner avec les produits locaux qui ne sont pas dans Supabase
-      const existingIds = new Set(formattedData.map(p => p.id));
-      const newLocalProducts = localProducts.filter(p => !existingIds.has(p.id));
-
-      let allProducts = [...formattedData, ...newLocalProducts];
-
-      // Réappliquer le filtre si une catégorie est sélectionnée
-      if (activeCategory !== 'Tous') {
-        allProducts = allProducts.filter(p => p.category === activeCategory);
-      }
-
-      setProducts(allProducts)
-      if (activeCategory === 'Tous') saveCache(allProducts)
-
-    } catch (err) {
-      console.error('Supabase error, fallback to local products:', err)
-      // Fallback : utiliser les produits locaux si Supabase est indisponible
-      let fallback = [...localProducts]
-      if (activeCategory !== 'Tous') {
-        fallback = fallback.filter(p => p.category === activeCategory)
-      }
-      setProducts(fallback)
-      // Afficher un avertissement discret au lieu de bloquer la page
-      if (fallback.length === 0) {
-        setError('Aucun produit disponible pour le moment.')
-      } else {
-        setError(null) // Produits locaux disponibles, pas d'erreur bloquante
-      }
-    }
-
+    setProducts(items)
+    setError(items.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
     setLoading(false)
   }
 
