@@ -1,56 +1,38 @@
-# Met en ligne sershop.fr sur le serveur Hetzner à chaque push sur main
-name: Deploy to Hetzner (sershop.fr)
+name: Deploy to Hetzner
 
+# Déclenche le workflow à chaque push sur main ou manuellement
 on:
   push:
-    branches: ["main"]
+    branches:
+      - main
   workflow_dispatch:
-
-# Un seul déploiement à la fois, sans annuler celui en cours
-concurrency:
-  group: hetzner
-  cancel-in-progress: false
-
-permissions:
-  contents: read
 
 jobs:
   deploy:
+    name: Déploiement serveur Hetzner
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    env:
-      HETZNER_HOST: ${{ vars.HETZNER_HOST || '62.238.105.149' }}
-      HETZNER_USER: ${{ vars.HETZNER_USER || 'mohamed' }}
-      HETZNER_WEBROOT: ${{ vars.HETZNER_WEBROOT }}
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Check secrets
-        id: check
+      - name: Exécution du script de déploiement via SSH
+        uses: appleboy/ssh-action@v1.0.3
         env:
-          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
-          HETZNER_KNOWN_HOSTS: ${{ secrets.HETZNER_KNOWN_HOSTS }}
-        run: |
-          if [ -z "$HETZNER_SSH_KEY" ] || [ -z "$HETZNER_KNOWN_HOSTS" ]; then
-            echo "::warning::Secrets HETZNER_SSH_KEY / HETZNER_KNOWN_HOSTS absents : déploiement Hetzner ignoré."
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          fi
-
-      - name: Set up SSH key
-        if: steps.check.outputs.skip != 'true'
-        env:
-          HETZNER_SSH_KEY: ${{ secrets.HETZNER_SSH_KEY }}
-          HETZNER_KNOWN_HOSTS: ${{ secrets.HETZNER_KNOWN_HOSTS }}
-        run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$HETZNER_SSH_KEY" > ~/.ssh/id_deploy
-          chmod 600 ~/.ssh/id_deploy
-          printf '%s\n' "$HETZNER_KNOWN_HOSTS" > ~/.ssh/known_hosts
-
-      - name: Build and deploy on the server
-        if: steps.check.outputs.skip != 'true'
-        run: |
-          ssh -i ~/.ssh/id_deploy -o BatchMode=yes -o StrictHostKeyChecking=yes \
-            "$HETZNER_USER@$HETZNER_HOST" \
-            "BRANCH=main WEBROOT='${HETZNER_WEBROOT}' bash -s" < scripts/deploy-hetzner.sh
+          BRANCH: main
+        with:
+          host: ${{ secrets.HETZNER_IP }}
+          username: ${{ secrets.HETZNER_USER }}
+          key: ${{ secrets.HETZNER_SSH_KEY }}
+          known_hosts: ${{ secrets.HETZNER_KNOWN_HOSTS }}
+          envs: BRANCH
+          # Exécute le script situé sur votre serveur
+          script: |
+            # S'assure que le dossier source existe pour le premier clone
+            mkdir -p $HOME/sershop-src
+            cd $HOME/sershop-src
+            
+            # Si le script n'existe pas encore, on le télécharge depuis le repo
+            if [ ! -f deploy-hetzner.sh ]; then
+              curl -sO https://raw.githubusercontent.com/aserym25/sershop/main/deploy-hetzner.sh
+            fi
+            
+            chmod +x deploy-hetzner.sh
+            ./deploy-hetzner.sh

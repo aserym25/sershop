@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Climatisation Multi-Split - Sershop.fr</title>
+    <style>
+        /* =========================================
+           STYLES DU CALCULATEUR (CSS)
+           ========================================= */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #hvac-calculator-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .hvac-calc-title {
+            text-align: center;
+            color: #1f2937;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .hvac-form-group { margin-bottom: 15px; }
+        .hvac-form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4b5563;
+            font-size: 0.9rem;
+        }
+        .hvac-form-group input, .hvac-form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .hvac-row { display: flex; gap: 15px; }
+        .hvac-row .hvac-form-group { flex: 1; }
+
+        /* Boutons */
+        .hvac-btn {
+            width: 100%;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        .hvac-btn:hover { background-color: #1d4ed8; }
+        
+        .hvac-btn-add {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            border: 2px dashed #d1d5db;
+            margin-bottom: 20px;
+        }
+        .hvac-btn-add:hover {
+            background-color: #e5e7eb;
+            color: #1f2937;
+            border-color: #9ca3af;
+        }
+        
+        .hvac-btn-remove {
+            background-color: #ef4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            float: right;
+        }
+        .hvac-btn-remove:hover { background-color: #dc2626; }
+
+        /* Blocs Pièces */
+        .hvac-room-block {
+            background: #f9fafb;
+            padding: 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .hvac-room-title {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: #374151;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* Résultats */
+        #hvac-result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #eff6ff;
+            border-left: 5px solid #2563eb;
+            border-radius: 5px;
+            display: none;
+        }
+        .hvac-result-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+            border-bottom: 1px solid #bfdbfe;
+            padding-bottom: 10px;
+        }
+        .hvac-result-grid {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .hvac-result-col {
+            text-align: center;
+            flex: 1;
+        }
+        .hvac-result-col:first-child { border-right: 1px solid #bfdbfe; }
+        
+        .hvac-mode-label {
+            font-size: 0.9rem;
+            color: #4b5563;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .hvac-value {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2563eb;
+            display: block;
+        }
+        .hvac-value-watts {
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .hvac-room-results {
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+        .hvac-cta-btn {
+            display: block;
+            margin-top: 15px;
+            width: 100%;
+            background-color: #10b981;
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            font-weight: bold;
+            box-sizing: border-box;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .hvac-cta-btn:hover { background-color: #059669; }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================
+         STRUCTURE DU CALCULATEUR (HTML)
+         ========================================= -->
+    <div id="hvac-calculator-container">
+        <h2 class="hvac-calc-title">Calculateur Multi-Split Réversible</h2>
+        
+        <div id="hvac-rooms-container">
+            <!-- Pièce 1 -->
+            <div class="hvac-room-block">
+                <h3 class="hvac-room-title">Pièce 1</h3>
+                
+                <div class="hvac-row">
+                    <div class="hvac-form-group">
+                        <label>Surface au sol (m²)</label>
+                        <input type="number" class="hvac-surface" placeholder="Ex: 25" min="1">
+                    </div>
+                    <div class="hvac-form-group">
+                        <label>Hauteur plafond (m)</label>
+                        <input type="number" class="hvac-hauteur" value="2.8" step="0.1" min="1">
+                    </div>
+                </div>
+
+                <div class="hvac-form-group">
+                    <label>Isolation de la pièce</label>
+                    <select class="hvac-isolation">
+                        <option value="bonne">Très bonne (Récente)</option>
+                        <option value="moyenne" selected>Moyenne (Standard)</option>
+                        <option value="faible">Faible (Ancienne)</option>
+                    </select>
+                </div>
+
+                <div class="hvac-row">
+                    <div class="hvac-form-group">
+                        <label>Vitrage (m²)</label>
+                        <input type="number" class="hvac-vitrage" value="2" min="0">
+                    </div>
+                    <div class="hvac-form-group">
+                        <label>Occupants</label>
+                        <input type="number" class="hvac-personnes" value="2" min="0">
+                    </div>
+                </div>
+                
+                <div class="hvac-form-group" style="margin-bottom: 0;">
+                    <label>Équipements (Watts)</label>
+                    <input type="number" class="hvac-equipements" value="0" min="0" placeholder="TV, PC, etc. Ex: 300">
+                </div>
+            </div>
+        </div>
+
+        <button class="hvac-btn hvac-btn-add" onclick="ajouterPiece()">+ Ajouter une autre pièce</button>
+        <button class="hvac-btn" onclick="calculerMultiSplit()">Calculer l'installation totale</button>
+
+        <div id="hvac-result-box">
+            <div class="hvac-result-title">Puissance Totale (Unité Extérieure)</div>
+            
+            <div class="hvac-result-grid">
+                <div class="hvac-result-col">
+                    <div class="hvac-mode-label">❄️ Mode Froid</div>
+                    <span class="hvac-value" id="res-froid-btu">0 BTU/h</span>
+                    <span class="hvac-value-watts" id="res-froid-watts">0 W</span>
+                </div>
+                <div class="hvac-result-col">
+                    <div class="hvac-mode-label">🔥 Mode Chaud</div>
+                    <span class="hvac-value" id="res-chaud-btu">0 BTU/h</span>
+                    <span class="hvac-value-watts" id="res-chaud-watts">0 W</span>
+                </div>
+            </div>
+            
+            <div class="hvac-room-results" id="res-details-pieces"></div>
+            <div id="dynamic-btn-container"></div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         MOTEUR DE CALCUL (JAVASCRIPT)
+         ========================================= -->
+    <script>
+        let compteurPiece = 1;
+
+        function ajouterPiece() {
+            compteurPiece++;
+            const container = document.getElementById('hvac-rooms-container');
+            const pieceHtml = `
+                <div class="hvac-room-block" id="piece-${compteurPiece}">
+                    <button class="hvac-btn-remove" onclick="supprimerPiece('piece-${compteurPiece}')">✕ Supprimer</button>
+                    <h3 class="hvac-room-title">Pièce ${compteurPiece}</h3>
+                    
+                    <div class="hvac-row">
+                        <div class="hvac-form-group">
+                            <label>Surface au sol (m²)</label>
+                            <input type="number" class="hvac-surface" placeholder="Ex: 15" min="1">
+                        </div>
+                        <div class="hvac-form-group">
+                            <label>Hauteur plafond (m)</label>
+                            <input type="number" class="hvac-hauteur" value="2.8" step="0.1" min="1">
+                        </div>
+                    </div>
+
+                    <div class="hvac-form-group">
+                        <label>Isolation de la pièce</label>
+                        <select class="hvac-isolation">
+                            <option value="bonne">Très bonne (Récente)</option>
+                            <option value="moyenne" selected>Moyenne (Standard)</option>
+                            <option value="faible">Faible (Ancienne)</option>
+                        </select>
+                    </div>
+
+                    <div class="hvac-row">
+                        <div class="hvac-form-group">
+                            <label>Vitrage (m²)</label>
+                            <input type="number" class="hvac-vitrage" value="1" min="0">
+                        </div>
+                        <div class="hvac-form-group">
+                            <label>Occupants</label>
+                            <input type="number" class="hvac-personnes" value="1" min="0">
+                        </div>
+                    </div>
+
+                    <div class="hvac-form-group" style="margin-bottom: 0;">
+                        <label>Équipements (Watts)</label>
+                        <input type="number" class="hvac-equipements" value="0" min="0">
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', pieceHtml);
+        }
+
+        function supprimerPiece(idPiece) {
+            document.getElementById(idPiece).remove();
+        }
+
+        function calculerMultiSplit() {
+            const pieces = document.querySelectorAll('.hvac-room-block');
+            let totalFroidWatts = 0;
+            let totalChaudWatts = 0;
+            let nbPiecesValides = 0;
+            let detailsHtml = "<strong>Détail par unité intérieure :</strong><br>";
+
+            let index = 1;
+            pieces.forEach(piece => {
+                const surface = parseFloat(piece.querySelector('.hvac-surface').value) || 0;
+                const hauteur = parseFloat(piece.querySelector('.hvac-hauteur').value) || 0;
+                
+                if(surface > 0 && hauteur > 0) {
+                    nbPiecesValides++;
+                    const isolation = piece.querySelector('.hvac-isolation').value;
+                    const vitrage = parseFloat(piece.querySelector('.hvac-vitrage').value) || 0;
+                    const personnes = parseFloat(piece.querySelector('.hvac-personnes').value) || 0;
+                    const equipements = parseFloat(piece.querySelector('.hvac-equipements').value) || 0;
+
+                    const volume = surface * hauteur;
+                    let coeffFroid = isolation === "bonne" ? 30 : (isolation === "moyenne" ? 40 : 50);
+                    let coeffChaud = isolation === "bonne" ? 35 : (isolation === "moyenne" ? 45 : 60);
+
+                    // Calcul Froid
+                    let chargeFroid = (volume * coeffFroid) + (personnes * 130) + (vitrage * 150) + equipements;
+                    let wattsFroidPiece = Math.round(chargeFroid * 1.15); 
+                    let btuFroidPiece = Math.round(wattsFroidPiece * 3.41214);
+                    totalFroidWatts += wattsFroidPiece;
+
+                    // Calcul Chaud
+                    let wattsChaudPiece = Math.round((volume * coeffChaud) * 1.20); 
+                    let btuChaudPiece = Math.round(wattsChaudPiece * 3.41214);
+                    totalChaudWatts += wattsChaudPiece;
+
+                    const maxPieceBTU = Math.max(btuFroidPiece, btuChaudPiece);
+                    detailsHtml += `- Unité ${index} : ~${maxPieceBTU.toLocaleString('fr-FR')} BTU/h<br>`;
+                }
+                index++;
+            });
+
+            if(nbPiecesValides === 0) {
+                alert("Veuillez remplir correctement au moins une pièce (surface et hauteur).");
+                return;
+            }
+
+            const totalFroidBTU = Math.round(totalFroidWatts * 3.41214);
+            const totalChaudBTU = Math.round(totalChaudWatts * 3.41214);
+            const maxTotalBTU = Math.max(totalFroidBTU, totalChaudBTU);
+
+            document.getElementById('res-froid-watts').innerText = totalFroidWatts.toLocaleString('fr-FR') + ' W';
+            document.getElementById('res-froid-btu').innerText = totalFroidBTU.toLocaleString('fr-FR') + ' BTU/h';
+            document.getElementById('res-chaud-watts').innerText = totalChaudWatts.toLocaleString('fr-FR') + ' W';
+            document.getElementById('res-chaud-btu').innerText = totalChaudBTU.toLocaleString('fr-FR') + ' BTU/h';
+            
+            document.getElementById('res-details-pieces').innerHTML = detailsHtml;
+
+            // Liens dynamiques pour sershop.fr
+            const btnContainer = document.getElementById('dynamic-btn-container');
+            let urlCategorie = "https://sershop.fr/categorie/climatiseurs-multi-split"; 
+            
+            let typeMulti = nbPiecesValides === 1 ? "Mono-Split" : 
+                            nbPiecesValides === 2 ? "Bi-Split" : 
+                            nbPiecesValides === 3 ? "Tri-Split" : 
+                            nbPiecesValides === 4 ? "Quadri-Split" : 
+                            "Multi-Split (" + nbPiecesValides + " postes)";
+
+            if (maxTotalBTU > 48000) {
+                btnContainer.innerHTML = `<a href="https://sershop.fr/contact" class="hvac-cta-btn">La puissance requise dépasse le standard. Demander un devis</a>`;
+            } else {
+                btnContainer.innerHTML = `<a href="${urlCategorie}" class="hvac-cta-btn">Voir nos compresseurs ${typeMulti}</a>`;
+            }
+
+            document.getElementById('hvac-result-box').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

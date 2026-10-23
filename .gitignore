@@ -31,3 +31,6 @@ Thumbs.db
 
 # Fichiers des e-books (jamais dans public/ ni sur Git)
 private/
+
+hetzner.txt
+*.docx

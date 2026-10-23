@@ -4,7 +4,6 @@ import { LayoutGroup, m } from 'framer-motion'
 import styled, { keyframes } from 'styled-components'
 import { ProductCard } from '../components/ProductCard'
 import { useRegion } from '../context/RegionContext'
-import { supabase, saveCache } from '../services/supabase'
 import { products as localProducts, categories } from '../data/products'
 import { useCart } from '../context/CartContext'
 
@@ -48,6 +47,10 @@ const HeroSection = styled.section`
     height: 120px;
     background: linear-gradient(to bottom, transparent, ${({ theme }) => theme.colors.bg});
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: 5rem 1rem 1.5rem;
+  }
 `
 const HeroContent = styled(m.div)`
   position: relative;
@@ -68,12 +71,23 @@ const HeroTitle = styled(m.h1)`
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: clamp(1.75rem, 8vw, 2.4rem);
+    margin-bottom: 1rem;
+  }
 `
 const HeroSub = styled(m.p)`
   font-size: ${({ theme }) => theme.fontSizes.lg};
   color: ${({ theme }) => theme.colors.textSecondary};
   margin-bottom: 2rem;
   line-height: 1.75;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    font-size: ${({ theme }) => theme.fontSizes.md};
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
 `
 const HeroCTA = styled(m.div)`
   display: flex;
@@ -122,6 +136,11 @@ const Stats = styled(m.div)`
   gap: 3rem;
   margin-top: 2rem;
   flex-wrap: wrap;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    gap: 1rem 1.5rem;
+    margin-top: 1.25rem;
+  }
 `
 const Stat = styled(m.div)`
   text-align: center;
@@ -141,6 +160,10 @@ const Stat = styled(m.div)`
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    strong { font-size: ${({ theme }) => theme.fontSizes['2xl']}; }
+  }
 `
 
 /* ── Shop Section ───────────────────────────────────────── */
@@ -148,6 +171,10 @@ const ShopSection = styled.section`
   max-width: 1300px;
   margin: 0 auto;
   padding: 4rem 2rem;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.sm}) {
+    padding: 2.5rem 1rem;
+  }
 `
 const SectionHeader = styled.div`
   display: flex;
@@ -241,70 +268,12 @@ export const HomePage = ({ searchQuery = '' }) => {
     setLoading(true)
     setError(null)
 
-    // Supabase non configuré : on utilise directement les produits locaux, sans tenter d'appel réseau ni logguer d'erreur
-    if (!supabase) {
-      let fallback = [...localProducts]
-      if (activeCategory !== 'Tous') {
-        fallback = fallback.filter(p => p.category === activeCategory)
-      }
-      setProducts(fallback)
-      setError(fallback.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
-      setLoading(false)
-      return
+    let items = [...localProducts]
+    if (activeCategory !== 'Tous') {
+      items = items.filter(p => p.category === activeCategory)
     }
-
-    try {
-      let query = supabase.from('products').select('*').order('id', { ascending: true })
-      if (activeCategory !== 'Tous') query = query.eq('category', activeCategory)
-
-      const { data, error: err } = await query
-
-      if (err) throw err
-
-      // Supabase returns 'in_stock' but frontend expects 'inStock'
-      const formattedData = (data || []).map(p => {
-        let finalLink = p.affiliate_link || p.affiliateLink;
-        if (finalLink && /temu\.to|temu\.com/i.test(finalLink)) {
-          finalLink = null;
-        }
-        return {
-          ...p,
-          inStock: p.in_stock,
-          affiliate_link: finalLink,
-          affiliateLink: finalLink
-        }
-      })
-
-      // Combiner avec les produits locaux qui ne sont pas dans Supabase
-      const existingIds = new Set(formattedData.map(p => p.id));
-      const newLocalProducts = localProducts.filter(p => !existingIds.has(p.id));
-
-      let allProducts = [...formattedData, ...newLocalProducts];
-
-      // Réappliquer le filtre si une catégorie est sélectionnée
-      if (activeCategory !== 'Tous') {
-        allProducts = allProducts.filter(p => p.category === activeCategory);
-      }
-
-      setProducts(allProducts)
-      if (activeCategory === 'Tous') saveCache(allProducts)
-
-    } catch (err) {
-      console.error('Supabase error, fallback to local products:', err)
-      // Fallback : utiliser les produits locaux si Supabase est indisponible
-      let fallback = [...localProducts]
-      if (activeCategory !== 'Tous') {
-        fallback = fallback.filter(p => p.category === activeCategory)
-      }
-      setProducts(fallback)
-      // Afficher un avertissement discret au lieu de bloquer la page
-      if (fallback.length === 0) {
-        setError('Aucun produit disponible pour le moment.')
-      } else {
-        setError(null) // Produits locaux disponibles, pas d'erreur bloquante
-      }
-    }
-
+    setProducts(items)
+    setError(items.length === 0 ? 'Aucun produit disponible pour le moment.' : null)
     setLoading(false)
   }
 
